@@ -97,6 +97,10 @@ footer {
     z-index: 9999;
     opacity: 1;
     transition: opacity 1s ease-out;
+    -webkit-transition: opacity 1s ease-out;
+    -moz-transition: opacity 1s ease-out;
+    -ms-transition: opacity 1s ease-out;
+    -o-transition: opacity 1s ease-out;
 }
 /* =====================================================
 Preloader */
