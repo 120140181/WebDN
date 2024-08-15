@@ -634,8 +634,8 @@ Slider */
 }
 
 .vmisi {
-    margin-top: 300px;
-    margin-bottom: 300px;
+    margin-top: 150px;
+    margin-bottom: 150px;
 }
 .vmisi-tittle {
     background-color: #daf5ff;
@@ -646,6 +646,11 @@ Slider */
     background-color: #daf5ff;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
+}
+
+.vteam {
+    margin-top: 150px;
+    margin-bottom: 150px;
 }
 
 #sejarahContent {
