@@ -14,7 +14,8 @@
     <script src="assets/vendor/node_modules/jquery/dist/jquery.js"></script>
     <script src="assets/vendor/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="assets/vendor/node_modules/jquery/src/jquery.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/loader.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </body>
 
