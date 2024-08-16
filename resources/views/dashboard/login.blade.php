@@ -63,7 +63,7 @@
                                     <span class="input-group-text bg-transparent border-0" id="username-addon">
                                         <span class="iconify" data-icon="icon-park-outline:people" data-inline="true"></span>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Username" name="username" required style="border-radius: 16px; background-color: #B6D7FE;" aria-describedby="username-addon" >
+                                    <input type="email" class="form-control" placeholder="Email" id="email" name="email" required style="border-radius: 16px; background-color: #B6D7FE;" aria-describedby="username-addon" required>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
@@ -71,7 +71,7 @@
                                     <span class="input-group-text bg-transparent border-0" id="password-addon">
                                         <span class="iconify" data-icon="bytesize:lock" data-inline="true"></span>
                                     </span>
-                                    <input type="password" class="form-control" placeholder="Password" name="password" required style="border-radius: 16px; background-color: #B6D7FE;" aria-describedby="password-addon">
+                                    <input type="password" class="form-control" placeholder="Password" id="password" name="password" required style="border-radius: 16px; background-color: #B6D7FE;" aria-describedby="password-addon" required>
                                 </div>
                             </div>
                             <div id="message" class="text-center mb-3" style="font-size: 16px;"></div>
