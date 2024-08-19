@@ -3,12 +3,10 @@
     <div class="mb-5">
         <div id="mainBanner" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="0" class="active" aria-current="true"
+                    aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
 
             <div class="carousel-inner" style="height: 700px;">
@@ -57,8 +55,7 @@
                     <span class="iconify" data-icon="mdi:shield-check" data-inline="true"
                         style="font-size: 32px"></span>
                     <span class="fw-bold small">Terpercaya</span>
-                    <span class="iconify" data-icon="mdi:certificate" data-inline="true"
-                        style="font-size: 32px"></span>
+                    <span class="iconify" data-icon="mdi:certificate" data-inline="true" style="font-size: 32px"></span>
                     <span class="fw-bold small">Legalitas</span>
                 </div>
             </div>
@@ -67,15 +64,14 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6 col-sm-12 mb-4 me-lg-3">
                         <div class="card service-card">
-                            <img src="{{ asset('images/akad4.jpg') }}" class="card-img-top img-fluid"
-                                alt="..." />
+                            <img src="{{ asset('images/akad4.jpg') }}" class="card-img-top img-fluid" alt="..." />
                             <div class="card-body">
                                 <div class="accordion accordion-flush" id="layananAccordion">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="acc1Head">
                                             <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#acc1"
-                                                aria-expanded="false" aria-controls="acc1">
+                                                data-bs-toggle="collapse" data-bs-target="#acc1" aria-expanded="false"
+                                                aria-controls="acc1">
                                                 Layanan Notaris
                                             </button>
                                         </h2>
@@ -101,8 +97,8 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="acc2Head">
                                             <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#acc2"
-                                                aria-expanded="false" aria-controls="acc2">
+                                                data-bs-toggle="collapse" data-bs-target="#acc2" aria-expanded="false"
+                                                aria-controls="acc2">
                                                 Layanan PPAT
                                             </button>
                                         </h2>
@@ -216,32 +212,45 @@
                 </div>
                 <div class="d-flex col-lg-6 col-md-6 col-sm-12 ">
                     <div class="form-container mt-4 mb-4 py-4 w-100">
-                        <form>
+                        <form action="{{ route('send-proses') }}#form-container" method="POST">
+                            @csrf
                             <h5 class="mb-2 mt-3 fw-bold text-center">
                                 Let's talk about your Business.
                             </h5>
                             <div class="mb-2 px-4">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control colored-input" id="name" required />
+                                <input type="text" name="name" class="form-control colored-input"
+                                    id="name" required />
                             </div>
                             <div class="mb-2 px-4">
                                 <label for="email" class="form-label">Email address</label>
-                                <input type="email" class="form-control colored-input" id="email" required />
+                                <input type="email" name="email" class="form-control colored-input"
+                                    id="email" required />
                             </div>
                             <div class="mb-2 px-4">
                                 <label for="subject" class="form-label">Subject</label>
-                                <input type="text" class="form-control colored-input" id="subject" required />
+                                <input type="text" name="subject" class="form-control colored-input"
+                                    id="subject" required />
                             </div>
                             <div class="mb-3 px-4">
                                 <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control colored-input" id="message" rows="3" required></textarea>
+                                <textarea class="form-control colored-input" name="message" id="message" rows="3" required></textarea>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary fw-bold">
-                                    Submit
+                                    Send
                                 </button>
                             </div>
                         </form>
+                        @if (session()->has('success'))
+                            <script>
+                                Swal.fire({
+                                    title: "Pesan Berhasil Terkirim!",
+                                    icon: "success"
+                                });
+                            </script>
+                        @endif
+
                     </div>
                 </div>
             </div>

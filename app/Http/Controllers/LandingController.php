@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactUS;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LandingController extends Controller
 {
@@ -14,6 +16,20 @@ class LandingController extends Controller
         //
         return view('landing.index');
     }
+
+     public function send(Request $request)
+     {
+        $data = request()->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'subject' => 'required|min:3',
+            'message' => 'required|min:5',
+        ]);
+        Mail::to('infonotdeninugraha@gmail.com')->send(new ContactUS($data));
+
+        // dd($request->all());
+        return redirect()->back()->with('success', 'Pesan Berhasil Terkirim!');
+     }
 
     public function service()
     {
@@ -33,6 +49,7 @@ class LandingController extends Controller
         return view('landing.gallery');
     }
 
+    
     /**
      * Show the form for creating a new resource.
      */
