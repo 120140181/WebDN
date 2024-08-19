@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-
 
 class DashboardController extends Controller
 {
@@ -15,25 +13,23 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('dashboard.login');
+        return view('auth.login');
     }
 
-    public function authenticate(Request $request): RedirectResponse
+    public function authenticate(Request $request)
     {
-        // Validasi input
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
-            'password' => 'required',
+            'username' => 'required',
+            'password'=> 'required'
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
-            return redirect()->intended('dashboard');
+
+            return redirect()->intended('haloadmin');
         }
-            
-        return redirect()->back()->with('Login Error', 'Login Failed!');
-        
+
+        return back()->with('loginError', 'Login Gagal!');
     }
 
     /**

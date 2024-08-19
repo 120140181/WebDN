@@ -9,7 +9,7 @@
                 <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
 
-            <div class="carousel-inner">
+            <div class="carousel-inner" style="height: 700px;">
                 <div class="carousel-item active" data-bs-interval="5000">
                     <img src="{{ asset('images/carousel1.jpg') }}" alt="..." />
                 </div>

@@ -20,33 +20,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <!-- Iconify -->
     <script src="https://code.iconify.design/2/2.0.0/iconify.min.js"></script>
-    {{-- <script defer>
-    function validateLogin(event) {
-        event.preventDefault(); // Prevent form submission
-        const username = document.querySelector('input[name="username"]').value;
-        const password = document.querySelector('input[name="password"]').value;
-
-        const correctUsername = "admin"; // Replace with your correct username
-        const correctPassword = "admin"; // Replace with your correct password
-
-        const messageElement = document.getElementById('message');
-
-        if (username === correctUsername && password === correctPassword) {
-            messageElement.textContent = "Login berhasil";
-            messageElement.style.color = "green";
-            // Redirect to dashboard or perform any other action
-            setTimeout(() => {
-                window.location.href = '/admin/dashboard.html';
-            }, 2000); // Redirect after 2 seconds
-        } else {
-            messageElement.textContent = "Login gagal";
-            messageElement.style.color = "red";
-        }
-    }
-</script> --}}
 
     <title>Login | Kantor Deni Nugraha</title>
-    <link rel="icon" href="assets/img/icon/garuda.png" type="image/png" />
+    <link rel="icon" href="{{ asset('images/icon/garuda.png') }}" type="image/png" />
 </head>
 
 <body class="d-flex justify-content-center align-items-center vh-100 bg-light">
@@ -56,50 +32,36 @@
             <div class="row no-gutters">
                 <div class="col-md-6 d-flex flex-column justify-content-center align-items-center p-4">
                     <div class="w-100">
-                        @if (session()->has('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                </button>
-                            </div>
-                        @endif
-
-                        @if (session()->has('loginError'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ session('loginError') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                </button>
-                            </div>
-                        @endif
                         <h1 class="text-center mb-4" style="font-size: 35px; color: #000;">LOGIN</h1>
-                        <form action="\login" method="POST">
+                        <form action="{{ route('login-proses') }}" method="POST">
                             @csrf
                             <div class="form-group mb-3">
                                 <div class="input-group">
-                                    <span class="input-group-text bg-transparent border-0" id="email-addon">
+                                    <span class="input-group-text bg-transparent border-0" id="username-addon">
                                         <span class="iconify" data-icon="icon-park-outline:people"
                                             data-inline="true"></span>
                                     </span>
-                                    <input type="email" name="email" class="form-control"
-                                        @error('email') is-invalid @enderror placeholder="Email" id="email" required
-                                        style="border-radius: 16px; background-color: #B6D7FE;"
-                                        aria-describedby="email-addon" autofocus required value=" {{ old('email') }}">
-                                    @error('email')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                    <input type="text" class="form-control" placeholder="Username" name="username"
+                                        id="username" style="border-radius: 10px; background-color: #B6D7FE;"
+                                        aria-describedby="username-addon" autofocus required
+                                        value="{{ old('username') }}">
                                 </div>
+                                @error('username')
+                                <small>{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text bg-transparent border-0" id="password-addon">
                                         <span class="iconify" data-icon="bytesize:lock" data-inline="true"></span>
                                     </span>
-                                    <input type="password" class="form-control" placeholder="Password" id="password"
-                                        name="password" required style="border-radius: 16px; background-color: #B6D7FE;"
+                                    <input type="password" class="form-control" placeholder="Password" name="password"
+                                        id="password" style="border-radius: 10px; background-color: #B6D7FE;"
                                         aria-describedby="password-addon" required>
                                 </div>
+                                @error('password')
+                                <small>{{ $message }}</small>
+                                @enderror
                             </div>
                             <div id="message" class="text-center mb-3" style="font-size: 16px;"></div>
                             <div class="d-flex flex-column align-items-center">
@@ -135,6 +97,24 @@
     <script src="assets\vendor\node_modules\jquery\src\jquery.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            @if (Session::has('failed'))
+                document.getElementById('preloader').style.display = 'none';
+            @endif
+        });
+    </script>
+
+    @if ($message = Session::get('failed'))
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "{{ $message }}"
+        });
+    </script>
+    @endif
 </body>
 
 </html>
