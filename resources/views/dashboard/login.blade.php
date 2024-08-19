@@ -2,25 +2,25 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-  <!-- Styles CSS -->
-  <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
-  <!-- Carousel CSS -->
-  <link rel="stylesheet" href="assets\vendor\node_modules\owl-carousel\css\owl.carousel.min.css" />
-  <link rel="stylesheet" href="assets\vendor\node_modules\owl-carousel\css\owl.theme.default.min.css" />
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-  <!-- Iconify -->
-  <script src="https://code.iconify.design/2/2.0.0/iconify.min.js"></script>
-  <script defer>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+    <!-- Carousel CSS -->
+    <link rel="stylesheet" href="assets\vendor\node_modules\owl-carousel\css\owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets\vendor\node_modules\owl-carousel\css\owl.theme.default.min.css" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/2/2.0.0/iconify.min.js"></script>
+    {{-- <script defer>
     function validateLogin(event) {
         event.preventDefault(); // Prevent form submission
         const username = document.querySelector('input[name="username"]').value;
@@ -43,27 +43,52 @@
             messageElement.style.color = "red";
         }
     }
-</script>
+</script> --}}
 
-  <title>Login | Kantor Deni Nugraha</title>
-  <link rel="icon" href="assets/img/icon/garuda.png" type="image/png" />
+    <title>Login | Kantor Deni Nugraha</title>
+    <link rel="icon" href="assets/img/icon/garuda.png" type="image/png" />
 </head>
 
-<body class="d-flex justify-content-center align-items-center vh-100 bg-light" >
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
     <div id="preloader"></div>
     <div class="vlogin container">
         <div class="card shadow-lg" style="border-radius: 10px; overflow: hidden;">
             <div class="row no-gutters">
                 <div class="col-md-6 d-flex flex-column justify-content-center align-items-center p-4">
                     <div class="w-100">
+                        @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                </button>
+                            </div>
+                        @endif
+
+                        @if (session()->has('loginError'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('loginError') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                </button>
+                            </div>
+                        @endif
                         <h1 class="text-center mb-4" style="font-size: 35px; color: #000;">LOGIN</h1>
-                        <form onsubmit="validateLogin(event)">
+                        <form action="\login" method="POST">
+                            @csrf
                             <div class="form-group mb-3">
                                 <div class="input-group">
-                                    <span class="input-group-text bg-transparent border-0" id="username-addon">
-                                        <span class="iconify" data-icon="icon-park-outline:people" data-inline="true"></span>
+                                    <span class="input-group-text bg-transparent border-0" id="email-addon">
+                                        <span class="iconify" data-icon="icon-park-outline:people"
+                                            data-inline="true"></span>
                                     </span>
-                                    <input type="email" class="form-control" placeholder="Email" id="email" name="email" required style="border-radius: 16px; background-color: #B6D7FE;" aria-describedby="username-addon" required>
+                                    <input type="email" name="email" class="form-control"
+                                        @error('email') is-invalid @enderror placeholder="Email" id="email" required
+                                        style="border-radius: 16px; background-color: #B6D7FE;"
+                                        aria-describedby="email-addon" autofocus required value=" {{ old('email') }}">
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group mb-3">
@@ -71,38 +96,45 @@
                                     <span class="input-group-text bg-transparent border-0" id="password-addon">
                                         <span class="iconify" data-icon="bytesize:lock" data-inline="true"></span>
                                     </span>
-                                    <input type="password" class="form-control" placeholder="Password" id="password" name="password" required style="border-radius: 16px; background-color: #B6D7FE;" aria-describedby="password-addon" required>
+                                    <input type="password" class="form-control" placeholder="Password" id="password"
+                                        name="password" required style="border-radius: 16px; background-color: #B6D7FE;"
+                                        aria-describedby="password-addon" required>
                                 </div>
                             </div>
                             <div id="message" class="text-center mb-3" style="font-size: 16px;"></div>
                             <div class="d-flex flex-column align-items-center">
-                                <button type="submit" class="btn btn-outline-primary mb-2 " style="width: 124px; height: 50px; border-radius: 16px;">Login</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="window.location.href='{{ route('index') }}'" style="width: 124px; height: 50px; border-radius: 16px;">Kembali</button>
+                                <button type="submit" class="btn btn-outline-primary mb-2 "
+                                    style="width: 124px; height: 50px; border-radius: 16px;">Login</button>
+                                <button type="button" class="btn btn-outline-danger"
+                                    onclick="window.location.href='{{ route('index') }}'"
+                                    style="width: 124px; height: 50px; border-radius: 16px;">Kembali</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="login-img col-md-6 d-none d-md-flex justify-content-center align-items-center" style="background-image: url('{{ asset('images/background1.jpg') }}'); background-size: cover;" >
+                <div class="login-img col-md-6 d-none d-md-flex justify-content-center align-items-center"
+                    style="background-image: url('{{ asset('images/background1.jpg') }}'); background-size: cover;">
                     <div class="d-none d-md-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/background2.jpg') }}" alt="Design Image" class="img-fluid rounded-pill" style="width: 516px; padding-right: 12px;">
+                        <img src="{{ asset('images/background2.jpg') }}" alt="Design Image"
+                            class="img-fluid rounded-pill" style="width: 516px; padding-right: 12px;">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-  <!-- Bootstrap Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-  <!-- Carousel JS -->
-  <script src="assets\vendor\node_modules\owl-carousel\js\owl.carousel.min.js"></script>
-  <!-- jquery -->
-  <script src="assets\vendor\node_modules\jquery\dist\jquery.js"></script>
-  <script src="assets\vendor\node_modules\jquery\dist\jquery.min.js"></script>
-  <script src="assets\vendor\node_modules\jquery\src\jquery.js"></script>
-  <script src="js/custom.js"></script>
-  <script src="js/loader.js"></script>
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <!-- Carousel JS -->
+    <script src="assets\vendor\node_modules\owl-carousel\js\owl.carousel.min.js"></script>
+    <!-- jquery -->
+    <script src="assets\vendor\node_modules\jquery\dist\jquery.js"></script>
+    <script src="assets\vendor\node_modules\jquery\dist\jquery.min.js"></script>
+    <script src="assets\vendor\node_modules\jquery\src\jquery.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/loader.js"></script>
 </body>
 
 </html>

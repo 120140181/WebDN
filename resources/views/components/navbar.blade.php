@@ -21,6 +21,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <!-- Iconify -->
     <script src="https://code.iconify.design/2/2.0.0/iconify.min.js"></script>
+    {{-- sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>{{ request()->is('/') ? 'Home' : '' }} {{ request()->is('service') ? 'Service' : '' }} {{ request()->is('about') ? 'About Us' : '' }} {{ request()->is('gallery') ? 'Gallery' : '' }} | Kantor Deni Nugraha</title>
     <link rel="icon" href="{{ asset('images/icon/garuda.png') }}" type="image/png" />
@@ -80,7 +82,7 @@
                                     <a class="nav-link {{ request()->is('gallery') ? 'active' : '' }}" aria-current="page" href="{{ route('landing.gallery') }}">Gallery</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" aria-current="page" href="{{ route('dashboard.login') }}">
+                                    <a class="nav-link" aria-current="page" href="/login">
                                         <span class="iconify" data-icon="ri:admin-line" data-inline="true"></span>
                                     </a>
                                 </li>

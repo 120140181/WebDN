@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+
 
 class DashboardController extends Controller
 {
@@ -13,6 +16,24 @@ class DashboardController extends Controller
     {
         //
         return view('dashboard.login');
+    }
+
+    public function authenticate(Request $request): RedirectResponse
+    {
+        // Validasi input
+        $credentials = $request->validate([
+            'email' => 'required|email:dns',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('dashboard');
+        }
+            
+        return redirect()->back()->with('Login Error', 'Login Failed!');
+        
     }
 
     /**
