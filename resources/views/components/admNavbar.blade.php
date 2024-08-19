@@ -123,10 +123,13 @@
                         <!-- Empty element to push logout to the bottom -->
                         <li class="flex-grow-1"></li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>Log Out</p>
-                            </a>
+                            <form action="{{ route('logout-proses') }}" method="post">
+                                @csrf
+                                <button type="submit">
+                                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                                    <p>Log Out</p>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </nav>

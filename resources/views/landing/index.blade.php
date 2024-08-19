@@ -11,7 +11,7 @@
                     aria-label="Slide 3"></button>
             </div>
 
-            <div class="carousel-inner">
+            <div class="carousel-inner" style="height: 700px;">
                 <div class="carousel-item active" data-bs-interval="5000">
                     <img src="{{ asset('images/carousel1.jpg') }}" alt="..." />
                 </div>
@@ -209,7 +209,7 @@
                         <div class="icon-with-text mb-3">
                             <span class="iconify large-icon" style="color: #ffffff"
                                 data-icon="mdi:email-fast-outline" data-inline="true"></span>
-                            <span style="color: #ffffff;">Our Email<br />example@gmail.com</span>
+                            <span style="color: #ffffff;">Our Email<br />infonotdeninugraha@gmail.com</span>
                         </div>
                         <hr class="white-hr my-2" />
                     </div>
