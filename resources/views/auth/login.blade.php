@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <!-- Styles CSS -->
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
     <!-- Carousel CSS -->
     <link rel="stylesheet" href="assets\vendor\node_modules\owl-carousel\css\owl.carousel.min.css" />
     <link rel="stylesheet" href="assets\vendor\node_modules\owl-carousel\css\owl.theme.default.min.css" />
@@ -105,6 +105,16 @@
             @endif
         });
     </script>
+
+    @if ($message = Session::get('success'))
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "{{ $message }}"
+        });
+    </script>
+    @endif
 
     @if ($message = Session::get('failed'))
     <script>

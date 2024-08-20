@@ -550,5 +550,4 @@
     </section>
     <!-- main-content end -->
 </div>
-</div>
 @include('components.admFooter')

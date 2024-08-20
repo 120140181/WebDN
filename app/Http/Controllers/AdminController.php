@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -12,14 +14,18 @@ class AdminController extends Controller
     public function index()
     {
         //
-        return view('admin.index');
+        return view('admin.dashboard');
     }
 
     public function reminder()
     {
-        //
-        return view('admin.reminder');
+        // Ambil semua data dari tabel reminders
+        $data = DB::table('reminders')->get();
+
+        // Kirim data ke view
+        return view('admin.reminder', ['data' => $data]);
     }
+
 
     public function history()
     {
@@ -32,7 +38,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('components.tambahReminder');
     }
 
     /**
@@ -40,7 +46,35 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'nama_nasabah' => 'required|string',
+            'nomor_kwitansi' => 'required|string',
+            'status_pembayaran' => 'required',
+            'keterangan' => 'nullable|string',
+            'tanggal_tagihan' => 'required|date',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        // Menyimpan data ke database
+        $data = [
+            'nama_nasabah' => $request->nama_nasabah,
+            'nomor_kwitansi' => $request->nomor_kwitansi,
+            'status_pembayaran' => $request->status_pembayaran,
+            'keterangan' => $request->keterangan,
+            'tanggal_tagihan' => $request->tanggal_tagihan,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        // Simpan data ke database
+        DB::table('reminders')->insert($data);
+
+        return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
     }
 
     /**
