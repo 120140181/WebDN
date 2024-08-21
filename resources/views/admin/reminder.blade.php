@@ -69,9 +69,30 @@
                                         <td>{{ $d->keterangan }}</td>
                                         <td>{{ $d->tanggal_tagihan }}</td>
                                         <td class="d-flex justify-content-center">
-                                            <a href="{{ route('admin.reminder-edit',['id' => $d->id]) }}" class="btn btn-primary mx-1"><i class="fas fa-pen"></i> Edit</a>
-                                            <a href="" class="btn btn-danger mx-1"><i class="fas fa-trash-alt"></i> Hapus</a>
-                                            <a href="" class="btn btn-success mx-1"><i class="fas fa-check"></i> Approve</a>
+                                            <button
+                                                class="btn btn-primary mx-1"
+                                                type="button"
+                                                data-edire_id="{{ $d->id }}"
+                                                data-nama="{{ $d->nama_nasabah }}"
+                                                data-kwitansi="{{ $d->nomor_kwitansi }}"
+                                                data-status="{{ $d->status_pembayaran }}"
+                                                data-keterangan="{{ $d->keterangan }}"
+                                                data-tanggal="{{ $d->tanggal_tagihan }}"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editReminder">
+                                                    <i class="fas fa-pen"></i>
+                                            </button>
+                                            <form action="{{ route('admin.reminder-delete', $d->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus reminder ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger mx-1"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                            <form action="{{ route('admin.reminder-approve', $d->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menyetujui reminder ini?');">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-success mx-1"><i class="fas fa-check"></i> Approve</button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                     @endforeach
@@ -83,8 +104,7 @@
         </div>
 
         <!-- Tambah Reminder Modal -->
-        @include('components.tambahReminder')
-        @include('components.editReminder')
+        @include('components.modalReminder')
     </div>
         <!-- //reminder expandle table -->
         @include('components.admFooter')

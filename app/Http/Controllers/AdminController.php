@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Reminder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -29,16 +31,18 @@ class AdminController extends Controller
 
     public function history()
     {
-        //
-        return view('admin.history');
+        $data = DB::table('history')->get();
+
+        return view('admin.history', ['data' => $data]);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('components.tambahReminder');
+        return view('components.modalReminder');
     }
 
     /**
@@ -61,7 +65,7 @@ class AdminController extends Controller
         }
 
         // Menyimpan data ke database
-        $data = [
+        DB::table('reminders')->insert([
             'nama_nasabah' => $request->nama_nasabah,
             'nomor_kwitansi' => $request->nomor_kwitansi,
             'status_pembayaran' => $request->status_pembayaran,
@@ -69,10 +73,7 @@ class AdminController extends Controller
             'tanggal_tagihan' => $request->tanggal_tagihan,
             'created_at' => now(),
             'updated_at' => now(),
-        ];
-
-        // Simpan data ke database
-        DB::table('reminders')->insert($data);
+        ]);
 
         return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
     }
@@ -96,16 +97,53 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $upreminder = Reminder::findOrFail($request->reminder_id);
+        $upreminder->update($request->all());
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
     {
-        //
+        $reminder = Reminder::findOrFail($id);
+        $reminder->delete();
+
+        return back()->with('success', 'Reminder berhasil dihapus.');
     }
+
+    /**
+     * Approve the specified resource.
+     */
+    public function approve($id)
+    {
+        $reminder = Reminder::findOrFail($id);
+        $reminder->status_pembayaran = 'Lunas';
+        $reminder->save();
+
+        // Pindahkan data ke tabel history
+        DB::table('history')->insert([
+            'nama_nasabah' => $reminder->nama_nasabah,
+            'nomor_kwitansi' => $reminder->nomor_kwitansi,
+            'status_pembayaran' => $reminder->status_pembayaran,
+            'keterangan' => $reminder->keterangan,
+            'tanggal_tagihan' => $reminder->tanggal_tagihan,
+            'created_at' => $reminder->created_at,
+            'updated_at' => $reminder->updated_at,
+        ]);
+
+        // Hapus reminder dari tabel reminders
+        $reminder->delete();
+
+        return back()->with('success', 'Reminder berhasil disetujui dan dipindahkan ke history.');
+    }
+
 }
+

@@ -26,6 +26,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/history', [AdminController::class, 'history'])->name('history');
     // tambahReminder
     Route::post('/store', [AdminController::class, 'store'])->name('reminder-store');
-    Route::get('/edit{id}', [AdminController::class, 'edit'])->name('reminder-edit');
-    Route::put('/reminder{id}', [AdminController::class, 'update'])->name('reminder-update');
+    // editReminder
+    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('reminder-edit');
+    // simpanEditReminder
+    Route::put('/update{id}', [AdminController::class, 'update'])->name('reminder-update');
+    // hapusReminder
+    Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('reminder-delete');
+    // approveReminder
+    Route::put('/approve/{id}', [AdminController::class, 'approve'])->name('reminder-approve');
+
+
 });
