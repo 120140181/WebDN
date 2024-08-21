@@ -22,7 +22,7 @@ class AuthController extends Controller
         if (Auth::attempt(['username' => $data['username'], 'password' => $data['password']])) {
             // Regenerasi session untuk keamanan
             $request->session()->regenerate();
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.dashboard');
         }
 
         // Kembali ke form login jika gagal dengan pesan error
@@ -41,7 +41,7 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         // Arahkan kembali ke halaman login
-        return redirect()->route('auth.login');
+        return redirect()->route('auth.login')->with('success','Kamu Berhasil Logout');
     }
 
 }

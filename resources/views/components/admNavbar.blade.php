@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <!-- Carousel CSS -->
     <link rel="stylesheet" href="assets/vendor/node_modules/owl-carousel/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="assets/vendor/node_modules/owl-carousel/css/owl.theme.default.min.css" />
@@ -17,6 +17,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    {{-- Core CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet" />
     <!-- AdminLTE -->
@@ -24,12 +27,16 @@
     <!-- Iconify -->
     <script src="https://code.iconify.design/2/2.0.0/iconify.min.js"></script>
 
-    <title>Admin | {{ request()->is('haloadmin') ? 'Dashboard' : '' }} {{ request()->is('reminder') ? 'Reminder' : '' }} {{ request()->is('history') ? 'History Tagihan' : '' }}</title>
-    <link rel="icon" href="assets/img/icon/garuda.png" type="image/png" />
+    <title>Admin |
+        {{ request()->is('admin/dashboard') ? 'Dashboard' : '' }}
+        {{ request()->is('admin/reminder') ? 'Reminder' : '' }}
+        {{ request()->is('admin/history') ? 'History Tagihan' : '' }}
+    </title>
+    <link rel="icon" href="{{ asset('../images/icon/garuda.png') }}" type="image/png" />
 </head>
 
 <body>
-    @include('components.preloader')
+    <div id="preloader"></div>
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -103,19 +110,19 @@
                 <nav class="mt-2 d-flex flex-column flex-grow-1">
                     <ul class="nav nav-pills nav-sidebar flex-column flex-grow-1" data-widget="treeview" role="menu">
                         <li class="nav-item">
-                            <a href="{{ route('admin.index') }}" class="nav-link {{ request()->is('haloadmin') ? 'active' : '' }}">
+                            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.reminder') }}" class="nav-link {{ request()->is('reminder') ? 'active' : '' }}">
+                            <a href="{{ route('admin.reminder') }}" class="nav-link {{ request()->is('admin/reminder') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>Reminder</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.history') }}" class="nav-link {{ request()->is('history') ? 'active' : '' }}">
+                            <a href="{{ route('admin.history') }}" class="nav-link {{ request()->is('admin/history') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>History</p>
                             </a>
@@ -123,13 +130,10 @@
                         <!-- Empty element to push logout to the bottom -->
                         <li class="flex-grow-1"></li>
                         <li class="nav-item">
-                            <form action="{{ route('logout-proses') }}" method="post">
-                                @csrf
-                                <button type="submit">
-                                    <i class="nav-icon fas fa-sign-out-alt"></i>
-                                    <p>Log Out</p>
-                                </button>
-                            </form>
+                            <a href="{{ route('logout-proses') }}" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Log Out</p>
+                            </a>
                         </li>
                     </ul>
                 </nav>
