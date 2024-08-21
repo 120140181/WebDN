@@ -13,7 +13,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
                                 <i class="nav-icon fas fa-home"></i>
-                                <a href="#">Home</a>
+                                <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item active">Reminder</li>
                         </ol>
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="card-body table-responsive">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-bordered table-hover text-nowrap">
                             <thead class="text-center">
                                 <tr>
                                     <th>No</th>

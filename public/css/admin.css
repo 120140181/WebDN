@@ -13,6 +13,10 @@
     -o-transition: opacity 1s ease-out;
 }
 
+.cardmin {
+    height: 350px;
+}
+
 @media (max-width: 576px) {
     .cardder {
         justify-content: center;
