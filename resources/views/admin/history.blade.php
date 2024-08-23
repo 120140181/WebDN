@@ -1,6 +1,6 @@
 @include('components.admNavbar')
-<div class="wrapper" style="min-width: 100vh">
-    <div class="content-wrapper p-3" style="min-width: 100vh">
+<div class="wrapper" style="min-width: 100%;">
+    <div class="content-wrapper p-3"">
         <!-- content-header -->
         <div class="content-header">
             <div class="container-fluid">
@@ -14,7 +14,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
                                 <i class="nav-icon fas fa-home"></i>
-                                <a href="#">Home</a>
+                                <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item active">History</li>
                         </ol>
@@ -32,8 +32,8 @@
                             <h3 class="card-title">History Payment</h3>
                         </div>
 
-                        <div class="card-body">
-                            <table class="table table-bordered table-hover">
+                        <div class="card-body table-responsive">
+                            <table class="table table-bordered table-hover text-nowrap">
                                 <thead>
                                     <tr>
                                         <th>No</th>

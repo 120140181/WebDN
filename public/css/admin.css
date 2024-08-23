@@ -1,5 +1,6 @@
 #preloader {
-    background: #daf5ff url(../images/icon/preloader.gif) no-repeat center center;
+    background: #daf5ff url(../images/icon/preloader.gif) no-repeat center
+        center;
     height: 100%;
     width: 100%;
     position: fixed;
@@ -10,4 +11,19 @@
     -moz-transition: opacity 1s ease-out;
     -ms-transition: opacity 1s ease-out;
     -o-transition: opacity 1s ease-out;
+}
+
+.cardmin {
+    height: 350px;
+}
+
+@media (max-width: 576px) {
+    .cardder {
+        justify-content: center;
+        transform: scale(0.72);
+        -webkit-transform: scale(0.72);
+        -moz-transform: scale(0.72);
+        -ms-transform: scale(0.72);
+        -o-transform: scale(0.72);
+}
 }

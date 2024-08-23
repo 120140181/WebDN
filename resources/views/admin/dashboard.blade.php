@@ -12,7 +12,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
                             <i class="nav-icon fas fa-home"></i>
-                            <a href="#">Home</a>
+                            <a href="{{ route('admin.dashboard') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
@@ -84,10 +84,10 @@
             </div>
             <!-- Small Boxes -->
 
-            <div class="row">
+            <div class="row d-flex align-items-stretch">
                 <!--section-left-->
                 <section class="col-lg-7 connectedSortable ui-sortable">
-                    <div class="card">
+                    <div class="card cardmin >
                         <div class="card-header ui-sortable-handle" style="cursor: move">
                             <h3 class="card-title">
                                 <i class="fas fa-chart-pie mr-1"></i>
@@ -141,7 +141,7 @@
 
                 <!--section-right-->
                 <section class="col-lg-5 connectedSortable ui-sortable">
-                    <div class="card bg-gradient-success">
+                    <div class="card cardmin bg-gradient-success">
                         <div class="card-header border-0 ui-sortable-handle" style="cursor: move">
                             <h3 class="card-title">
                                 <i class="far fa-calendar-alt"></i>
