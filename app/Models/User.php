@@ -24,4 +24,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function routeNotificationForTelegram()
+{
+    // Ganti 'YOUR_CHAT_ID' dengan ID chat atau ID grup Telegram yang sesuai
+    return '639590150';
+}
 }
