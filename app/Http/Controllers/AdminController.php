@@ -19,22 +19,23 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
+
+
     public function reminder()
     {
-        // Ambil semua data dari tabel reminders
-        $data = DB::table('reminders')->get();
+        // Ambil data dari tabel reminders dengan paginasi
+        $data = Reminder::paginate(10); // Membatasi 10 data per halaman
 
         // Kirim data ke view
         return view('admin.reminder', ['data' => $data]);
     }
 
-
     public function history()
     {
-        $data = DB::table('history')->get();
-
-        return view('admin.history', ['data' => $data]);
+        $data = DB::table('history')->paginate(10);
+        return view('admin.history', compact('data'));
     }
+
 
 
     /**
@@ -50,7 +51,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'nama_nasabah' => 'required|string',
             'nomor_kwitansi' => 'required|string',
             'status_pembayaran' => 'required',
@@ -124,25 +125,32 @@ class AdminController extends Controller
      */
     public function approve($id)
     {
+        // Temukan reminder berdasarkan ID
         $reminder = Reminder::findOrFail($id);
-        $reminder->status_pembayaran = 'Lunas';
+
+        // Tandai reminder sebagai di-approve
+        $reminder->is_approved = true;
         $reminder->save();
 
         // Pindahkan data ke tabel history
-        DB::table('history')->insert([
-            'nama_nasabah' => $reminder->nama_nasabah,
-            'nomor_kwitansi' => $reminder->nomor_kwitansi,
-            'status_pembayaran' => $reminder->status_pembayaran,
-            'keterangan' => $reminder->keterangan,
-            'tanggal_tagihan' => $reminder->tanggal_tagihan,
-            'created_at' => $reminder->created_at,
-            'updated_at' => $reminder->updated_at,
-        ]);
+        DB::table('history')->updateOrInsert(
+            ['nomor_kwitansi' => $reminder->nomor_kwitansi], // Pastikan data yang unik sebagai identifier
+            [
+                'nama_nasabah' => $reminder->nama_nasabah,
+                'nomor_kwitansi' => $reminder->nomor_kwitansi,
+                'status_pembayaran' => $reminder->status_pembayaran,
+                'keterangan' => $reminder->keterangan,
+                'tanggal_tagihan' => $reminder->tanggal_tagihan,
+                'created_at' => $reminder->created_at,
+                'updated_at' => $reminder->updated_at,
+            ]
+        );
 
-        // Hapus reminder dari tabel reminders
-        $reminder->delete();
+        // Jika ingin menghapus data dari tabel reminders, uncomment baris berikut
+        // $reminder->delete();
 
-        return back()->with('success', 'Reminder berhasil disetujui dan dipindahkan ke history.');
+        // Kembali dengan pesan sukses
+        return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil disetujui.');
     }
 
 }

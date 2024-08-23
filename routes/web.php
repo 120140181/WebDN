@@ -34,6 +34,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('reminder-delete');
     // approveReminder
     Route::put('/approve/{id}', [AdminController::class, 'approve'])->name('reminder-approve');
-
-
 });

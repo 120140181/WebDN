@@ -60,37 +60,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $d)
+                                @foreach ($data as $index => $d)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $data->firstItem() + $index }}</td>
                                         <td>{{ $d->nama_nasabah }}</td>
                                         <td>{{ $d->nomor_kwitansi }}</td>
                                         <td>{{ $d->status_pembayaran }}</td>
                                         <td>{{ $d->keterangan }}</td>
                                         <td>{{ $d->tanggal_tagihan }}</td>
                                         <td class="d-flex justify-content-center">
-                                            <button
-                                                class="btn btn-primary mx-1"
-                                                type="button"
-                                                data-edire_id="{{ $d->id }}"
-                                                data-nama="{{ $d->nama_nasabah }}"
+                                            <button class="btn btn-primary mx-1" type="button"
+                                                data-edire_id="{{ $d->id }}" data-nama="{{ $d->nama_nasabah }}"
                                                 data-kwitansi="{{ $d->nomor_kwitansi }}"
                                                 data-status="{{ $d->status_pembayaran }}"
                                                 data-keterangan="{{ $d->keterangan }}"
-                                                data-tanggal="{{ $d->tanggal_tagihan }}"
-                                                data-bs-toggle="modal"
+                                                data-tanggal="{{ $d->tanggal_tagihan }}" data-bs-toggle="modal"
                                                 data-bs-target="#editReminder">
-                                                    <i class="fas fa-pen"></i>
+                                                <i class="fas fa-pen"></i>
                                             </button>
-                                            <form action="{{ route('admin.reminder-delete', $d->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus reminder ini?');">
+                                            <form action="{{ route('admin.reminder-delete', $d->id) }}" method="POST"
+                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus reminder ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger mx-1"><i class="fas fa-trash-alt"></i></button>
+                                                <button type="submit" class="btn btn-danger mx-1"><i
+                                                        class="fas fa-trash-alt"></i></button>
                                             </form>
-                                            <form action="{{ route('admin.reminder-approve', $d->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menyetujui reminder ini?');">
+                                            <form action="{{ route('admin.reminder-approve', $d->id) }}" method="POST"
+                                                onsubmit="return confirm('Apakah Anda yakin ingin menyetujui reminder ini?');">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-success mx-1"><i class="fas fa-check"></i> Approve</button>
+                                                <button type="submit" class="btn btn-success mx-1"><i
+                                                        class="fas fa-check"></i> Approve</button>
                                             </form>
 
                                         </td>
@@ -119,6 +119,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center mt-4">
+                            {{ $data->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>

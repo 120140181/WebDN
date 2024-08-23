@@ -26,14 +26,21 @@
         <!--Main Content-->
         <section class="content-header">
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">History Payment</h3>
+                        <div
+                            class="card-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                            <h3 class="card-title mb-2 mb-md-0">History Payment</h3>
+                            <div class="dt-buttons btn-group flex-wrap ml-md-auto">
+                                <button class="btn btn-outline-danger buttons-pdf buttons-html5" tabindex="0"
+                                    aria-controls="example1" type="button"><span class="iconify mr-1"
+                                        data-icon="vscode-icons:file-type-pdf2" data-inline="false"
+                                        style="font-size: 24px;"></span>Cetak-PDF</button>
+                            </div>
                         </div>
-
                         <div class="card-body table-responsive">
-                            <table class="table table-bordered table-hover text-nowrap">
+                            <table id="table1" class="table table-bordered table-hover text-nowrap"
+                                aria-describedby="table1-info">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -45,18 +52,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $d)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $d->nama_nasabah }}</td>
-                                        <td>{{ $d->nomor_kwitansi }}</td>
-                                        <td>{{ $d->tanggal_tagihan }}</td>
-                                        <td>{{ $d->status_pembayaran }}</td>
-                                        <td>{{ $d->keterangan }}</td>
-                                    </tr>
+                                    @foreach ($data as $index => $d)
+                                        <tr>
+                                            <td>{{ $data->firstItem() + $index }}</td>
+                                            <td>{{ $d->nama_nasabah }}</td>
+                                            <td>{{ $d->nomor_kwitansi }}</td>
+                                            <td>{{ $d->tanggal_tagihan }}</td>
+                                            <td>{{ $d->status_pembayaran }}</td>
+                                            <td>{{ $d->keterangan }}</td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="d-flex justify-content-center mt-4">
+                                {{ $data->links('pagination::bootstrap-4') }}
+                            </div>
                         </div>
                     </div>
                 </div>

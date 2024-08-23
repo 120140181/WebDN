@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     {{-- Core CSS --}}
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+    
+
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet" />
@@ -110,19 +112,22 @@
                 <nav class="mt-2 d-flex flex-column flex-grow-1">
                     <ul class="nav nav-pills nav-sidebar flex-column flex-grow-1" data-widget="treeview" role="menu">
                         <li class="nav-item">
-                            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
+                            <a href="{{ route('admin.dashboard') }}"
+                                class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.reminder') }}" class="nav-link {{ request()->is('admin/reminder') ? 'active' : '' }}">
+                            <a href="{{ route('admin.reminder') }}"
+                                class="nav-link {{ request()->is('admin/reminder') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>Reminder</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.history') }}" class="nav-link {{ request()->is('admin/history') ? 'active' : '' }}">
+                            <a href="{{ route('admin.history') }}"
+                                class="nav-link {{ request()->is('admin/history') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>History</p>
                             </a>
