@@ -19,11 +19,12 @@
 
 @media (max-width: 576px) {
     .cardder {
+        margin-right: 5px;
         justify-content: center;
         transform: scale(0.72);
         -webkit-transform: scale(0.72);
         -moz-transform: scale(0.72);
         -ms-transform: scale(0.72);
         -o-transform: scale(0.72);
-}
+    }
 }

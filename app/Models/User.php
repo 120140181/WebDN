@@ -9,13 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    // Uncomment this if your primary key is not `id` and auto-incrementing.
     protected $primaryKey = 'id';
-
-    public function findForPassport($username)
-    {
-        return $this->where('username', $username)->first();
-    }
-
     public $incrementing = false;
 
     protected $fillable = [

@@ -84,10 +84,10 @@
             </div>
             <!-- Small Boxes -->
 
-            <div class="row d-flex align-items-stretch">
+            <div class="row">
                 <!--section-left-->
                 <section class="col-lg-7 connectedSortable ui-sortable">
-                    <div class="card cardmin >
+                    <div class="card cardmin">
                         <div class="card-header ui-sortable-handle" style="cursor: move">
                             <h3 class="card-title">
                                 <i class="fas fa-chart-pie mr-1"></i>
