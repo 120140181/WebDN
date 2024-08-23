@@ -7,6 +7,8 @@ use App\Models\Reminder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class AdminController extends Controller
 {
@@ -29,6 +31,8 @@ class AdminController extends Controller
         // Kirim data ke view
         return view('admin.reminder', ['data' => $data]);
     }
+
+    
 
     public function history()
     {
@@ -123,9 +127,8 @@ class AdminController extends Controller
     /**
      * Approve the specified resource.
      */
-    public function approve($id)
+    public function approve(Request $request, $id)
     {
-        // Temukan reminder berdasarkan ID
         $reminder = Reminder::findOrFail($id);
 
         // Tandai reminder sebagai di-approve
@@ -134,7 +137,7 @@ class AdminController extends Controller
 
         // Pindahkan data ke tabel history
         DB::table('history')->updateOrInsert(
-            ['nomor_kwitansi' => $reminder->nomor_kwitansi], // Pastikan data yang unik sebagai identifier
+            ['nomor_kwitansi' => $reminder->nomor_kwitansi],
             [
                 'nama_nasabah' => $reminder->nama_nasabah,
                 'nomor_kwitansi' => $reminder->nomor_kwitansi,
@@ -146,11 +149,15 @@ class AdminController extends Controller
             ]
         );
 
-        // Jika ingin menghapus data dari tabel reminders, uncomment baris berikut
-        // $reminder->delete();
+        // Hapus data dari tabel reminders jika diperlukan
+        $reminder->delete();
 
-        // Kembali dengan pesan sukses
-        return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil disetujui.');
+        // Ambil parameter halaman dari request
+        $page = $request->query('page', 1);
+
+        // Redirect ke halaman yang sama
+        return redirect()->route('admin.reminder', ['page' => $page])
+            ->with('success', 'Reminder berhasil disetujui.');
     }
 
 }

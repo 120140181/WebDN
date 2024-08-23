@@ -29,13 +29,28 @@
                 <div class="col-12">
                     <div class="card">
                         <div
-                            class="card-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                            class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
                             <h3 class="card-title mb-2 mb-md-0">History Payment</h3>
-                            <div class="dt-buttons btn-group flex-wrap ml-md-auto">
-                                <button class="btn btn-outline-danger buttons-pdf buttons-html5" tabindex="0"
-                                    aria-controls="example1" type="button"><span class="iconify mr-1"
-                                        data-icon="vscode-icons:file-type-pdf2" data-inline="false"
-                                        style="font-size: 24px;"></span>Cetak-PDF</button>
+                            <div class="d-flex flex-column flex-md-row align-items-center ml-md-auto">
+                                <!-- Search Input -->
+                                <div class="input-group input-group-md mb-2 mb-md-0" style="width: 250px;">
+                                    <input type="text" name="table_search" class="form-control float-right"
+                                        placeholder="Search">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Print PDF Button -->
+                                <div class="ml-md-2">
+                                    <button class="btn btn-outline-danger buttons-pdf buttons-html5" tabindex="0"
+                                        aria-controls="example1" type="button">
+                                        <span class="iconify mr-1" data-icon="vscode-icons:file-type-pdf2"
+                                            data-inline="false" style="font-size: 24px;"></span>Cetak-PDF
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body table-responsive">
