@@ -186,7 +186,7 @@
     <!-- *** Team Start *** -->
 
     <!-- *** Form Start *** -->
-    <div class="bg-form mb-5">
+    <div class="bg-form mb-5" id="sendMail">
         <div class="container p-5">
             <div class="row justify-content-center">
                 <div class="d-flex col-lg-6 col-md-6 col-sm-12 ">

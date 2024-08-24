@@ -61,6 +61,7 @@
                                         <th>No</th>
                                         <th>Nama Nasabah</th>
                                         <th>Nomor Kwitansi</th>
+                                        <th>Nominal Tagihan</th>
                                         <th>Tanggal</th>
                                         <th>Status</th>
                                         <th>Keterangan</th>
@@ -72,6 +73,7 @@
                                             <td>{{ $data->firstItem() + $index }}</td>
                                             <td>{{ $d->nama_nasabah }}</td>
                                             <td>{{ $d->nomor_kwitansi }}</td>
+                                            <td>Rp. {{ $d->nominal_tagihan }}</td>
                                             <td>{{ $d->tanggal_tagihan }}</td>
                                             <td>{{ $d->status_pembayaran }}</td>
                                             <td>{{ $d->keterangan }}</td>

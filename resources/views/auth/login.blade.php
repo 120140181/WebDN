@@ -26,7 +26,7 @@
 </head>
 
 <body class="d-flex justify-content-center align-items-center vh-100 bg-light">
-    <div id="preloader"></div>
+    {{-- <div id="preloader"></div> --}}
     <div class="vlogin container">
         <div class="card shadow-lg" style="border-radius: 10px; overflow: hidden;">
             <div class="row no-gutters">
@@ -109,8 +109,7 @@
     @if ($message = Session::get('success'))
     <script>
         Swal.fire({
-            icon: "error",
-            title: "Oops...",
+            icon: "success",
             text: "{{ $message }}"
         });
     </script>

@@ -25,6 +25,7 @@
             var edire_id = button.data('edire_id')
             var nama = button.data('nama')
             var kwitansi = button.data('kwitansi')
+            var nominal_tagihan = button.data('nominal_tagihan')
             var status = button.data('status')
             var keterangan = button.data('keterangan')
             var tanggal = button.data('tanggal')
@@ -33,6 +34,7 @@
             modal.find('.modal-body #edire_id').val(edire_id);
             modal.find('.modal-body #nama_nasabah').val(nama);
             modal.find('.modal-body #nomor_kwitansi').val(kwitansi);
+            modal.find('.modal-body #nominal_tagihan').val(nominal_tagihan);
             modal.find('.modal-body #status_pembayaran').val(status);
             modal.find('.modal-body #keterangan').val(keterangan);
             modal.find('.modal-body #tanggal_tagihan').val(tanggal);
@@ -60,6 +62,24 @@
             doc.save('history-paymentWebDN.pdf');
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nominalTagihanInput = document.getElementById('nominal_tagihan');
+
+            function formatNumber(value) {
+                // Menghapus semua karakter selain angka
+                value = value.replace(/\D/g, '');
+                // Menambahkan titik setiap 3 digit
+                return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            nominalTagihanInput.addEventListener('input', function (e) {
+                this.value = formatNumber(e.target.value);
+            });
+        });
+    </script>
+
     </body>
 
     </html>

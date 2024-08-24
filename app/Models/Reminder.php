@@ -25,6 +25,7 @@ class Reminder extends Model
     protected $fillable = [
         'nama_nasabah',
         'nomor_kwitansi',
+        'nominal_tagihan',
         'status_pembayaran',
         'keterangan',
         'tanggal_tagihan',

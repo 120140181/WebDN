@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     {{-- Core CSS --}}
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
-    
+
 
 
 
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-    <div id="preloader"></div>
+    {{-- <div id="preloader"></div> --}}
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -52,7 +52,7 @@
             </ul>
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
+            {{-- <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -82,14 +82,14 @@
                         </a>
                     </div>
                 </li>
-            </ul>
+            </ul> --}}
         </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4 vh-100 d-flex flex-column">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link"
+            <a href="#" class="brand-link"
                 style="
             display: flex;
             align-items: center;
