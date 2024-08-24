@@ -40,7 +40,7 @@
                         Tangerang, Jalan Mutiara Raya 15810</a>
                 </li>
                 <li class="nav-item me-2">
-                    <a href="" class="nav-link link-dark px-2 border-end" aria-current="page"><span
+                    <a href="#sendMail" class="nav-link link-dark px-2 border-end" aria-current="page"><span
                             class="iconify mx-2" data-icon="iconamoon:email-light" data-inline="true"></span>
                         Email : infonotdeninugraha@gmail.com</a>
                 </li>

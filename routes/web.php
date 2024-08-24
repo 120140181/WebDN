@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     // simpanEditReminder
     Route::put('/update{id}', [AdminController::class, 'update'])->name('reminder-update');
     // hapusReminder
-    Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('reminder-delete');
+    Route::put('/delete/{id}', [AdminController::class, 'destroy'])->name('reminder-delete');
     // approveReminder
     Route::put('/approve/{id}', [AdminController::class, 'approve'])->name('reminder-approve');
     // notifikasi

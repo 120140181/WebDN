@@ -59,6 +59,7 @@
                                     <th>No</th>
                                     <th>Nama Nasabah</th>
                                     <th>Nomor Kwitansi</th>
+                                    <th>Nominal Tagihan</th>
                                     <th>Status Pembayaran</th>
                                     <th>Keterangan</th>
                                     <th>Tanggal Tagihan</th>
@@ -71,6 +72,7 @@
                                         <td>{{ $data->firstItem() + $index }}</td>
                                         <td>{{ $d->nama_nasabah }}</td>
                                         <td>{{ $d->nomor_kwitansi }}</td>
+                                        <td>Rp. {{ $d->nominal_tagihan }}</td>
                                         <td>{{ $d->status_pembayaran }}</td>
                                         <td>{{ $d->keterangan }}</td>
                                         <td>{{ $d->tanggal_tagihan }}</td>
@@ -78,6 +80,7 @@
                                             <button class="btn btn-primary mx-1" type="button"
                                                 data-edire_id="{{ $d->id }}" data-nama="{{ $d->nama_nasabah }}"
                                                 data-kwitansi="{{ $d->nomor_kwitansi }}"
+                                                data-nominal_tagihan="{{ $d->nominal_tagihan }}"
                                                 data-status="{{ $d->status_pembayaran }}"
                                                 data-keterangan="{{ $d->keterangan }}"
                                                 data-tanggal="{{ $d->tanggal_tagihan }}" data-bs-toggle="modal"
@@ -85,11 +88,11 @@
                                                 <i class="fas fa-pen"></i>
                                             </button>
                                             <form action="{{ route('admin.reminder-delete', $d->id) }}" method="POST"
-                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus reminder ini?');">
+                                                onsubmit="return confirm('Apakah Anda yakin ingin membatalkan reminder ini?');">
                                                 @csrf
-                                                @method('DELETE')
+                                                @method('PUT')
                                                 <button type="submit" class="btn btn-danger mx-1"><i
-                                                        class="fas fa-trash-alt"></i></button>
+                                                        class="fas fa-times"></i> Cancel</button>
                                             </form>
                                             <form
                                                 action="{{ route('admin.reminder-approve', ['id' => $d->id, 'page' => request()->get('page')]) }}"

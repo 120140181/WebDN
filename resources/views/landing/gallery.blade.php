@@ -55,7 +55,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/akad10.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/akad1.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -87,7 +87,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/kegiatan1.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -103,7 +103,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/kegiatan2.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -119,7 +119,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/kegiatan3.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -164,7 +164,7 @@
                                         elit. Ut autem quas doloremque voluptas reprehenderit ipsum!</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="../images/carousel1.jpg" class="d-block w-100 carousel-gallery"
+                                    <img src="{{ asset('images/akad1.jpg') }}" class="d-block w-100 carousel-gallery"
                                         alt="...">
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                                         elit. Reiciendis, a consequuntur!</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="../images/carousel2.jpg" class="d-block w-100 carousel-gallery"
+                                    <img src="{{ asset('images/akad12.jpg') }}" class="d-block w-100 carousel-gallery"
                                         alt="...">
                                 </div>
                             </div>
@@ -194,7 +194,7 @@
                                         vel accusamus repudiandae.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="../images/carousel3.jpg" class="d-block w-100 carousel-gallery"
+                                    <img src="{{ asset('images/akad9.jpg') }}" class="d-block w-100 carousel-gallery"
                                         alt="...">
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
         <div class="row mt-5">
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/akad10.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -233,7 +233,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/akad11.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -249,7 +249,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/akad5.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -265,7 +265,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/kegiatan3.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -281,7 +281,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="{{ asset('images/kegiatan4.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>

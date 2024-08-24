@@ -18,6 +18,10 @@
                         <input type="text" class="form-control" id="nomor_kwitansi" name="nomor_kwitansi" required>
                     </div>
                     <div class="mb-3">
+                        <label for="nominal_tagihan" class="form-label">Nominal Tagihan</label>
+                        <input type="text" class="form-control" id="nominal_tagihan" name="nominal_tagihan" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="status_pembayaran" class="form-label">Status Pembayaran</label>
                         <select class="form-select" id="status_pembayaran" name="status_pembayaran" required>
                             <option value="Belum Lunas">Pending</option>
@@ -62,6 +66,10 @@
                     <div class="mb-3">
                         <label for="nomor_kwitansi" class="form-label">Nomor Kwitansi</label>
                         <input type="text" class="form-control" id="nomor_kwitansi" name="nomor_kwitansi" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nominal_tagihan" class="form-label">Nominal Tagihan</label>
+                        <input type="text" class="form-control" id="nominal_tagihan" name="nominal_tagihan" required>
                     </div>
                     <div class="mb-3">
                         <label for="status_pembayaran" class="form-label">Status Pembayaran</label>

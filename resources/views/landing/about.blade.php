@@ -3,7 +3,7 @@
 <div class="vsejarah container">
     <div class="row">
         <div class="col-lg-6 d-flex justify-content-end">
-            <img src="{{ asset('images/PakDN2.jpg') }}" alt="Pak Deni Nugraha" class="img-dn d-none d-lg-block"
+            <img src="{{ asset('images/kegiatan3-v.jpg') }}" alt="Pak Deni Nugraha" class="d-none d-lg-block"
                 style="height: 600px; border-top-left-radius: 100px; border-bottom-right-radius: 100px;">
         </div>
         <div class="col-lg-6">

@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_nasabah');
             $table->string('nomor_kwitansi');
+            $table->string('nominal_tagihan');
             $table->string('status_pembayaran');
             $table->text('keterangan')->nullable();
             $table->date('tanggal_tagihan');

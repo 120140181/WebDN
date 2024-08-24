@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_nasabah')->nullable();
             $table->string('nomor_kwitansi')->unique();
+            $table->integer('nominal_tagihan')->unique();
             $table->string('status_pembayaran')->nullable();
             $table->text('keterangan')->nullable();
             $table->date('tanggal_tagihan')->nullable();
