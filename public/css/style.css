@@ -399,7 +399,6 @@ Preloader */
 
 .rousel-container {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    
 }
 
 .text-container {
@@ -466,22 +465,20 @@ html {
 
 /* form container landing page */
 .form-container {
-    background-color: rgba(
-        255,
-        255,
-        255,
-        0.5
-    ); /* Warna putih dengan opacity 0.5 */
-    border-radius: 10%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 3%;
     position: relative;
+    -webkit-border-radius: 3%;
+    -moz-border-radius: 3%;
+    -ms-border-radius: 3%;
+    -o-border-radius: 3%;
 }
 
 .form-container form {
     color: #1c1c1c;
     font-weight: 600;
-    border-radius: 10%;
     position: relative;
-    z-index: 1; /* Memastikan elemen form berada di atas background */
+    z-index: 1;
 }
 
 .colored-input {
