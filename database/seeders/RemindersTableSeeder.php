@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -22,6 +21,7 @@ class RemindersTableSeeder extends Seeder
             DB::table('reminders')->insert([
                 'nama_nasabah' => 'Nasabah ' . $i,
                 'nomor_kwitansi' => 'KW' . str_pad($i, 6, '0', STR_PAD_LEFT),
+                'nominal_tagihan' => (string) (10000000 + $i), // Make nominal_tagihan unique
                 'status_pembayaran' => $i % 2 == 0 ? 'Lunas' : 'Belum Lunas',
                 'keterangan' => 'Keterangan ' . $i,
                 'tanggal_tagihan' => now()->subDays($i)->format('Y-m-d'),
@@ -31,7 +31,3 @@ class RemindersTableSeeder extends Seeder
         }
     }
 }
-
-
-
-

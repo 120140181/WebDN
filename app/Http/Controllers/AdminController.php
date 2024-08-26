@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Reminder;
+use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -17,27 +18,56 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.dashboard');
+        // Hitung jumlah tagihan lunas
+        $tagihanLunas = History::where('status_pembayaran', 'Lunas')->count();
+
+        // Hitung jumlah tagihan dibatalkan
+        $tagihanDibatalkan = History::where('status_pembayaran', 'Canceled')->count();
+
+        // Hitung total nominal tagihan aktif
+        $totalTagihanAktif = Reminder::where('status_pembayaran', 'Pending')->count();
+
+        // Hitung total nominal tagihan
+        $totalNominalTagihan = Reminder::sum('nominal_tagihan');
+
+        // Hitung total tagihan yang lunas
+        $totalTagihanLunas = History::where('status_pembayaran', 'Lunas')->sum('nominal_tagihan');
+
+
+        // Kirim data ke view
+        return view('admin.dashboard', [
+            'tagihanLunas' => $tagihanLunas,
+            'tagihanDibatalkan' => $tagihanDibatalkan,
+            'totalTagihanAktif' => $totalTagihanAktif,
+            'totalNominalTagihan' => $totalNominalTagihan,
+            'totalTagihanLunas' => $totalTagihanLunas,
+        ]);
     }
-
-
 
     public function reminder()
     {
         // Ambil data dari tabel reminders dengan paginasi
         $data = Reminder::paginate(10); // Membatasi 10 data per halaman
 
-        // Kirim data ke view
-        return view('admin.reminder', ['data' => $data]);
+        // Menghitung total nominal_tagihan dari seluruh data di tabel
+        $totalTagihan = Reminder::sum('nominal_tagihan');
+
+        // Kirim data dan total tagihan ke view
+        return view('admin.reminder', ['data' => $data, 'totalTagihan' => $totalTagihan]);
     }
 
 
 
     public function history()
     {
-        $data = DB::table('history')->paginate(10);
-        return view('admin.history', compact('data'));
+        // Ambil data dari tabel history dengan paginasi
+        $data = History::paginate(10); // Membatasi 10 data per halaman
+
+        // Hitung total nominal tagihan lunas
+        $totalTagihanLunas = History::where('status_pembayaran', 'Lunas')->sum('nominal_tagihan');
+
+        // Kirim data dan total tagihan lunas ke view
+        return view('admin.history', compact('data', 'totalTagihanLunas'));
     }
 
 

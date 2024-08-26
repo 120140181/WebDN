@@ -62,24 +62,6 @@
             doc.save('history-paymentWebDN.pdf');
         });
     </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const nominalTagihanInput = document.getElementById('nominal_tagihan');
-
-            function formatNumber(value) {
-                // Menghapus semua karakter selain angka
-                value = value.replace(/\D/g, '');
-                // Menambahkan titik setiap 3 digit
-                return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            }
-
-            nominalTagihanInput.addEventListener('input', function (e) {
-                this.value = formatNumber(e.target.value);
-            });
-        });
-    </script>
-
     </body>
 
     </html>

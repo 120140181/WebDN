@@ -24,7 +24,7 @@
                     <div class="mb-3">
                         <label for="status_pembayaran" class="form-label">Status Pembayaran</label>
                         <select class="form-select" id="status_pembayaran" name="status_pembayaran" required>
-                            <option value="Belum Lunas">Pending</option>
+                            <option value="Pending">Pending</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -75,7 +75,7 @@
                         <label for="status_pembayaran" class="form-label">Status Pembayaran</label>
                         <select class="form-select" id="status_pembayaran" name="status_pembayaran" required>
                             <option value="Lunas">Lunas</option>
-                            <option value="Belum Lunas">Pending</option>
+                            <option value="Pending">Pending</option>
                             <option value="Cancel">Cancel</option>
                         </select>
                     </div>
