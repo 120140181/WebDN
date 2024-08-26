@@ -30,16 +30,20 @@
             var keterangan = button.data('keterangan')
             var tanggal = button.data('tanggal')
 
+            // Format nominal_tagihan untuk ditampilkan dengan titik pemisah ribuan
+            var formattedNominal = new Intl.NumberFormat('id-ID').format(nominal_tagihan);
+
             var modal = $(this)
             modal.find('.modal-body #edire_id').val(edire_id);
             modal.find('.modal-body #nama_nasabah').val(nama);
             modal.find('.modal-body #nomor_kwitansi').val(kwitansi);
-            modal.find('.modal-body #nominal_tagihan').val(nominal_tagihan);
+            modal.find('.modal-body #nominal_tagihan').val(formattedNominal); // Gunakan format
             modal.find('.modal-body #status_pembayaran').val(status);
             modal.find('.modal-body #keterangan').val(keterangan);
             modal.find('.modal-body #tanggal_tagihan').val(tanggal);
-        })
+        });
     </script>
+
     <!-- Event Listener untuk tombol PDF -->
     <script>
         document.querySelector('.buttons-pdf').addEventListener('click', function() {
@@ -64,7 +68,7 @@
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const nominalTagihanInput = document.getElementById('nominal_tagihan');
 
             function formatNumber(value) {
@@ -74,11 +78,30 @@
                 return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             }
 
-            nominalTagihanInput.addEventListener('input', function (e) {
-                this.value = formatNumber(e.target.value);
+            function removeFormatting(value) {
+                // Menghapus titik
+                return value.replace(/\./g, '');
+            }
+
+            // Format input field on input event
+            nominalTagihanInput.addEventListener('input', function(e) {
+                let unformattedValue = removeFormatting(e.target.value);
+                this.value = formatNumber(unformattedValue);
             });
+
+            // Format input field on load
+            function formatOnLoad() {
+                if (nominalTagihanInput.value) {
+                    nominalTagihanInput.value = formatNumber(removeFormatting(nominalTagihanInput.value));
+                }
+            }
+
+            formatOnLoad();
         });
     </script>
+
+
+
 
     </body>
 

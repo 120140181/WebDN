@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Reminder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Validator;
 
 
 class AdminController extends Controller
@@ -36,9 +34,10 @@ class AdminController extends Controller
 
     public function history()
     {
-        $data = DB::table('reminders')->paginate(10);
+        $data = DB::table('history')->paginate(10); // Mengambil data dari tabel 'history'
         return view('admin.history', compact('data'));
     }
+
 
 
 
@@ -56,11 +55,12 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi data
         $validator = Validator::make($request->all(), [
             'nama_nasabah' => 'required|string',
             'nomor_kwitansi' => 'required|string',
             'nominal_tagihan' => 'required|string',
-            'status_pembayaran' => 'required',
+            'status_pembayaran' => 'required|string',
             'keterangan' => 'nullable|string',
             'tanggal_tagihan' => 'required|date',
         ]);
@@ -71,11 +71,14 @@ class AdminController extends Controller
                 ->withErrors($validator);
         }
 
+        // Menghapus titik dari nominal_tagihan
+        $nominalTagihan = str_replace('.', '', $request->nominal_tagihan);
+
         // Menyimpan data ke database
         DB::table('reminders')->insert([
             'nama_nasabah' => $request->nama_nasabah,
             'nomor_kwitansi' => $request->nomor_kwitansi,
-            'nominal_tagihan' => $request->nominal_tagihan,
+            'nominal_tagihan' => $nominalTagihan,
             'status_pembayaran' => $request->status_pembayaran,
             'keterangan' => $request->keterangan,
             'tanggal_tagihan' => $request->tanggal_tagihan,
@@ -85,6 +88,7 @@ class AdminController extends Controller
 
         return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
     }
+
 
     /**
      * Display the specified resource.
@@ -107,8 +111,12 @@ class AdminController extends Controller
      */
     public function update(Request $request)
     {
+        // Hapus format titik dari nominal_tagihan
+        $nominalTagihan = str_replace('.', '', $request->nominal_tagihan);
+
         $upreminder = Reminder::findOrFail($request->reminder_id);
-        $upreminder->update($request->all());
+        $upreminder->nominal_tagihan = $nominalTagihan;
+        $upreminder->update($request->except('nominal_tagihan')); // Update other fields
 
         return back();
     }
@@ -166,20 +174,18 @@ class AdminController extends Controller
         $reminder->save();
 
         // Pindahkan data ke tabel history
-        DB::table('history')->updateOrInsert(
-            [
-                'nama_nasabah' => $reminder->nama_nasabah,
-                'nomor_kwitansi' => $reminder->nomor_kwitansi,
-                'nominal_tagihan' => $reminder->nominal_tagihan,
-                'status_pembayaran' => $reminder->status_pembayaran,
-                'keterangan' => $reminder->keterangan,
-                'tanggal_tagihan' => $reminder->tanggal_tagihan,
-                'created_at' => $reminder->created_at,
-                'updated_at' => $reminder->updated_at,
-            ]
-        );
+        DB::table('history')->insert([
+            'nama_nasabah' => $reminder->nama_nasabah,
+            'nomor_kwitansi' => $reminder->nomor_kwitansi,
+            'nominal_tagihan' => $reminder->nominal_tagihan,
+            'status_pembayaran' => $reminder->status_pembayaran,
+            'keterangan' => $reminder->keterangan,
+            'tanggal_tagihan' => $reminder->tanggal_tagihan,
+            'created_at' => now(),  // Menggunakan waktu sekarang untuk created_at dan updated_at
+            'updated_at' => now(),
+        ]);
 
-        // Hapus data dari tabel reminders jika diperlukan
+        // Hapus data dari tabel reminders
         $reminder->delete();
 
         // Ambil parameter halaman dari request

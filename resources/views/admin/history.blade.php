@@ -45,11 +45,11 @@
 
                                 <!-- Print PDF Button -->
                                 <div class="ml-md-2">
-                                    <button class="btn btn-outline-danger buttons-pdf buttons-html5" tabindex="0"
-                                        aria-controls="example1" type="button">
+                                    <a class="btn btn-outline-danger">
                                         <span class="iconify mr-1" data-icon="vscode-icons:file-type-pdf2"
-                                            data-inline="false" style="font-size: 24px;"></span>Cetak-PDF
-                                    </button>
+                                            data-inline="false" style="font-size: 24px;"></span>
+                                        Cetak-PDF
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -7,11 +7,11 @@ use App\Http\Controllers\LandingController;
 
 // profile
 Route::resource('/', LandingController::class);
-Route::get('/index', [LandingController::class,'index'])->name('landing.index');
+Route::get('/index', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/service', [LandingController::class, 'service'])->name('landing.service');
 Route::get('/about', [LandingController::class, 'about'])->name('landing.about');
 Route::get('/gallery', [LandingController::class, 'gallery'])->name('landing.gallery');
-Route::post('/send-proses', [LandingController::class,'send'])->name('send-proses');
+Route::post('/send-proses', [LandingController::class, 'send'])->name('send-proses');
 
 // auth routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
@@ -29,11 +29,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     // editReminder
     Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('reminder-edit');
     // simpanEditReminder
-    Route::put('/update{id}', [AdminController::class, 'update'])->name('reminder-update');
+    Route::put('/update/{id}', [AdminController::class, 'update'])->name('reminder-update');
     // hapusReminder
     Route::put('/delete/{id}', [AdminController::class, 'destroy'])->name('reminder-delete');
     // approveReminder
     Route::put('/approve/{id}', [AdminController::class, 'approve'])->name('reminder-approve');
     // notifikasi
+
+    // cetak-pdf
+    
 
 });

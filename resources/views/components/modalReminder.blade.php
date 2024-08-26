@@ -35,11 +35,11 @@
                         <label for="tanggal_tagihan" class="form-label">Tanggal Tagihan</label>
                         <input type="date" class="form-control" id="tanggal_tagihan" name="tanggal_tagihan" required>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
             </form>
         </div>
     </div>
@@ -55,9 +55,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.reminder-update', 'test') }}" method="POST">
-                    {{ method_field('put') }}
+                <form action="{{ route('admin.reminder-update', 'test') }}" method="POST"
+                    id="editReminderForm">
                     @csrf
+                    @method('PUT')
                     <input type="hidden" name="reminder_id" id="edire_id">
                     <div class="mb-3">
                         <label for="nama_nasabah" class="form-label">Nama Nasabah</label>
@@ -69,7 +70,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="nominal_tagihan" class="form-label">Nominal Tagihan</label>
-                        <input type="text" class="form-control" id="nominal_tagihan" name="nominal_tagihan" required>
+                        <input type="text" class="form-control" id="nominal_tagihan" name="nominal_tagihan"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="status_pembayaran" class="form-label">Status Pembayaran</label>
@@ -85,13 +87,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal_tagihan" class="form-label">Tanggal Tagihan</label>
-                        <input type="date" class="form-control" id="tanggal_tagihan" name="tanggal_tagihan" required>
+                        <input type="date" class="form-control" id="tanggal_tagihan" name="tanggal_tagihan"
+                            required>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
             </form>
         </div>
     </div>

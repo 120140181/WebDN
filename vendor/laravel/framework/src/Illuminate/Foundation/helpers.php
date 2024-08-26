@@ -333,7 +333,7 @@ if (! function_exists('cookie')) {
         $cookie = app(CookieFactory::class);
 
         if (is_null($name)) {
-            return ($cookie);
+            return $cookie;
         }
 
         return $cookie->make($name, $value, $minutes, $path, $domain, $secure, $httpOnly, $raw, $sameSite);
