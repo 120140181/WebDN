@@ -33,7 +33,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div
+                            class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
                             <!-- Title -->
                             <div class="mb-2 mb-md-0">
                                 <h3 class="card-title">Payment Info</h3>
@@ -42,10 +43,11 @@
                             <!-- Actions (Search and Add Reminder) -->
                             <div class="d-flex flex-column flex-md-row align-items-center ml-md-auto">
                                 <!-- Search Input -->
-                                <div class="input-group input-group-md mb-2 mb-md-0 me-md-2" style="width: 200px;">
-                                    <input type="text" name="table_search" class="form-control" placeholder="Search">
+                                <div class="input-group input-group-md mb-2 mb-md-0 me-md-2" style="width: 250px">
+                                    <input type="text" id="searchInput" name="table_search"
+                                        class="form-control float-right" placeholder="Search">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
+                                        <button type="button" id="searchButton" class="btn btn-default">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
@@ -53,7 +55,7 @@
                                 <!-- Add Reminder Button -->
                                 <a href="#" class="btn btn-success" type="button" data-bs-toggle="modal"
                                     data-bs-target="#tambahReminder">
-                                    <i class="fa fa-plus" aria-hidden="true"></i><span> Tambah reminder</span>
+                                    <i class="fa fa-plus" aria-hidden="true"></i><span> Tambah Reminder</span>
                                 </a>
                             </div>
                         </div>
@@ -77,7 +79,7 @@
                                 <tbody>
                                     @foreach ($data as $index => $d)
                                         <tr>
-                                            <td>{{ $data->firstItem() + $index }}</td>
+                                            <td>{{ $index + 1 }}</td>
                                             <td>{{ $d->nama_nasabah }}</td>
                                             <td>{{ $d->nomor_kwitansi }}</td>
                                             <td>Rp. {{ number_format($d->nominal_tagihan, 0, ',', '.') }}</td>
@@ -86,7 +88,8 @@
                                             <td>{{ $d->tanggal_tagihan }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <button class="btn btn-primary mx-1" type="button"
-                                                    data-edire_id="{{ $d->id }}" data-nama="{{ $d->nama_nasabah }}"
+                                                    data-edire_id="{{ $d->id }}"
+                                                    data-nama="{{ $d->nama_nasabah }}"
                                                     data-kwitansi="{{ $d->nomor_kwitansi }}"
                                                     data-nominal_tagihan="{{ $d->nominal_tagihan }}"
                                                     data-status="{{ $d->status_pembayaran }}"
@@ -95,7 +98,8 @@
                                                     data-bs-target="#editReminder">
                                                     <i class="fas fa-pen"></i>
                                                 </button>
-                                                <form action="{{ route('admin.reminder-delete', $d->id) }}" method="POST"
+                                                <form action="{{ route('admin.reminder-delete', $d->id) }}"
+                                                    method="POST"
                                                     onsubmit="return confirm('Apakah Anda yakin ingin membatalkan reminder ini?');">
                                                     @csrf
                                                     @method('PUT')
@@ -130,7 +134,8 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                        <button type="button" class="btn btn-primary">Save
+                                                            changes</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,9 +143,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-end mt-4">
-                                {{ $data->links('pagination::bootstrap-4') }}
-                            </div>
                         </div>
                     </div>
                 </div>

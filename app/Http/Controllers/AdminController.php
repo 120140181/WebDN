@@ -44,7 +44,7 @@ class AdminController extends Controller
 
     public function reminder()
     {
-        // Ambil data dari tabel reminders dengan paginasi
+        // Ambil data dari tabel reminders 
         $data = Reminder::get(); 
 
         // Menghitung total nominal_tagihan dari seluruh data di tabel
@@ -58,8 +58,8 @@ class AdminController extends Controller
 
     public function history()
     {
-        // Ambil data dari tabel history dengan paginasi
-        $data = History::paginate(10); // Membatasi 10 data per halaman
+        // Ambil data dari tabel history 
+        $data = History::get(); 
 
         // Hitung total nominal tagihan lunas
         $totalTagihanLunas = History::where('status_pembayaran', 'Lunas')->sum('nominal_tagihan');

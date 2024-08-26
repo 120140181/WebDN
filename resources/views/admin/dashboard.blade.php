@@ -78,7 +78,7 @@
                             <div class="small-box bg-info">
                                 <div class="inner">
                                     <h4>{{ $totalTagihanAktif }}</h4>
-                                    <p>Total Tagihan Aktif</p>
+                                    <p>Tagihan Aktif</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>

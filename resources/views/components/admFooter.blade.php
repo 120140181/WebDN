@@ -44,6 +44,30 @@
         });
     </script>
 
+    <script>
+        document.getElementById('nominal_tagihan').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, ''); // Hanya izinkan angka
+        });
+
+        function formatNumber(value) {
+            // Menghilangkan karakter selain angka
+            value = value.replace(/\D/g, '');
+
+            // Menambahkan format ribuan
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const nominalInputs = document.querySelectorAll('#nominal_tagihan');
+
+            nominalInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.value = formatNumber(this.value);
+                });
+            });
+        });
+    </script>
+
     <!-- Event Listener untuk tombol PDF -->
     <script>
         document.querySelector('.buttons-pdf').addEventListener('click', function() {
@@ -115,6 +139,42 @@
                 .catch(error => console.error('Error fetching data:', error));
         });
     </script>
+    {{-- search bar --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchButton = document.getElementById('searchButton');
+            const searchInput = document.getElementById('searchInput');
+            const table = document.getElementById('table1');
+            const tableRows = table.querySelectorAll('tbody tr');
+    
+            // Fungsi pencarian
+            function searchTable() {
+                const searchTerm = searchInput.value.toLowerCase();
+    
+                tableRows.forEach(row => {
+                    const cells = row.getElementsByTagName('td');
+                    let rowText = '';
+                    for (let i = 0; i < cells.length; i++) {
+                        rowText += cells[i].textContent.toLowerCase() + ' ';
+                    }
+                    if (rowText.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+    
+            // Event listener untuk tombol pencarian
+            searchButton.addEventListener('click', searchTable);
+    
+            // Optional: Pencarian langsung saat mengetik
+            searchInput.addEventListener('keyup', searchTable);
+        });
+    </script>
+    
+
+
     </body>
 
     </html>
