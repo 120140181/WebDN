@@ -1,6 +1,6 @@
 @include('components.admNavbar')
 <div class="wrapper" style="min-width: 100%;">
-    <div class="content-wrapper p-3"">
+    <div class="content-wrapper p-3">
         <!-- content-header -->
         <div class="content-header">
             <div class="container-fluid">
@@ -34,22 +34,23 @@
                             <div class="d-flex flex-column flex-md-row align-items-center ml-md-auto">
                                 <!-- Search Input -->
                                 <div class="input-group input-group-md mb-2 mb-md-0" style="width: 250px;">
-                                    <input type="text" name="table_search" class="form-control float-right"
-                                        placeholder="Search">
+                                    <input type="text" id="searchInput" name="table_search"
+                                        class="form-control float-right" placeholder="Search">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
+                                        <button type="button" id="searchButton" class="btn btn-default">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
                                 </div>
 
+
                                 <!-- Print PDF Button -->
                                 <div class="ml-md-2">
-                                    <a class="btn btn-outline-danger">
+                                    <button class="btn btn-outline-danger buttons-pdf buttons-html5" tabindex="0"
+                                        aria-controls="example1" type="button">
                                         <span class="iconify mr-1" data-icon="vscode-icons:file-type-pdf2"
-                                            data-inline="false" style="font-size: 24px;"></span>
-                                        Cetak-PDF
-                                    </a>
+                                            data-inline="false" style="font-size: 24px;"></span>Cetak-PDF
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +71,7 @@
                                 <tbody>
                                     @foreach ($data as $index => $d)
                                         <tr>
-                                            <td>{{ $data->firstItem() + $index }}</td>
+                                            <td>{{ $index + 1 }}</td> <!-- Penomoran sederhana -->
                                             <td>{{ $d->nama_nasabah }}</td>
                                             <td>{{ $d->nomor_kwitansi }}</td>
                                             <td>Rp. {{ number_format($d->nominal_tagihan, 0, ',', '.') }}</td>
@@ -81,9 +82,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-center mt-4">
-                                {{ $data->links('pagination::bootstrap-4') }}
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -52,21 +52,71 @@
             } = window.jspdf;
             const doc = new jsPDF();
 
-            // Ambil tabel dari HTML
-            doc.autoTable({
-                html: '.table',
-                startY: 20,
-                theme: 'striped'
-            });
+            // Ambil data dari server
+            fetch('/admin/get-all-history')
+                .then(response => response.json())
+                .then(data => {
+                    // Log data untuk memeriksa
+                    console.log('Data fetched:', data);
 
-            // Tambahkan judul atau teks lainnya
-            doc.text('History Payment', 14, 15);
+                    // Siapkan data untuk autoTable
+                    const tableData = data.map((item, index) => ({
+                        no: index + 1,
+                        nama_nasabah: item.nama_nasabah,
+                        nomor_kwitansi: item.nomor_kwitansi,
+                        nominal_tagihan: `Rp. ${parseFloat(item.nominal_tagihan).toLocaleString('id-ID')}`,
+                        tanggal_tagihan: item.tanggal_tagihan,
+                        status_pembayaran: item.status_pembayaran,
+                        keterangan: item.keterangan
+                    }));
 
-            // Download file PDF
-            doc.save('history-paymentWebDN.pdf');
+                    // Tambahkan tabel ke PDF
+                    doc.autoTable({
+                        columns: [{
+                                header: 'No',
+                                dataKey: 'no'
+                            },
+                            {
+                                header: 'Nama Nasabah',
+                                dataKey: 'nama_nasabah'
+                            },
+                            {
+                                header: 'Nomor Kwitansi',
+                                dataKey: 'nomor_kwitansi'
+                            },
+                            {
+                                header: 'Nominal Tagihan',
+                                dataKey: 'nominal_tagihan'
+                            },
+                            {
+                                header: 'Tanggal',
+                                dataKey: 'tanggal_tagihan'
+                            },
+                            {
+                                header: 'Status',
+                                dataKey: 'status_pembayaran'
+                            },
+                            {
+                                header: 'Keterangan',
+                                dataKey: 'keterangan'
+                            }
+                        ],
+                        body: tableData,
+                        startY: 20,
+                        theme: 'striped'
+                    });
+
+                    // Tambahkan judul atau teks lainnya
+                    doc.text('History Payment', 14, 15);
+
+                    // Download file PDF
+                    doc.save('history-paymentWebDN.pdf');
+                })
+                .catch(error => console.error('Error fetching data:', error));
         });
     </script>
 
+    {{-- edit reminder nominal sintaks --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const nominalTagihanInput = document.getElementById('nominal_tagihan');
@@ -99,9 +149,40 @@
             formatOnLoad();
         });
     </script>
-
-
-
+    {{-- Search Button --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchButton = document.getElementById('searchButton');
+            const searchInput = document.getElementById('searchInput');
+            const table = document.getElementById('table1');
+            const tableRows = table.querySelectorAll('tbody tr');
+    
+            // Fungsi pencarian
+            function searchTable() {
+                const searchTerm = searchInput.value.toLowerCase();
+    
+                tableRows.forEach(row => {
+                    const cells = row.getElementsByTagName('td');
+                    let rowText = '';
+                    for (let i = 0; i < cells.length; i++) {
+                        rowText += cells[i].textContent.toLowerCase() + ' ';
+                    }
+                    if (rowText.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+    
+            // Event listener untuk tombol pencarian
+            searchButton.addEventListener('click', searchTable);
+    
+            // Optional: Pencarian langsung saat mengetik
+            searchInput.addEventListener('keyup', searchTable);
+        });
+    </script>
+    
 
     </body>
 

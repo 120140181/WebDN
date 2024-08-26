@@ -24,7 +24,7 @@ class AdminController extends Controller
     public function reminder()
     {
         // Ambil data dari tabel reminders dengan paginasi
-        $data = Reminder::paginate(10); // Membatasi 10 data per halaman
+        $data = Reminder::get(); 
 
         // Kirim data ke view
         return view('admin.reminder', ['data' => $data]);
@@ -34,11 +34,15 @@ class AdminController extends Controller
 
     public function history()
     {
-        $data = DB::table('history')->paginate(10); // Mengambil data dari tabel 'history'
+        $data = DB::table('history')->get(); // Mengambil data dari tabel 'history'
         return view('admin.history', compact('data'));
     }
 
-
+    public function getAllHistory()
+    {
+        $data = DB::table('history')->get(); // Ambil semua data dari tabel 'history'
+        return response()->json($data);
+    }
 
 
 

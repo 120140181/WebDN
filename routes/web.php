@@ -37,6 +37,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     // notifikasi
 
     // cetak-pdf
-    
+    Route::get('/get-all-history', [AdminController::class, 'getAllHistory'])->name('get-all-history');
+    // search-button    
+
 
 });

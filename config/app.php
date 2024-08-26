@@ -122,15 +122,4 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-
-    'providers' => [
-        // Provider lainnya...
-        Barryvdh\DomPDF\ServiceProvider::class,
-    ],
-
-    'aliases' => [
-        // Alias lainnya...
-        'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
-    ],
-
 ];

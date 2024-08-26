@@ -69,13 +69,13 @@
                             <tbody>
                                 @foreach ($data as $index => $d)
                                     <tr>
-                                        <td>{{ $data->firstItem() + $index }}</td>
+                                        <td>{{ $index + 1 }}</td> <!-- Penomoran sederhana -->
                                         <td>{{ $d->nama_nasabah }}</td>
                                         <td>{{ $d->nomor_kwitansi }}</td>
                                         <td>Rp. {{ number_format($d->nominal_tagihan, 0, ',', '.') }}</td>
+                                        <td>{{ $d->tanggal_tagihan }}</td>
                                         <td>{{ $d->status_pembayaran }}</td>
                                         <td>{{ $d->keterangan }}</td>
-                                        <td>{{ $d->tanggal_tagihan }}</td>
                                         <td class="d-flex justify-content-center">
                                             <button class="btn btn-primary mx-1" type="button"
                                                 data-edire_id="{{ $d->id }}" data-nama="{{ $d->nama_nasabah }}"
@@ -108,9 +108,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center mt-4">
-                            {{ $data->links('pagination::bootstrap-4') }}
-                        </div>
                     </div>
                 </div>
             </div>
