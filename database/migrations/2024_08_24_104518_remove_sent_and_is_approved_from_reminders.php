@@ -8,17 +8,18 @@ return new class extends Migration {
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('reminders', function (Blueprint $table) {
-            $table->boolean('is_approved')->default(false);
+            $table->dropColumn(['sent', 'is_approved']);
         });
     }
 
-    public function down(): void
+    public function down()
     {
         Schema::table('reminders', function (Blueprint $table) {
-            $table->dropColumn('is_approved');
+            $table->boolean('sent')->default(false);
+            $table->boolean('is_approved')->default(false);
         });
     }
 

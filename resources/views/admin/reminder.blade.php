@@ -72,7 +72,7 @@
                                         <td>{{ $data->firstItem() + $index }}</td>
                                         <td>{{ $d->nama_nasabah }}</td>
                                         <td>{{ $d->nomor_kwitansi }}</td>
-                                        <td>Rp. {{ $d->nominal_tagihan }}</td>
+                                        <td>Rp. {{ number_format($d->nominal_tagihan, 0, ',', '.') }}</td>
                                         <td>{{ $d->status_pembayaran }}</td>
                                         <td>{{ $d->keterangan }}</td>
                                         <td>{{ $d->tanggal_tagihan }}</td>

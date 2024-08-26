@@ -36,9 +36,10 @@ class AdminController extends Controller
 
     public function history()
     {
-        $data = DB::table('history')->paginate(10);
+        $data = DB::table('reminders')->paginate(10);
         return view('admin.history', compact('data'));
     }
+
 
 
 
