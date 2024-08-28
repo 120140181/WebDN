@@ -2,11 +2,11 @@
 <!-- *** SEJARAH Start *** -->
 <div class="vsejarah container">
     <div class="row">
-        <div class="col-lg-6 d-flex justify-content-end">
+        <div class="col-lg-5 d-flex justify-content-center">
             <img src="{{ asset('images/kegiatan3-v.jpg') }}" alt="Pak Deni Nugraha" class="d-none d-lg-block"
                 style="height: 600px; border-top-left-radius: 100px; border-bottom-right-radius: 100px;">
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             <div class="sejarah-text">
                 <h6 class="text-info text-uppercase ms-3">
                     sejarah
@@ -70,8 +70,8 @@
         </h1>
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-12">
-                <p class="p-5 mb-2 d-flex vmisi-tittle">
-                    VISI:
+                <p class="p-5 mb-2 d-flex vmisi-tittle" style="text-align: justify">
+                    VISI :
                     <br>- Memberikan Perlindungan Hukum kepada masyarakat individu dan perusahaan dalam setiap transaksi
                     bisnis dan pertanahan secara cepat, efisien, efektif, dan menjunjung tinggi etika dan integritas.
                     <br>
@@ -81,13 +81,11 @@
                 <img src="{{ asset('images/background4.jpg') }}" alt="" class="img-fluid">
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12">
-                <p class="p-5 mb-5 d-flex vmisi-tittle2">
-                    MISI : <br>
-                    - Membangun dan memelihara kepercayaan antara kantor notaris dan klien. <br>
-                    - Standar Operasional Prosedur (SOP) yang efektif, efisien dalam memberikan pelayanan secara
-                    professional. <br>
-                    - Menciptakan hubungan yang sinergi antara karyawan dan kantor Notaris/PPAT serta klien dalam setiap
-                    pelayanan dengan service excellent.
+                <p class="p-5 mb-5 d-flex vmisi-tittle2" style="text-align: justify">
+                    MISI : 
+                    <br>- Membangun dan memelihara kepercayaan antara kantor notaris dan klien. 
+                    <br>- Standar Operasional Prosedur (SOP) yang efektif, efisien dalam memberikan pelayanan secara professional.
+                    <br>- Menciptakan hubungan yang sinergi antara karyawan dan kantor Notaris/PPAT serta klien dalam setiap pelayanan dengan service excellent.
                 </p>
             </div>
         </div>
@@ -110,7 +108,7 @@
             <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-content">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('images/PakDN.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('images/PakDN1.jpeg') }}" alt="">
                     </div>
                     <div class="team-text">
                         <div class="bg-light">
@@ -135,7 +133,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>
+                                        <p style="text-align: justify">
                                             Lulusan dari Universitas Sangga Buana dalam bidang Sarjana Ekonomi,
                                             Universitas Islam Syekh Yusuf dalam bidang Sarjana Hukum, dan Universitas
                                             Diponegoro dengan gelar Magister Kenotariatan. Bertempat kedudukan di
@@ -320,6 +318,20 @@
                                     menyediakan layanan keuangan untuk masyarakat dan usaha kecil di wilayahnya. Bank
                                     ini menawarkan produk seperti simpanan, deposito, dan kredit dengan tujuan mendukung
                                     perekonomian lokal.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{ asset('images/gallery/bni.png') }}" class="card-img-top"
+                                style="height: fit-content;" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">BNI</h5>
+                                <p class="card-text text-center">BNI adalah bank milik pemerintah (BUMN) yang
+                                    menyediakan berbagai layanan perbankan seperti simpanan, pinjaman, kartu kredit, dan
+                                    layanan perbankan lainnya. BNI juga memiliki layanan untuk bisnis dan korporasi,
+                                    serta layanan internasional dengan cabang-cabang yang tersebar di beberapa negara.
+                                </p>
                             </div>
                         </div>
                     </div>

@@ -19,7 +19,8 @@
                 <div class="carousel-item homecarousel-item" data-bs-interval="5000">
                     <img src="{{ asset('images/akad16.jpg') }}" style="height: 700px;" alt="..." />
                 </div>
-                <div class="carousel-caption homecarousel-caption d-flex flex-column justify-content-center align-items-center text-white">
+                <div
+                    class="carousel-caption homecarousel-caption d-flex flex-column justify-content-center align-items-center text-white">
                     <h5>Gedung Notaris</h5>
                     <h5>DENI NUGRAHA SE., SH., M.Kn</h5>
                     <p>Profesionalisme dan Kepercayaan dalam Setiap Layanan Notaris</p>
@@ -64,7 +65,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6 col-sm-12 mb-4 me-lg-3">
                         <div class="card d-flex align-items-center">
-                            <img src="{{ asset('images/icon/logonotaris.png') }}" class="card-img-top img-fluid" alt="..." />
+                            <img src="{{ asset('images/icon/logonotaris.png') }}" class="card-img-top"
+                                style="height: 186px; width: 226px" alt="..." />
                             <div class="card-body">
                                 <div class="accordion accordion-flush" id="layananAccordion">
                                     <div class="accordion-item">
@@ -91,7 +93,8 @@
                     </div>
                     <div class="col-lg-5 col-md-6 col-sm-12 mb-lg-4 ms-lg-2">
                         <div class="card d-flex align-items-center">
-                            <img src="{{ asset('images/icon/logoippat.png') }}" style="height: 186px; width: 186px" class="card-img-top" alt="..." />
+                            <img src="{{ asset('images/icon/logoippat.png') }}" style="height: 186px; width: 186px"
+                                class="card-img-top " alt="..." />
                             <div class="card-body">
                                 <div class="accordion accordion-flush" id="layananAccordion2">
                                     <div class="accordion-item">
@@ -131,7 +134,7 @@
                     owner
                 </h6>
                 <h1 class="mb-5 text-uppercase">
-                    kantor notaris Deni Nugraha
+                    Kantor Notaris Deni Nugraha
                 </h1>
             </div>
             <div class="row g-4 justify-content-center">
@@ -163,7 +166,7 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>
+                                            <p style="text-align:justify;">
                                                 Lulusan dari Universitas Sangga Buana dalam bidang Sarjana Ekonomi,
                                                 Universitas Islam Syekh Yusuf dalam bidang Sarjana Hukum, dan
                                                 Universitas Diponegoro dengan gelar Magister Kenotariatan. Bertempat
@@ -250,7 +253,6 @@
                                 });
                             </script>
                         @endif
-
                     </div>
                 </div>
             </div>
@@ -298,13 +300,8 @@
                                     <span>: 08.00 - 17.00</span>
                                 </div>
                                 <br>
-                                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
-                                    <span>&middot; Saturday</span>
-                                    <span>: 08.00 - 14.00</span>
-                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -359,7 +356,9 @@
                     <div class="slider-item p-4">
                         <img src="{{ asset('images/gallery/ragasakti.jpg') }}" alt="">
                     </div>
-
+                    <div class="slider-item p-4">
+                        <img src="{{ asset('images/gallery/bni.png') }}" alt="">
+                    </div>
                     <!-- slider (double) -->
                     <div class="slider-item p-4">
                         <img src="{{ asset('images/gallery/bprCakrawala.jpg') }}" alt="">
@@ -393,6 +392,9 @@
                     </div>
                     <div class="slider-item p-4">
                         <img src="{{ asset('images/gallery/ragasakti.jpg') }}" alt="">
+                    </div>
+                    <div class="slider-item p-4">
+                        <img src="{{ asset('images/gallery/bni.png') }}" alt="">
                     </div>
                     <!-- /slider -->
                 </div>
