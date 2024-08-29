@@ -82,8 +82,8 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <p class="p-5 mb-5 d-flex vmisi-tittle2" style="text-align: justify">
-                    MISI : 
-                    <br>- Membangun dan memelihara kepercayaan antara kantor notaris dan klien. 
+                    MISI :
+                    <br>- Membangun dan memelihara kepercayaan antara kantor notaris dan klien.
                     <br>- Standar Operasional Prosedur (SOP) yang efektif, efisien dalam memberikan pelayanan secara professional.
                     <br>- Menciptakan hubungan yang sinergi antara karyawan dan kantor Notaris/PPAT serta klien dalam setiap pelayanan dengan service excellent.
                 </p>

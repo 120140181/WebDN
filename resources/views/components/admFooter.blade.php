@@ -226,79 +226,66 @@
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const table = document.querySelector('#table2');
-            const tbody = table.querySelector('tbody');
-            const searchInput = document.querySelector('#searchInput');
-            const dropdownItems = document.querySelectorAll('#sortDropdown .dropdown-menu .dropdown-item');
-
-            function filterTable(status) {
-                const rows = Array.from(tbody.querySelectorAll('tr'));
-                rows.forEach(row => {
-                    const cellStatus = row.children[5].innerText.trim(); // Status is in the 6th column
-                    if (status === 'all' || cellStatus === status) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            }
-
-            function sortTable(sortType) {
-                const rows = Array.from(tbody.querySelectorAll('tr'));
-                rows.sort((rowA, rowB) => {
-                    const cellA = rowA.children;
-                    const cellB = rowB.children;
-
-                    let valueA, valueB;
-                    switch (sortType) {
-                        case 'nomor-asc':
-                            valueA = parseInt(cellA[0].innerText.trim());
-                            valueB = parseInt(cellB[0].innerText.trim());
-                            return valueA - valueB;
-                        case 'nomor-desc':
-                            valueA = parseInt(cellA[0].innerText.trim());
-                            valueB = parseInt(cellB[0].innerText.trim());
-                            return valueB - valueA;
-                        case 'tanggal-asc':
-                            valueA = new Date(cellA[4].innerText.trim());
-                            valueB = new Date(cellB[4].innerText.trim());
-                            return valueA - valueB;
-                        case 'tanggal-desc':
-                            valueA = new Date(cellA[4].innerText.trim());
-                            valueB = new Date(cellB[4].innerText.trim());
-                            return valueB - valueA;
-                    }
-                });
-
-                rows.forEach(row => tbody.appendChild(row));
-            }
-
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const sortValue = this.getAttribute('data-sort');
-                    if (['Lunas', 'Canceled'].includes(sortValue)) {
-                        filterTable(sortValue);
-                    } else {
-                        filterTable('all');
-                        sortTable(sortValue);
-                    }
-                });
-            });
-
-            searchInput.addEventListener('keyup', function() {
-                const query = this.value.toLowerCase();
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const sortType = this.getAttribute('data-sort');
+                const table = document.getElementById('table2');
+                const tbody = table.querySelector('tbody');
                 const rows = Array.from(tbody.querySelectorAll('tr'));
 
-                rows.forEach(row => {
-                    const cells = Array.from(row.children);
-                    const textContent = cells.map(cell => cell.innerText.toLowerCase()).join(' ');
-                    row.style.display = textContent.includes(query) ? '' : 'none';
-                });
+                let compareFunction;
+
+                // Filter untuk "Lunas" dan "Canceled"
+                if (sortType === 'Lunas' || sortType === 'Canceled') {
+                    rows.forEach(row => {
+                        const status = row.cells[5].innerText.trim();
+                        if (status === sortType) {
+                            row.style.display = ''; // Tampilkan baris
+                        } else {
+                            row.style.display = 'none'; // Sembunyikan baris
+                        }
+                    });
+                    return;
+                }
+
+                // Fungsi sorting untuk nomor dan tanggal
+                switch (sortType) {
+                    case 'nomor-asc':
+                        compareFunction = (a, b) => parseInt(a.cells[0].innerText) - parseInt(b.cells[0]
+                            .innerText);
+                        break;
+                    case 'nomor-desc':
+                        compareFunction = (a, b) => parseInt(b.cells[0].innerText) - parseInt(a.cells[0]
+                            .innerText);
+                        break;
+                    case 'tanggal-asc':
+                        compareFunction = (a, b) => new Date(a.cells[4].innerText.split('-').reverse().join(
+                            '-')) - new Date(b.cells[4].innerText.split('-').reverse().join('-'));
+                        break;
+                    case 'tanggal-desc':
+                        compareFunction = (a, b) => new Date(b.cells[4].innerText.split('-').reverse().join(
+                            '-')) - new Date(a.cells[4].innerText.split('-').reverse().join('-'));
+                        break;
+                    default:
+                        compareFunction = null;
+                        break;
+                }
+
+                if (compareFunction) {
+                    rows.sort(compareFunction);
+                    rows.forEach(row => {
+                        row.style.display = ''; // Tampilkan semua baris sebelum sorting
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    // Tampilkan semua baris untuk "Show All"
+                    rows.forEach(row => {
+                        row.style.display = ''; // Tampilkan semua baris
+                    });
+                }
             });
         });
     </script>
-
 
     </body>
 
