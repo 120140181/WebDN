@@ -24,10 +24,6 @@
                     <span>Senin - Jumat</span>
                     <span>: 08.00 - 17.00</span>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <span>Sabtu</span>
-                    <span>: 08.00 - 14.00</span>
-                </div>
             </div>
             <div class="col-lg-4 col-md-12 mb-4 text-center">
                 <h5 class="fw-bold mb-4" style="color: #414141;">Location</h5>

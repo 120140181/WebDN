@@ -42,6 +42,23 @@
 
                             <!-- Actions (Search and Add Reminder) -->
                             <div class="d-flex flex-column flex-md-row align-items-center ml-md-auto">
+                                <!-- Sort Dropdown Button -->
+                                <div class="dropdown mx-2">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Sort And Filter
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                                        <li><a class="dropdown-item" href="#" data-sort="nomor-asc">Nomor
+                                                (Terkecil - Terbesar)</a></li>
+                                        <li><a class="dropdown-item" href="#" data-sort="nomor-desc">Nomor
+                                                (Terbesar - Terkecil)</a></li>
+                                        <li><a class="dropdown-item" href="#" data-sort="tanggal-asc">Tanggal
+                                                (Terbaru - Terlama)</a></li>
+                                        <li><a class="dropdown-item" href="#" data-sort="tanggal-desc">Tanggal
+                                                (Terlama - Terbaru)</a></li>
+                                    </ul>
+                                </div>
                                 <!-- Search Input -->
                                 <div class="input-group input-group-md mb-2 mb-md-0 me-md-2" style="width: 250px">
                                     <input type="text" id="searchInput" name="table_search"
@@ -63,7 +80,8 @@
 
 
                         <div class="card-body table-responsive">
-                            <table class="table table-bordered table-hover text-nowrap">
+                            <table class="table table-bordered table-hover text-nowrap" id="table1"
+                                aria-describedby="table1-info">
                                 <thead class="text-center">
                                     <tr>
                                         <th>No</th>
@@ -85,7 +103,7 @@
                                             <td>Rp. {{ number_format($d->nominal_tagihan, 0, ',', '.') }}</td>
                                             <td>{{ $d->status_pembayaran }}</td>
                                             <td>{{ $d->keterangan }}</td>
-                                            <td>{{ $d->tanggal_tagihan }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($d->tanggal_tagihan)) }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <button class="btn btn-primary mx-1" type="button"
                                                     data-edire_id="{{ $d->id }}"

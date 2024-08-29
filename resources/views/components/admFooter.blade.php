@@ -13,9 +13,6 @@
     <!-- Carousel JS -->
     <script src="assets/vendor/node_modules/owl-carousel/js/owl.carousel.min.js"></script>
     <!-- jquery -->
-    <script src="assets/vendor/node_modules/jquery/dist/jquery.js"></script>
-    <script src="assets/vendor/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="assets/vendor/node_modules/jquery/src/jquery.js"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/loader.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -37,7 +34,7 @@
             modal.find('.modal-body #edire_id').val(edire_id);
             modal.find('.modal-body #nama_nasabah').val(nama);
             modal.find('.modal-body #nomor_kwitansi').val(kwitansi);
-            modal.find('.modal-body #nominal_tagihan').val(formattedNominal); // Gunakan format
+            modal.find('.modal-body #nominal_tagihan').val(formattedNominal);
             modal.find('.modal-body #status_pembayaran').val(status);
             modal.find('.modal-body #keterangan').val(keterangan);
             modal.find('.modal-body #tanggal_tagihan').val(tanggal);
@@ -146,11 +143,11 @@
             const searchInput = document.getElementById('searchInput');
             const table = document.getElementById('table1');
             const tableRows = table.querySelectorAll('tbody tr');
-    
+
             // Fungsi pencarian
             function searchTable() {
                 const searchTerm = searchInput.value.toLowerCase();
-    
+
                 tableRows.forEach(row => {
                     const cells = row.getElementsByTagName('td');
                     let rowText = '';
@@ -164,15 +161,143 @@
                     }
                 });
             }
-    
+
             // Event listener untuk tombol pencarian
             searchButton.addEventListener('click', searchTable);
-    
+
             // Optional: Pencarian langsung saat mengetik
             searchInput.addEventListener('keyup', searchTable);
         });
     </script>
-    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const table = document.querySelector('#table1');
+            const tbody = table.querySelector('tbody');
+            const sortDropdownItems = document.querySelectorAll('.dropdown-item');
+
+            // Function to sort table rows
+            function sortTable(columnIndex, ascending) {
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                rows.sort((rowA, rowB) => {
+                    const cellA = rowA.children[columnIndex].innerText.trim();
+                    const cellB = rowB.children[columnIndex].innerText.trim();
+
+                    // Convert to numbers for sorting numeric values
+                    const valueA = isNaN(cellA) ? cellA : parseFloat(cellA.replace(/[^0-9.-]/g, ''));
+                    const valueB = isNaN(cellB) ? cellB : parseFloat(cellB.replace(/[^0-9.-]/g, ''));
+
+                    return ascending ? valueA > valueB ? 1 : -1 : valueA < valueB ? 1 : -1;
+                });
+
+                // Append sorted rows back to the tbody
+                rows.forEach(row => tbody.appendChild(row));
+            }
+
+            sortDropdownItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const sortType = this.getAttribute('data-sort');
+                    let columnIndex;
+                    let ascending;
+
+                    switch (sortType) {
+                        case 'nomor-asc':
+                            columnIndex = 0; // Nomor column
+                            ascending = true;
+                            break;
+                        case 'nomor-desc':
+                            columnIndex = 0; // Nomor column
+                            ascending = false;
+                            break;
+                        case 'tanggal-asc':
+                            columnIndex = 6; // Tanggal column
+                            ascending = true;
+                            break;
+                        case 'tanggal-desc':
+                            columnIndex = 6; // Tanggal column
+                            ascending = false;
+                            break;
+                    }
+
+                    sortTable(columnIndex, ascending);
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const table = document.querySelector('#table2');
+            const tbody = table.querySelector('tbody');
+            const searchInput = document.querySelector('#searchInput');
+            const dropdownItems = document.querySelectorAll('#sortDropdown .dropdown-menu .dropdown-item');
+
+            function filterTable(status) {
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                rows.forEach(row => {
+                    const cellStatus = row.children[5].innerText.trim(); // Status is in the 6th column
+                    if (status === 'all' || cellStatus === status) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            function sortTable(sortType) {
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                rows.sort((rowA, rowB) => {
+                    const cellA = rowA.children;
+                    const cellB = rowB.children;
+
+                    let valueA, valueB;
+                    switch (sortType) {
+                        case 'nomor-asc':
+                            valueA = parseInt(cellA[0].innerText.trim());
+                            valueB = parseInt(cellB[0].innerText.trim());
+                            return valueA - valueB;
+                        case 'nomor-desc':
+                            valueA = parseInt(cellA[0].innerText.trim());
+                            valueB = parseInt(cellB[0].innerText.trim());
+                            return valueB - valueA;
+                        case 'tanggal-asc':
+                            valueA = new Date(cellA[4].innerText.trim());
+                            valueB = new Date(cellB[4].innerText.trim());
+                            return valueA - valueB;
+                        case 'tanggal-desc':
+                            valueA = new Date(cellA[4].innerText.trim());
+                            valueB = new Date(cellB[4].innerText.trim());
+                            return valueB - valueA;
+                    }
+                });
+
+                rows.forEach(row => tbody.appendChild(row));
+            }
+
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const sortValue = this.getAttribute('data-sort');
+                    if (['Lunas', 'Canceled'].includes(sortValue)) {
+                        filterTable(sortValue);
+                    } else {
+                        filterTable('all');
+                        sortTable(sortValue);
+                    }
+                });
+            });
+
+            searchInput.addEventListener('keyup', function() {
+                const query = this.value.toLowerCase();
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+
+                rows.forEach(row => {
+                    const cells = Array.from(row.children);
+                    const textContent = cells.map(cell => cell.innerText.toLowerCase()).join(' ');
+                    row.style.display = textContent.includes(query) ? '' : 'none';
+                });
+            });
+        });
+    </script>
 
 
     </body>
