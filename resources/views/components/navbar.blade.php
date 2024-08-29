@@ -12,9 +12,6 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <!-- Styles CSS -->
     <link rel="stylesheet" href="css/style.css" />
-    <!-- Carousel CSS -->
-    <link rel="stylesheet" href="assets\vendor\node_modules\owl-carousel\css\owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets\vendor\node_modules\owl-carousel\css\owl.theme.default.min.css" />
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +21,9 @@
     {{-- sweetalert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <title>{{ request()->is('/') ? 'Home' : '' }} {{ request()->is('service') ? 'Service' : '' }} {{ request()->is('about') ? 'About Us' : '' }} {{ request()->is('gallery') ? 'Gallery' : '' }} | Kantor Deni Nugraha</title>
+    <title>{{ request()->is('/') ? 'Home' : '' }} {{ request()->is('service') ? 'Service' : '' }}
+        {{ request()->is('about') ? 'About Us' : '' }} {{ request()->is('gallery') ? 'Gallery' : '' }} | Kantor Deni
+        Nugraha</title>
     <link rel="icon" href="{{ asset('images/icon/garuda.png') }}" type="image/png" />
 </head>
 
@@ -70,16 +69,20 @@
                             <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll"
                                 style="--bs-scroll-height: 100px">
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('index') }}">Home</a>
+                                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"
+                                        href="{{ route('index') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('service') ? 'active' : '' }}" aria-current="page" href="{{ route('landing.service') }}">Service</a>
+                                    <a class="nav-link {{ request()->is('service') ? 'active' : '' }}"
+                                        aria-current="page" href="{{ route('landing.service') }}">Service</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" aria-current="page" href="{{ route('landing.about') }}">About Us</a>
+                                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}"
+                                        aria-current="page" href="{{ route('landing.about') }}">About Us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('gallery') ? 'active' : '' }}" aria-current="page" href="{{ route('landing.gallery') }}">Gallery</a>
+                                    <a class="nav-link {{ request()->is('gallery') ? 'active' : '' }}"
+                                        aria-current="page" href="{{ route('landing.gallery') }}">Gallery</a>
                                 </li>
                                 <li>
                                     <a class="nav-link" aria-current="page" href="{{ route('auth.login') }}">
@@ -95,4 +98,3 @@
         <!-- /Main Navbar -->
     </div>
     <!-- *** Navbar End *** -->
-

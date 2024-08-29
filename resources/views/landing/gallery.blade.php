@@ -63,7 +63,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Akad Jual Beli Tanah</p>
                             </div>
                         </div>
                     </div>
@@ -71,15 +71,15 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="{{ asset('images/akad1.jpg') }}" class="cardistry img-fluid">
+                    <img src="{{ asset('images/penyerahan1.jpeg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
-                            <h6 class="mb-2 fw-bold text-center">Kegiatan Notaris & PPAT</h6>
+                            <h6 class="mb-2 fw-bold text-center">Kegiatan Lainnya</h6>
                             <div class="icon-container">
-                                <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
+                                <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Penyerahan Website</p>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,8 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p style="text-align: center">Wisata ke Pulau Pari<br>Keluarga Besar Kantor DN
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -111,7 +112,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p style="text-align: center">Pembagian Hadiah<br>Lomba 17 Agustusan</p>
                             </div>
                         </div>
                     </div>
@@ -123,11 +124,11 @@
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
-                            <h6 class="mb-2 fw-bold text-center">Kegiatan Lainnya</h6>
+                            <h6 class="mb-2 fw-bold text-center">Kegiatan Notaris & PPAT</h6>
                             <div class="icon-container">
-                                <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
+                                <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn</p>
                             </div>
                         </div>
                     </div>
@@ -158,13 +159,12 @@
                         <div class="carousel-item active" data-bs-interval="4000">
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
-                                    <h5 class="text uppercase mb-3">Notaris & PPAT</h5>
-                                    <h3 class="mb-3">Lorem ipsum dolor sit amet consectetur.</h3>
-                                    <p class="fs-10 fw-medium mb-3">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                        elit. Ut autem quas doloremque voluptas reprehenderit ipsum!</p>
+                                    <h5 class="text uppercase mb-3" style="color: #0874a7">Notaris & PPAT</h5>
+                                    <h3 class="mb-3">Pembuatan Akta Otentik</h3>
+                                    <p class="fs-10 fw-medium mb-3">Membuat dokumen hukum resmi seperti akta jual beli, akta pendirian perusahaan, dan akta hibah.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="{{ asset('images/akad1.jpg') }}" class="d-block w-100 carousel-gallery"
+                                    <img src="{{ asset('images/akad11.jpg') }}" class="d-block w-100 carousel-gallery"
                                         alt="...">
                                 </div>
                             </div>
@@ -172,10 +172,9 @@
                         <div class="carousel-item" data-bs-interval="4000">
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
-                                    <h5 class="text uppercase mb-3">Notaris & PPAT</h5>
-                                    <h3 class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                                    <p class="fs-10 fw-medium mb-3">Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Reiciendis, a consequuntur!</p>
+                                    <h5 class="text uppercase mb-3" style="color: #0874a7">Notaris & PPAT</h5>
+                                    <h3 class="mb-3">Pembuatan Akta Jual Beli Tanah</h3>
+                                    <p class="fs-10 fw-medium mb-3">Membuat akta yang mengesahkan peralihan hak atas tanah dari penjual ke pembeli.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
                                     <img src="{{ asset('images/akad12.jpg') }}" class="d-block w-100 carousel-gallery"
@@ -186,9 +185,8 @@
                         <div class="carousel-item" data-bs-interval="4000">
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
-                                    <h5 class="text uppercase mb-3">Notaris & PPAT</h5>
-                                    <h3 class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
-                                        est.</h3>
+                                    <h5 class="text uppercase mb-3" style="color: #0874a7">Notaris & PPAT</h5>
+                                    <h3 class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, quas.</h3>
                                     <p class="fs-10 fw-medium mb-3">Lorem ipsum dolor sit amet consectetur adipisicing
                                         elit. Labore dolores culpa consequatur aspernatur provident dolorum fuga impedit
                                         vel accusamus repudiandae.</p>
@@ -225,7 +223,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Akad Jual Beli Tanah</p>
                             </div>
                         </div>
                     </div>
@@ -233,7 +231,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="{{ asset('images/akad11.jpg') }}" class="cardistry img-fluid">
+                    <img src="{{ asset('images/akad16.jpg') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -241,7 +239,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Akad Kredit (Perbankan)</p>
                             </div>
                         </div>
                     </div>
@@ -257,7 +255,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Akad Jual Beli</p>
                             </div>
                         </div>
                     </div>
@@ -273,7 +271,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                    <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn</p>
                             </div>
                         </div>
                     </div>
@@ -289,7 +287,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                    <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn</p>
                             </div>
                         </div>
                     </div>
@@ -320,13 +318,12 @@
                         <div class="carousel-item active" data-bs-interval="4000">
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
-                                    <h5 class="text uppercase mb-3">Kegiatan Lainnya</h5>
-                                    <h3 class="mb-3">Lorem ipsum dolor sit amet consectetur.</h3>
-                                    <p class="fs-10 fw-medium mb-3">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                        elit. Ut autem quas doloremque voluptas reprehenderit ipsum!</p>
+                                    <h5 class="text uppercase mb-3" style="color: #0874a7">Kegiatan Lainnya</h5>
+                                    <h3 class="mb-3">Penyerahan Website kepada Kantor Notaris & PPAT Deni Nugraha, S.E., S.H., M.Kn.</h3>
+                                    <p class="fs-10 fw-medium mb-3">Website resmi Kantor Notaris & PPAT Deni Nugraha, S.E., S.H., M.Kn. kini telah diserahkan dan siap digunakan. Website ini dirancang untuk mempermudah akses informasi dan layanan hukum bagi para klien, dengan fitur-fitur yang responsif dan user-friendly.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="../images/carousel1.jpg" class="d-block w-100 carousel-gallery"
+                                    <img src="../images/penyerahan1.jpeg" class="d-block w-100 carousel-gallery"
                                         alt="...">
                                 </div>
                             </div>
@@ -334,13 +331,12 @@
                         <div class="carousel-item" data-bs-interval="4000">
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
-                                    <h5 class="text uppercase mb-3">Kegiatan Lainnya</h5>
-                                    <h3 class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                                    <p class="fs-10 fw-medium mb-3">Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Reiciendis, a consequuntur!</p>
+                                    <h5 class="text uppercase mb-3" style="color: #0874a7">Kegiatan Lainnya</h5>
+                                    <h3 class="mb-3">Wisata ke Pulau Pari Keluarga Besar Kantor Notaris & PPAT Deni Nugraha</h3>
+                                    <p class="fs-10 fw-medium mb-3">Wisata ke Pulau Pari bersama Keluarga Besar Kantor Notaris & PPAT Deni Nugraha, S.E., S.H., M.Kn., menikmati keindahan alam dan kebersamaan dalam momen yang tak terlupakan.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="../images/carousel2.jpg" class="d-block w-100 carousel-gallery"
+                                    <img src="../images/kegiatan1.jpg" class="d-block w-100 carousel-gallery"
                                         alt="...">
                                 </div>
                             </div>
@@ -348,15 +344,12 @@
                         <div class="carousel-item" data-bs-interval="4000">
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
-                                    <h5 class="text uppercase mb-3">Kegiatan Lainnya</h5>
-                                    <h3 class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
-                                        est.</h3>
-                                    <p class="fs-10 fw-medium mb-3">Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Labore dolores culpa consequatur aspernatur provident dolorum fuga impedit
-                                        vel accusamus repudiandae.</p>
+                                    <h5 class="text uppercase mb-3" style="color: #0874a7">Kegiatan Lainnya</h5>
+                                    <h3 class="mb-3">Pembagian Hadiah & Door Prize Lomba 17 Agustusan</h3>
+                                    <p class="fs-10 fw-medium mb-3">Pembagian Hadiah & Door Prize Lomba 17 Agustusan, meriahkan perayaan dengan semangat kebersamaan dan kegembiraan.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="../images/carousel3.jpg" class="d-block w-100 carousel-gallery"
+                                    <img src="../images/kegiatan2.jpg" class="d-block w-100 carousel-gallery"
                                         alt="...">
                                 </div>
                             </div>
@@ -379,7 +372,7 @@
         <div class="row mt-5">
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya1.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -387,7 +380,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Banana Boat Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -395,7 +388,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya8.jpeg" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -403,7 +396,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Grand Opening BSI Palem Semi</p>
                             </div>
                         </div>
                     </div>
@@ -411,7 +404,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/penyerahan.jpeg" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -419,7 +412,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Penyerahan Website</p>
                             </div>
                         </div>
                     </div>
@@ -427,7 +420,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya3.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -435,7 +428,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Malam Puncak Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -443,7 +436,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya4.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -451,7 +444,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Volly Balon Air</p>
                             </div>
                         </div>
                     </div>
@@ -462,7 +455,7 @@
             {{-- border --}}
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya6.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -470,7 +463,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Tarik Tambang Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -478,7 +471,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya2.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -486,7 +479,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Malam Puncak Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -494,7 +487,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya9.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -502,7 +495,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Makan Bersama Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -510,7 +503,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya5.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -518,7 +511,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Tarik Tambang Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -526,7 +519,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya7.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -534,7 +527,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Cerdas Cermat Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -542,7 +535,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya10.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -550,7 +543,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Mobilisasi Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -558,7 +551,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya11.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -566,7 +559,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Keberangkatan Pulau Pari</p>
                             </div>
                         </div>
                     </div>
@@ -574,7 +567,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="../images/background1.jpg" class="cardistry img-fluid">
+                    <img src="../images/lainnya12.JPG" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
@@ -582,7 +575,7 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="noto-v1:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>Briefing Lomba Pulau Pari</p>
                             </div>
                         </div>
                     </div>

@@ -43,7 +43,7 @@
     </div>
 </footer>
 <!-- *** Footer End *** -->
-</div>
+
 
 
 <!-- Bootstrap Bundle -->
