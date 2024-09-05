@@ -40,3 +40,4 @@ function showDetails(id, collapseId) {
         }
     });
 }
+

@@ -34,28 +34,38 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
-                            <h3 class="card-title mb-2 mb-md-0">History Payment</h3>
+                        <div
+                            class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
+                            <h3 class="card-title mb-2 mb-md-0">History Tagihan</h3>
                             <div class="d-flex flex-column flex-md-row align-items-center ml-md-auto">
                                 <!-- Sort and Filter Dropdown -->
                                 <div class="dropdown mx-2">
-                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-outline-secondary dropdown-toggle my-2" type="button"
+                                        id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                         Sort and Filter
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="sortDropdown">
                                         <li><a class="dropdown-item" href="#" data-sort="all">Show All</a></li>
                                         <li><a class="dropdown-item" href="#" data-sort="Lunas">Lunas</a></li>
-                                        <li><a class="dropdown-item" href="#" data-sort="Canceled">Canceled</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="#" data-sort="nomor-asc">Number (Lowest to Highest)</a></li>
-                                        <li><a class="dropdown-item" href="#" data-sort="nomor-desc">Number (Highest to Lowest)</a></li>
-                                        <li><a class="dropdown-item" href="#" data-sort="tanggal-asc">Date (Newest to Oldest)</a></li>
-                                        <li><a class="dropdown-item" href="#" data-sort="tanggal-desc">Date (Oldest to Newest)</a></li>
+                                        <li><a class="dropdown-item" href="#" data-sort="Canceled">Canceled</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" data-sort="nomor-asc">Nomor
+                                                (Terkecil - Terbesar)</a></li>
+                                        <li><a class="dropdown-item" href="#" data-sort="nomor-desc">Nomor
+                                                (Terbesar - Terkecil)</a></li>
+                                        <li><a class="dropdown-item" href="#" data-sort="tanggal-asc">Tanggal
+                                                (Terlama - Terbaru)</a></li>
+                                        <li><a class="dropdown-item" href="#" data-sort="tanggal-desc">Tanggal
+                                                (Terbaru - Terlama)</a></li>
                                     </ul>
                                 </div>
                                 <!-- Search Input -->
                                 <div class="input-group input-group-md mb-2 mb-md-0" style="width: 250px;">
-                                    <input type="text" id="searchInput" name="table_search" class="form-control float-right" placeholder="Search">
+                                    <input type="text" id="searchInput" name="table_search"
+                                        class="form-control float-right" placeholder="Search">
                                     <div class="input-group-append">
                                         <button type="button" id="searchButton" class="btn btn-default">
                                             <i class="fas fa-search"></i>
@@ -65,14 +75,17 @@
 
                                 <!-- Print PDF Button -->
                                 <div class="ml-md-2">
-                                    <button class="btn btn-outline-danger buttons-pdf buttons-html5" tabindex="0" aria-controls="example1" type="button">
-                                        <span class="iconify mr-1" data-icon="vscode-icons:file-type-pdf2" data-inline="false" style="font-size: 24px;"></span>Print PDF
+                                    <button class="btn btn-outline-danger buttons-pdf buttons-html5" tabindex="0"
+                                        aria-controls="example1" type="button">
+                                        <span class="iconify mr-1" data-icon="vscode-icons:file-type-pdf2"
+                                            data-inline="false" style="font-size: 24px;"></span>Print PDF
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body table-responsive">
-                            <table id="table2" class="table table-bordered table-hover text-nowrap" aria-describedby="table2-info">
+                            <table id="table2" class="table table-bordered table-hover text-nowrap"
+                                aria-describedby="table2-info">
                                 <thead>
                                     <tr>
                                         <th>No</th>

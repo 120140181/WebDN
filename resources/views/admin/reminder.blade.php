@@ -37,14 +37,14 @@
                             class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
                             <!-- Title -->
                             <div class="mb-2 mb-md-0">
-                                <h3 class="card-title">Payment Info</h3>
+                                <h3 class="card-title">Informasi Tagihan</h3>
                             </div>
 
                             <!-- Actions (Search and Add Reminder) -->
                             <div class="d-flex flex-column flex-md-row align-items-center ml-md-auto">
                                 <!-- Sort Dropdown Button -->
                                 <div class="dropdown mx-2">
-                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    <button class="btn btn-outline-secondary dropdown-toggle my-2" type="button"
                                         id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                         Sort And Filter
                                     </button>
@@ -54,9 +54,9 @@
                                         <li><a class="dropdown-item" href="#" data-sort="nomor-desc">Nomor
                                                 (Terbesar - Terkecil)</a></li>
                                         <li><a class="dropdown-item" href="#" data-sort="tanggal-asc">Tanggal
-                                                (Terbaru - Terlama)</a></li>
-                                        <li><a class="dropdown-item" href="#" data-sort="tanggal-desc">Tanggal
                                                 (Terlama - Terbaru)</a></li>
+                                        <li><a class="dropdown-item" href="#" data-sort="tanggal-desc">Tanggal
+                                                (Terbaru - Terlama)</a></li>
                                     </ul>
                                 </div>
                                 <!-- Search Input -->
@@ -76,9 +76,6 @@
                                 </a>
                             </div>
                         </div>
-
-
-
                         <div class="card-body table-responsive">
                             <table class="table table-bordered table-hover text-nowrap" id="table1"
                                 aria-describedby="table1-info">
@@ -118,7 +115,7 @@
                                                 </button>
                                                 <form action="{{ route('admin.reminder-delete', $d->id) }}"
                                                     method="POST"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin membatalkan reminder ini?');">
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin membatalkan tagihan ini?');">
                                                     @csrf
                                                     @method('PUT')
                                                     <button type="submit" class="btn btn-danger mx-1"><i
@@ -127,7 +124,7 @@
                                                 <form
                                                     action="{{ route('admin.reminder-approve', ['id' => $d->id, 'page' => request()->get('page')]) }}"
                                                     method="POST"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menyetujui reminder ini?');">
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menyetujui tagihan ini?');">
                                                     @csrf
                                                     @method('PUT')
                                                     <button type="submit" class="btn btn-success mx-1"><i

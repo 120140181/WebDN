@@ -7,7 +7,7 @@ use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -23,14 +23,30 @@ class AdminController extends Controller
         $tagihanDibatalkan = History::where('status_pembayaran', 'Canceled')->count();
 
         // Hitung total nominal tagihan aktif
+        $totalTagihanAktif = History::where('status_pembayaran', 'Pending')->count(); 
         $totalTagihanAktif = Reminder::where('status_pembayaran', 'Pending')->count();
 
         // Hitung total nominal tagihan
+        $totalNominalTagihan = History::sum('nominal_tagihan'); // Pastikan tabel dan kolom sesuai
         $totalNominalTagihan = Reminder::sum('nominal_tagihan');
 
         // Hitung total tagihan yang lunas
         $totalTagihanLunas = History::where('status_pembayaran', 'Lunas')->sum('nominal_tagihan');
 
+        // Mendapatkan data bulan dan total tagihan lunas
+        $data = DB::table('history')
+            ->select(DB::raw('MONTH(tanggal_tagihan) as month'), DB::raw('SUM(nominal_tagihan) as total'))
+            ->where('status_pembayaran', 'Lunas')
+            ->groupBy(DB::raw('MONTH(tanggal_tagihan)'))
+            ->get();
+
+        // Format data untuk Chart.js
+        $months = [];
+        $totals = [];
+        foreach ($data as $item) {
+            $months[] = Carbon::create()->month($item->month)->format('F'); // Mengubah nomor bulan ke nama bulan
+            $totals[] = $item->total;
+        }
 
         // Kirim data ke view
         return view('admin.dashboard', [
@@ -39,13 +55,16 @@ class AdminController extends Controller
             'totalTagihanAktif' => $totalTagihanAktif,
             'totalNominalTagihan' => $totalNominalTagihan,
             'totalTagihanLunas' => $totalTagihanLunas,
+            'months' => $months,
+            'totals' => $totals,
         ]);
     }
+
 
     public function reminder()
     {
         // Ambil data dari tabel reminders 
-        $data = Reminder::get(); 
+        $data = Reminder::get();
 
         // Menghitung total nominal_tagihan dari seluruh data di tabel
         $totalTagihan = Reminder::sum('nominal_tagihan');
@@ -59,7 +78,7 @@ class AdminController extends Controller
     public function history()
     {
         // Ambil data dari tabel history 
-        $data = History::get(); 
+        $data = History::get();
 
         // Hitung total nominal tagihan lunas
         $totalTagihanLunas = History::where('status_pembayaran', 'Lunas')->sum('nominal_tagihan');
@@ -229,6 +248,8 @@ class AdminController extends Controller
         return redirect()->route('admin.reminder', ['page' => $page])
             ->with('success', 'Reminder berhasil disetujui.');
     }
+
+
 
 }
 

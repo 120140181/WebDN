@@ -8,8 +8,18 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login');
+        // Menggunakan response helper untuk mengatur header
+        $response = response()->view('auth.login');
+
+        // Menambahkan header cache control
+        $response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+        $response->headers->set('Pragma', 'no-cache');
+        $response->headers->set('Expires', 'Sat, 01 Jan 1990 00:00:00 GMT');
+
+        return $response;
     }
+
+
 
     public function login_proses(Request $request)
     {
@@ -18,30 +28,23 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        // Menggunakan Auth::attempt dengan pengecekan password hash secara otomatis
         if (Auth::attempt(['username' => $data['username'], 'password' => $data['password']])) {
             // Regenerasi session untuk keamanan
             $request->session()->regenerate();
             return redirect()->route('admin.dashboard');
         }
 
-        // Kembali ke form login jika gagal dengan pesan error
         return redirect()->route('auth.login')->with('failed', 'Username atau Password salah.');
     }
 
     public function logout(Request $request)
     {
-        // Proses logout pengguna
         Auth::logout();
-
-        // Menghapus session saat logout
         $request->session()->invalidate();
-
-        // Regenerasi token CSRF
         $request->session()->regenerateToken();
 
-        // Arahkan kembali ke halaman login
-        return redirect()->route('auth.login')->with('success','Kamu Berhasil Logout');
+        return redirect()->route('auth.login')->with('success', 'Kamu Berhasil Logout');
     }
 
 }
+

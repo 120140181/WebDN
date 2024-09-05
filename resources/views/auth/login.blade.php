@@ -47,7 +47,7 @@
                                         value="{{ old('username') }}">
                                 </div>
                                 @error('username')
-                                <small>{{ $message }}</small>
+                                    <small>{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
@@ -60,7 +60,7 @@
                                         aria-describedby="password-addon" required>
                                 </div>
                                 @error('password')
-                                <small>{{ $message }}</small>
+                                    <small>{{ $message }}</small>
                                 @enderror
                             </div>
                             <div id="message" class="text-center mb-3" style="font-size: 16px;"></div>
@@ -99,7 +99,7 @@
     <script src="js/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             @if (Session::has('failed'))
                 document.getElementById('preloader').style.display = 'none';
             @endif
@@ -107,22 +107,22 @@
     </script>
 
     @if ($message = Session::get('success'))
-    <script>
-        Swal.fire({
-            icon: "success",
-            text: "{{ $message }}"
-        });
-    </script>
+        <script>
+            Swal.fire({
+                icon: "success",
+                text: "{{ $message }}"
+            });
+        </script>
     @endif
 
     @if ($message = Session::get('failed'))
-    <script>
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "{{ $message }}"
-        });
-    </script>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "{{ $message }}"
+            });
+        </script>
     @endif
 </body>
 

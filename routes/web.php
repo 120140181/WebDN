@@ -15,11 +15,20 @@ Route::post('/send-proses', [LandingController::class, 'send'])->name('send-pros
 
 // auth routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
-Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('login-proses');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout-proses');
+Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('login-proses')->middleware('throttle:10,1');
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout-proses');
+
+// Menangani error ketika route tidak didefinisikan
+Route::fallback(function () {
+    return redirect()->route('auth.login');
+});
 
 // middleware
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
+    // Menangani error ketika route tidak didefinisikan
+    Route::fallback(function () {
+        return redirect()->route('auth.login');
+    });
     // admin
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/reminder', [AdminController::class, 'reminder'])->name('reminder');
@@ -38,7 +47,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
 
     // cetak-pdf
     Route::get('/get-all-history', [AdminController::class, 'getAllHistory'])->name('get-all-history');
-    // search-button    
-
 
 });

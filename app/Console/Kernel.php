@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $reminders = \App\Models\Reminder::whereDate('tanggal_pengiriman', '=', now()->format('Y-m-d'))
-                                            ->where('status_pembayaran', '!=', 'Lunas')
-                                            ->get();
+                ->where('status_pembayaran', '!=', 'Lunas')
+                ->get();
 
             foreach ($reminders as $reminder) {
                 $reminder->sendTelegramReminder();
@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

@@ -62,10 +62,10 @@
             </div>
             <!-- card -->
             <div class="col-lg-6 col-12">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center align-items-start">
                     <div class="col-lg-5 col-md-6 col-sm-12 mb-4 me-lg-3">
-                        <div class="card d-flex align-items-center">
-                            <img src="{{ asset('images/icon/logonotaris.png') }}" class="card-img-top img-fluid" alt="..." />
+                        <div class="card cardour d-flex align-items-center">
+                            <img src="{{ asset('images/icon/logonotaris.png') }}" class="card-img-top" alt="..." />
                             <div class="card-body">
                                 <div class="accordion accordion-flush" id="layananAccordion">
                                     <div class="accordion-item">
@@ -91,8 +91,8 @@
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-6 col-sm-12 mb-lg-4 ms-lg-2">
-                        <div class="card d-flex align-items-center">
-                            <img src="{{ asset('images/icon/logoippat.png') }}" style="height: 186px; width: 186px" class="card-img-top" alt="..." />
+                        <div class="card cardour d-flex align-items-center">
+                            <img src="{{ asset('images/icon/logoippat.png') }}" class="card-img-top" alt="..." />
                             <div class="card-body">
                                 <div class="accordion accordion-flush" id="layananAccordion2">
                                     <div class="accordion-item">
@@ -121,6 +121,7 @@
                 <!-- /card -->
             </div>
         </div>
+    </div>
     </div>
     <!-- *** Our Service End *** -->
 

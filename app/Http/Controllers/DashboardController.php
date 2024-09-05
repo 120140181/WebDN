@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -20,7 +21,7 @@ class DashboardController extends Controller
     {
         $credentials = $request->validate([
             'username' => 'required',
-            'password'=> 'required'
+            'password' => 'required'
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -31,6 +32,7 @@ class DashboardController extends Controller
 
         return back()->with('loginError', 'Login Gagal!');
     }
+
 
     /**
      * Show the form for creating a new resource.

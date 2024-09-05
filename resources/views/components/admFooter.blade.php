@@ -16,6 +16,9 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/loader.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         $('#editReminder').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
@@ -73,67 +76,68 @@
             } = window.jspdf;
             const doc = new jsPDF();
 
-            // Ambil data dari server
-            fetch('/admin/get-all-history')
-                .then(response => response.json())
-                .then(data => {
-                    // Log data untuk memeriksa
-                    console.log('Data fetched:', data);
+            // Ambil data dari tabel yang hanya baris yang terlihat (tidak tersembunyi)
+            const rows = document.querySelectorAll('#table2 tbody tr');
+            const tableData = [];
 
-                    // Siapkan data untuk autoTable
-                    const tableData = data.map((item, index) => ({
-                        no: index + 1,
-                        nama_nasabah: item.nama_nasabah,
-                        nomor_kwitansi: item.nomor_kwitansi,
-                        nominal_tagihan: `Rp. ${parseFloat(item.nominal_tagihan).toLocaleString('id-ID')}`,
-                        tanggal_tagihan: item.tanggal_tagihan,
-                        status_pembayaran: item.status_pembayaran,
-                        keterangan: item.keterangan
-                    }));
+            rows.forEach((row, index) => {
+                // Cek apakah baris tersembunyi, jika tersembunyi lewati
+                if (row.style.display === 'none' || row.hidden) return;
 
-                    // Tambahkan tabel ke PDF
-                    doc.autoTable({
-                        columns: [{
-                                header: 'No',
-                                dataKey: 'no'
-                            },
-                            {
-                                header: 'Nama Nasabah',
-                                dataKey: 'nama_nasabah'
-                            },
-                            {
-                                header: 'Nomor Kwitansi',
-                                dataKey: 'nomor_kwitansi'
-                            },
-                            {
-                                header: 'Nominal Tagihan',
-                                dataKey: 'nominal_tagihan'
-                            },
-                            {
-                                header: 'Tanggal',
-                                dataKey: 'tanggal_tagihan'
-                            },
-                            {
-                                header: 'Status',
-                                dataKey: 'status_pembayaran'
-                            },
-                            {
-                                header: 'Keterangan',
-                                dataKey: 'keterangan'
-                            }
-                        ],
-                        body: tableData,
-                        startY: 20,
-                        theme: 'striped'
-                    });
+                const cells = row.querySelectorAll('td');
+                const rowData = {
+                    no: cells[0].textContent.trim(),
+                    nama_nasabah: cells[1].textContent.trim(),
+                    nomor_kwitansi: cells[2].textContent.trim(),
+                    nominal_tagihan: cells[3].textContent.trim(),
+                    tanggal_tagihan: cells[4].textContent.trim(),
+                    status_pembayaran: cells[5].textContent.trim(),
+                    keterangan: cells[6].textContent.trim()
+                };
+                tableData.push(rowData);
+            });
 
-                    // Tambahkan judul atau teks lainnya
-                    doc.text('History Payment', 14, 15);
+            // Tambahkan judul atau teks lainnya
+            doc.text('History Payment', 14, 15);
 
-                    // Download file PDF
-                    doc.save('history-paymentWebDN.pdf');
-                })
-                .catch(error => console.error('Error fetching data:', error));
+            // Tambahkan tabel ke PDF
+            doc.autoTable({
+                columns: [{
+                        header: 'No',
+                        dataKey: 'no'
+                    },
+                    {
+                        header: 'Nama Nasabah',
+                        dataKey: 'nama_nasabah'
+                    },
+                    {
+                        header: 'Nomor Kwitansi',
+                        dataKey: 'nomor_kwitansi'
+                    },
+                    {
+                        header: 'Nominal Tagihan',
+                        dataKey: 'nominal_tagihan'
+                    },
+                    {
+                        header: 'Tanggal',
+                        dataKey: 'tanggal_tagihan'
+                    },
+                    {
+                        header: 'Status',
+                        dataKey: 'status_pembayaran'
+                    },
+                    {
+                        header: 'Keterangan',
+                        dataKey: 'keterangan'
+                    }
+                ],
+                body: tableData,
+                startY: 20,
+                theme: 'striped'
+            });
+
+            // Download file PDF
+            doc.save('history-paymentWebDN.pdf');
         });
     </script>
     {{-- search bar --}}
@@ -169,6 +173,39 @@
             searchInput.addEventListener('keyup', searchTable);
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchButton = document.getElementById('searchButton');
+        const searchInput = document.getElementById('searchInput');
+        const table = document.getElementById('table2');
+        const tableRows = table.querySelectorAll('tbody tr');
+
+        // Fungsi pencarian
+        function searchTable() {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            tableRows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+                let rowText = '';
+                for (let i = 0; i < cells.length; i++) {
+                    rowText += cells[i].textContent.toLowerCase() + ' ';
+                }
+                if (rowText.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Event listener untuk tombol pencarian
+        searchButton.addEventListener('click', searchTable);
+
+        // Optional: Pencarian langsung saat mengetik
+        searchInput.addEventListener('keyup', searchTable);
+    });
+</script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
