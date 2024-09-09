@@ -78,7 +78,7 @@
                                         </h2>
                                         <div id="acc1" class="accordion-collapse collapse"
                                             aria-labelledby="acc1Head" data-bs-parent="#layananAccordion">
-                                            <div class="accordion-body">
+                                            <div class="accordion-body" style="text-align: center">
                                                 Layanan Notaris adalah jasa yang diberikan oleh notaris, pejabat yang
                                                 diangkat oleh pemerintah untuk membuat Akta Otentik untuk berbagai
                                                 perbuatan, perjanjian, dan ketetapan hukum seperti akta kelahiran,
@@ -105,7 +105,7 @@
                                         </h2>
                                         <div id="acc2" class="accordion-collapse collapse"
                                             aria-labelledby="acc2Head" data-bs-parent="#layananAccordion2">
-                                            <div class="accordion-body">
+                                            <div class="accordion-body" style="text-align: center">
                                                 Layanan PPAT (Pejabat Pembuat Akta Tanah) adalah jasa yang diberikan
                                                 oleh PPAT untuk membuat Akta Otentik terkait peralihan hak atas tanah
                                                 dan Hak Milik Atas Satuan Rumah Susun, seperti akta jual beli, tukar

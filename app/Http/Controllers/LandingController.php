@@ -21,13 +21,12 @@ class LandingController extends Controller
      {
         $data = request()->validate([
             'name' => 'required|min:3',
-            'email' => 'required|email',
+            'email' => 'required|email:rfc,dns',
             'subject' => 'required|min:3',
             'message' => 'required|min:5',
-        ]);
+        ]);        
         Mail::to('infonotdeninugraha@gmail.com')->send(new ContactUS($data));
-
-        // dd($request->all());
+        
         return redirect()->back()->with('success', 'Pesan Berhasil Terkirim!');
      }
 

@@ -186,10 +186,8 @@
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
                                     <h5 class="text uppercase mb-3" style="color: #0874a7">Notaris & PPAT</h5>
-                                    <h3 class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, quas.</h3>
-                                    <p class="fs-10 fw-medium mb-3">Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Labore dolores culpa consequatur aspernatur provident dolorum fuga impedit
-                                        vel accusamus repudiandae.</p>
+                                    <h3 class="mb-3">Pelaksanaan Akad Kredit Perumahan</h3>
+                                    <p class="fs-10 fw-medium mb-3" style="text-align: justify">Memastikan bahwa seluruh proses akad kredit perumahan dilakukan secara sah, transparan, dan sesuai dengan peraturan perundang-undangan yang berlaku. Dengan demikian, notaris membantu melindungi hak-hak semua pihak dan mencegah potensi sengketa di kemudian hari.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
                                     <img src="{{ asset('images/akad9.jpg') }}" class="d-block w-100 carousel-gallery"
