@@ -8,7 +8,7 @@ return new class extends Migration {
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('reminders', function (Blueprint $table) {
             $table->dropColumn(['sent', 'is_approved']);
