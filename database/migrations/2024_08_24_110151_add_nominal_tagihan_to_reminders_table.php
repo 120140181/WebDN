@@ -14,7 +14,10 @@ class AddNominalTagihanToRemindersTable extends Migration
     public function up(): void
     {
         Schema::table('reminders', function (Blueprint $table) {
-            $table->integer('nominal_tagihan')->after('nomor_kwitansi');
+            // Cek apakah kolom 'nominal_tagihan' sudah ada sebelum menambahkannya
+            if (!Schema::hasColumn('reminders', 'nominal_tagihan')) {
+                $table->integer('nominal_tagihan')->after('nomor_kwitansi');
+            }
         });
     }
 
@@ -26,7 +29,11 @@ class AddNominalTagihanToRemindersTable extends Migration
     public function down(): void
     {
         Schema::table('reminders', function (Blueprint $table) {
-            $table->dropColumn('nominal_tagihan');
+            // Drop kolom hanya jika ada
+            if (Schema::hasColumn('reminders', 'nominal_tagihan')) {
+                $table->dropColumn('nominal_tagihan');
+            }
         });
     }
 }
+

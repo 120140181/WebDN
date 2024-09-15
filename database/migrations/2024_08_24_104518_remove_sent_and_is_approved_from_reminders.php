@@ -11,16 +11,30 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('reminders', function (Blueprint $table) {
-            $table->dropColumn(['sent', 'is_approved']);
+            // Cek apakah kolom 'sent' ada sebelum menghapus
+            if (Schema::hasColumn('reminders', 'sent')) {
+                $table->dropColumn('sent');
+            }
+
+            // Cek apakah kolom 'is_approved' ada sebelum menghapus
+            if (Schema::hasColumn('reminders', 'is_approved')) {
+                $table->dropColumn('is_approved');
+            }
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('reminders', function (Blueprint $table) {
-            $table->boolean('sent')->default(false);
-            $table->boolean('is_approved')->default(false);
+            // Kembalikan kolom jika migration dibatalkan
+            if (!Schema::hasColumn('reminders', 'sent')) {
+                $table->boolean('sent')->default(false);
+            }
+
+            if (!Schema::hasColumn('reminders', 'is_approved')) {
+                $table->boolean('is_approved')->default(false);
+            }
         });
     }
-
 };
+
