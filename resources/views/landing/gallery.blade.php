@@ -334,7 +334,7 @@
                                     <p class="fs-10 fw-medium mb-3">Wisata ke Pulau Pari bersama Keluarga Besar Kantor Notaris & PPAT Deni Nugraha, S.E., S.H., M.Kn., menikmati keindahan alam dan kebersamaan dalam momen yang tak terlupakan.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="../images/kegiatan1.jpg" class="d-block w-100 carousel-gallery"
+                                    <img src="{{ asset('images/kegiatan1.jpg') }}" class="d-block w-100 carousel-gallery"
                                         alt="...">
                                 </div>
                             </div>
