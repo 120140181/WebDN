@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('reminders', function (Blueprint $table) {
             $table->id();
             $table->string('nama_nasabah')->nullable();
-            $table->string('nomor_kwitansi')->unique();
-            $table->integer('nominal_tagihan')->unique();
+            $table->string('nomor_kwitansi')->nullable();
+            $table->integer('nominal_tagihan')->nullable();
             $table->string('status_pembayaran')->nullable();
             $table->text('keterangan')->nullable();
             $table->date('tanggal_tagihan')->nullable();

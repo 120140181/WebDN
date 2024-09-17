@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
             foreach ($reminders as $reminder) {
                 $reminder->sendTelegramReminder();
             }
-        })->dailyAt('08:00');
+        })->dailyAt('07:00');
     }
 
     /**

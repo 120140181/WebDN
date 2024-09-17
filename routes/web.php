@@ -24,11 +24,13 @@ Route::fallback(function () {
 });
 
 // middleware
+// admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
     // Menangani error ketika route tidak didefinisikan
     Route::fallback(function () {
         return redirect()->route('auth.login');
     });
+
     // admin
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/reminder', [AdminController::class, 'reminder'])->name('reminder');
@@ -47,5 +49,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
 
     // cetak-pdf
     Route::get('/get-all-history', [AdminController::class, 'getAllHistory'])->name('get-all-history');
-
 });
+
