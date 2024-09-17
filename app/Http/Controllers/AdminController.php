@@ -23,7 +23,7 @@ class AdminController extends Controller
         $tagihanDibatalkan = History::where('status_pembayaran', 'Canceled')->count();
 
         // Hitung total nominal tagihan aktif
-        $totalTagihanAktif = History::where('status_pembayaran', 'Pending')->count(); 
+        $totalTagihanAktif = History::where('status_pembayaran', 'Pending')->count();
         $totalTagihanAktif = Reminder::where('status_pembayaran', 'Pending')->count();
 
         // Hitung total nominal tagihan
@@ -63,7 +63,7 @@ class AdminController extends Controller
 
     public function reminder()
     {
-        // Ambil data dari tabel reminders 
+        // Ambil data dari tabel reminders
         $data = Reminder::get();
 
         // Menghitung total nominal_tagihan dari seluruh data di tabel
@@ -77,7 +77,7 @@ class AdminController extends Controller
 
     public function history()
     {
-        // Ambil data dari tabel history 
+        // Ambil data dari tabel history
         $data = History::get();
 
         // Hitung total nominal tagihan lunas
@@ -138,6 +138,21 @@ class AdminController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        $validated = $request->validate([
+            'nama_nasabah' => 'required|string|max:255',
+            'nomor_kwitansi' => 'required|string|max:255',
+            'nominal_tagihan' => 'required|numeric',
+            'status_pembayaran' => 'required|string',
+            'tanggal_tagihan' => 'required|date',
+        ]);
+
+        $reminder = Reminder::create($validated);
+
+        // Jika pengiriman langsung diperlukan
+        if ($reminder->tanggal_tagihan == now()->toDateString()) {
+            dispatch(new \App\Jobs\SendTelegramReminder($reminder))->delay(now()->setTime(7, 0));
+        }
 
         return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
     }
