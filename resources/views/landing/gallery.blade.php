@@ -350,7 +350,7 @@
                                         kebersamaan dalam momen yang tak terlupakan.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="{{ asset('images/kegiatan1.jpg') }}"
+                                    <img src="{{ asset('images/kegiatan1.JPG') }}"
                                         class="d-block w-100 carousel-gallery" alt="...">
                                 </div>
                             </div>

@@ -51,9 +51,6 @@ class LandingController extends Controller
 
     public function gallery()
     {
-        // Periksa apakah file gambar ada
-        // $fileExists = Storage::disk('public')->exists('images/kegiatan1.jpg');
-        // Log::info('File kegiatan1.jpg exists: ' . ($fileExists ? 'Yes' : 'No'));
         //
         return view('landing.gallery');
     }
