@@ -1,4 +1,5 @@
 <?php
+// File: app/Http/Kernel.php
 
 namespace App\Http;
 

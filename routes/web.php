@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUS;
 
 // Profile routes
-Route::resource('/', LandingController::class);
+Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/index', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/service', [LandingController::class, 'service'])->name('landing.service');
 Route::get('/about', [LandingController::class, 'about'])->name('landing.about');
