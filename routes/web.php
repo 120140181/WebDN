@@ -21,7 +21,7 @@ Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('log
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout-proses');
 
 // Admin routes with auth middleware
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'no-cache'], 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/reminder', [AdminController::class, 'reminder'])->name('reminder');
     Route::get('/history', [AdminController::class, 'history'])->name('history');
