@@ -21,6 +21,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->na
 
 // Menangani error ketika route tidak didefinisikan
 Route::fallback(function () {
+    if (request()->is('images/*')) {
+        abort(404);
+    }
     return redirect()->route('auth.login');
 });
 
@@ -29,6 +32,9 @@ Route::fallback(function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
     // Menangani error ketika route tidak didefinisikan
     Route::fallback(function () {
+        if (request()->is('images/*')) {
+            abort(404);
+        }
         return redirect()->route('auth.login');
     });
 

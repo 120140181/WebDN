@@ -128,7 +128,8 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn</p>
+                                <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -161,7 +162,8 @@
                                 <div class="col-lg-5 col-sm-12 text-container">
                                     <h5 class="text uppercase mb-3" style="color: #0874a7">Notaris & PPAT</h5>
                                     <h3 class="mb-3">Pembuatan Akta Otentik</h3>
-                                    <p class="fs-10 fw-medium mb-3">Membuat dokumen hukum resmi seperti akta jual beli, akta pendirian perusahaan, dan akta hibah.</p>
+                                    <p class="fs-10 fw-medium mb-3">Membuat dokumen hukum resmi seperti akta jual beli,
+                                        akta pendirian perusahaan, dan akta hibah.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
                                     <img src="{{ asset('images/akad11.jpg') }}" class="d-block w-100 carousel-gallery"
@@ -174,7 +176,8 @@
                                 <div class="col-lg-5 col-sm-12 text-container">
                                     <h5 class="text uppercase mb-3" style="color: #0874a7">Notaris & PPAT</h5>
                                     <h3 class="mb-3">Pembuatan Akta Jual Beli Tanah</h3>
-                                    <p class="fs-10 fw-medium mb-3">Membuat akta yang mengesahkan peralihan hak atas tanah dari penjual ke pembeli.</p>
+                                    <p class="fs-10 fw-medium mb-3">Membuat akta yang mengesahkan peralihan hak atas
+                                        tanah dari penjual ke pembeli.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
                                     <img src="{{ asset('images/akad12.jpg') }}" class="d-block w-100 carousel-gallery"
@@ -187,7 +190,11 @@
                                 <div class="col-lg-5 col-sm-12 text-container">
                                     <h5 class="text uppercase mb-3" style="color: #0874a7">Notaris & PPAT</h5>
                                     <h3 class="mb-3">Pelaksanaan Akad Kredit Perumahan</h3>
-                                    <p class="fs-10 fw-medium mb-3" style="text-align: justify">Memastikan bahwa seluruh proses akad kredit perumahan dilakukan secara sah, transparan, dan sesuai dengan peraturan perundang-undangan yang berlaku. Dengan demikian, notaris membantu melindungi hak-hak semua pihak dan mencegah potensi sengketa di kemudian hari.</p>
+                                    <p class="fs-10 fw-medium mb-3" style="text-align: justify">Memastikan bahwa
+                                        seluruh proses akad kredit perumahan dilakukan secara sah, transparan, dan
+                                        sesuai dengan peraturan perundang-undangan yang berlaku. Dengan demikian,
+                                        notaris membantu melindungi hak-hak semua pihak dan mencegah potensi sengketa di
+                                        kemudian hari.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
                                     <img src="{{ asset('images/akad9.jpg') }}" class="d-block w-100 carousel-gallery"
@@ -269,7 +276,8 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                    <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn</p>
+                                <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -285,7 +293,8 @@
                             <div class="icon-container">
                                 <span class="iconify" data-icon="emojione:notebook" style="font-size: 48px;"
                                     data-inline="false"></span>
-                                    <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn</p>
+                                <p style="text-align: center">Penghargaan Kepada<br>Bapak Deni Nugraha, SE., SH., M.Kn
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -317,8 +326,12 @@
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
                                     <h5 class="text uppercase mb-3" style="color: #0874a7">Kegiatan Lainnya</h5>
-                                    <h3 class="mb-3">Penyerahan Website kepada Kantor Notaris & PPAT Deni Nugraha, S.E., S.H., M.Kn.</h3>
-                                    <p class="fs-10 fw-medium mb-3">Website resmi Kantor Notaris & PPAT Deni Nugraha, S.E., S.H., M.Kn. kini telah diserahkan dan siap digunakan. Website ini dirancang untuk mempermudah akses informasi dan layanan hukum bagi para klien, dengan fitur-fitur yang responsif dan user-friendly.</p>
+                                    <h3 class="mb-3">Penyerahan Website kepada Kantor Notaris & PPAT Deni Nugraha,
+                                        S.E., S.H., M.Kn.</h3>
+                                    <p class="fs-10 fw-medium mb-3">Website resmi Kantor Notaris & PPAT Deni Nugraha,
+                                        S.E., S.H., M.Kn. kini telah diserahkan dan siap digunakan. Website ini
+                                        dirancang untuk mempermudah akses informasi dan layanan hukum bagi para klien,
+                                        dengan fitur-fitur yang responsif dan user-friendly.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
                                     <img src="../images/penyerahan1.jpeg" class="d-block w-100 carousel-gallery"
@@ -330,12 +343,15 @@
                             <div class="row row-gallery">
                                 <div class="col-lg-5 col-sm-12 text-container">
                                     <h5 class="text uppercase mb-3" style="color: #0874a7">Kegiatan Lainnya</h5>
-                                    <h3 class="mb-3">Wisata ke Pulau Pari Keluarga Besar Kantor Notaris & PPAT Deni Nugraha</h3>
-                                    <p class="fs-10 fw-medium mb-3">Wisata ke Pulau Pari bersama Keluarga Besar Kantor Notaris & PPAT Deni Nugraha, S.E., S.H., M.Kn., menikmati keindahan alam dan kebersamaan dalam momen yang tak terlupakan.</p>
+                                    <h3 class="mb-3">Wisata ke Pulau Pari Keluarga Besar Kantor Notaris & PPAT Deni
+                                        Nugraha</h3>
+                                    <p class="fs-10 fw-medium mb-3">Wisata ke Pulau Pari bersama Keluarga Besar Kantor
+                                        Notaris & PPAT Deni Nugraha, S.E., S.H., M.Kn., menikmati keindahan alam dan
+                                        kebersamaan dalam momen yang tak terlupakan.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
-                                    <img src="{{ asset('images/kegiatan1.jpg') }}" class="d-block w-100 carousel-gallery"
-                                        alt="...">
+                                    <img src="{{ asset('images/kegiatan1.jpg') }}"
+                                        class="d-block w-100 carousel-gallery" alt="...">
                                 </div>
                             </div>
                         </div>
@@ -344,7 +360,8 @@
                                 <div class="col-lg-5 col-sm-12 text-container">
                                     <h5 class="text uppercase mb-3" style="color: #0874a7">Kegiatan Lainnya</h5>
                                     <h3 class="mb-3">Pembagian Hadiah & Door Prize Lomba 17 Agustusan</h3>
-                                    <p class="fs-10 fw-medium mb-3">Pembagian Hadiah & Door Prize Lomba 17 Agustusan, meriahkan perayaan dengan semangat kebersamaan dan kegembiraan.</p>
+                                    <p class="fs-10 fw-medium mb-3">Pembagian Hadiah & Door Prize Lomba 17 Agustusan,
+                                        meriahkan perayaan dengan semangat kebersamaan dan kegembiraan.</p>
                                 </div>
                                 <div class="col-lg-7 col-sm-12">
                                     <img src="../images/kegiatan2.jpg" class="d-block w-100 carousel-gallery"
