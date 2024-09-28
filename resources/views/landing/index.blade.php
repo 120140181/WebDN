@@ -213,45 +213,57 @@
                     </div>
                 </div>
                 <div class="d-flex col-lg-6 col-md-6 col-sm-12 ">
-                    <div class="form-container mt-4 mb-4 py-4 w-100">
-                        <form action="{{ route('send-proses') }}#form-container" method="POST">
-                            @csrf
-                            <h5 class="mb-2 mt-3 fw-bold text-center">
-                                Let's talk about your Business.
-                            </h5>
-                            <div class="mb-2 px-4">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" name="name" class="form-control colored-input"
-                                    id="name" required />
-                            </div>
-                            <div class="mb-2 px-4">
-                                <label for="email" class="form-label">Email address</label>
-                                <input type="email" name="email" class="form-control colored-input"
-                                    id="email" required />
-                            </div>
-                            <div class="mb-2 px-4">
-                                <label for="subject" class="form-label">Subject</label>
-                                <input type="text" name="subject" class="form-control colored-input"
-                                    id="subject" required />
-                            </div>
-                            <div class="mb-3 px-4">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control colored-input" name="message" id="message" rows="3" required></textarea>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary fw-bold">
-                                    Send
-                                </button>
-                            </div>
-                        </form>
-                        @if (session()->has('success'))
-                            <script>
-                                Swal.fire({
-                                    title: "Pesan Berhasil Terkirim!",
-                                    icon: "success"
-                                });
-                            </script>
-                        @endif
+                    <div id="form-container" class="d-flex col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-container mt-4 mb-4 py-4 w-100">
+                            <form action="{{ route('send-proses') }}#form-container" method="POST">
+                                @csrf
+                                <h5 class="mb-2 mt-3 fw-bold text-center">
+                                    Let's talk about your Business.
+                                </h5>
+                                <div class="mb-2 px-4">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" name="name" class="form-control colored-input"
+                                        id="name" required />
+                                </div>
+                                <div class="mb-2 px-4">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" name="email" class="form-control colored-input"
+                                        id="email" required />
+                                </div>
+                                <div class="mb-2 px-4">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <input type="text" name="subject" class="form-control colored-input"
+                                        id="subject" required />
+                                </div>
+                                <div class="mb-3 px-4">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control colored-input" name="message" id="message" rows="3" required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary fw-bold">
+                                        Send
+                                    </button>
+                                </div>
+                            </form>
+                            @if (session()->has('success'))
+                                <script>
+                                    Swal.fire({
+                                        title: "Pesan Berhasil Terkirim!",
+                                        icon: "success"
+                                    });
+                                </script>
+                            @endif
+
+                            @if (session()->has('error'))
+                                <script>
+                                    Swal.fire({
+                                        title: "Gagal mengirim pesan",
+                                        text: "{{ session('error') }}",
+                                        icon: "error"
+                                    });
+                                </script>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

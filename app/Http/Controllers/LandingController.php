@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ContactUS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use App\Mail\ContactUS;
+
 
 class LandingController extends Controller
 {
@@ -17,18 +19,40 @@ class LandingController extends Controller
         return view('landing.index');
     }
 
-     public function send(Request $request)
-     {
-        $data = request()->validate([
+    public function testEmail()
+    {
+        $data = [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'subject' => 'Test Subject',
+            'message' => 'This is a test message.',
+        ];
+
+        try {
+            Mail::to('infonotdeninugraha@gmail.com')->send(new ContactUS($data));
+            return 'Email sent successfully!';
+        } catch (\Exception $e) {
+            return 'Failed to send email: ' . $e->getMessage();
+        }
+    }
+
+    public function send(Request $request)
+    {
+        $data = $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email:rfc,dns',
             'subject' => 'required|min:3',
             'message' => 'required|min:5',
-        ]);        
-        Mail::to('infonotdeninugraha@gmail.com')->send(mailable: new ContactUS($data));
-        
-        return redirect()->back()->with('success', 'Pesan Berhasil Terkirim!');
-     }
+        ]);
+
+        try {
+            Mail::to('infonotdeninugraha@gmail.com')->send(new ContactUS($data));
+            return redirect()->back()->with('success', 'Pesan Berhasil Terkirim!');
+        } catch (\Exception $e) {
+            Log::error('Email sending failed: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Gagal mengirim pesan. Silakan coba lagi nanti.');
+        }
+    }
 
     public function service()
     {
@@ -48,7 +72,7 @@ class LandingController extends Controller
         return view('landing.gallery');
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      */

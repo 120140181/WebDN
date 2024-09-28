@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +12,21 @@ Route::get('/index', [LandingController::class, 'index'])->name('landing.index')
 Route::get('/service', [LandingController::class, 'service'])->name('landing.service');
 Route::get('/about', [LandingController::class, 'about'])->name('landing.about');
 Route::get('/gallery', [LandingController::class, 'gallery'])->name('landing.gallery');
+Route::get('/test-email', function () {
+    $data = [
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'subject' => 'Test Subject',
+        'message' => 'This is a test message.',
+    ];
+
+    try {
+        Mail::to('infonotdeninugraha@gmail.com')->send(new ContactUS($data));
+        return 'Email sent successfully!';
+    } catch (\Exception $e) {
+        return 'Failed to send email: ' . $e->getMessage();
+    }
+});
 Route::post('/send-proses', [LandingController::class, 'send'])->name('send-proses');
 
 // auth routes
@@ -52,4 +66,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     // cetak-pdf
     Route::get('/get-all-history', [AdminController::class, 'getAllHistory'])->name('get-all-history');
 });
-
