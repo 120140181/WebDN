@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -19,13 +20,11 @@ class AuthController extends Controller
         return $response;
     }
 
-
-
     public function login_proses(Request $request)
     {
         $data = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+            'username' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
         ]);
 
         if (Auth::attempt(['username' => $data['username'], 'password' => $data['password']])) {
@@ -46,6 +45,4 @@ class AuthController extends Controller
         // Redirect ke halaman login setelah logout
         return redirect()->route('auth.login');
     }
-
 }
-
