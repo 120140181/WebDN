@@ -87,7 +87,7 @@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
                 <div class="card card-highlight w-auto">
-                    <img src="{{ asset('images/kegiatan1.jpg') }}" class="cardistry img-fluid">
+                    <img src="{{ asset('images/kegiatan1.JPG') }}" class="cardistry img-fluid">
                     <div class="hover-effect">
                         <div class="konten">
                             <span class="award">Dokumentasi</span>
