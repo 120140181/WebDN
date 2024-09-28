@@ -19,23 +19,6 @@ class LandingController extends Controller
         return view('landing.index');
     }
 
-    public function testEmail()
-    {
-        $data = [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'subject' => 'Test Subject',
-            'message' => 'This is a test message.',
-        ];
-
-        try {
-            Mail::to('infonotdeninugraha@gmail.com')->send(new ContactUS($data));
-            return 'Email sent successfully!';
-        } catch (\Exception $e) {
-            return 'Failed to send email: ' . $e->getMessage();
-        }
-    }
-
     public function send(Request $request)
     {
         $data = $request->validate([
