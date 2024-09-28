@@ -39,18 +39,17 @@ class LandingController extends Controller
     public function send(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email:rfc,dns',
-            'subject' => 'required|min:3',
-            'message' => 'required|min:5',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
         ]);
 
         try {
             Mail::to('infonotdeninugraha@gmail.com')->send(new ContactUS($data));
             return redirect()->back()->with('success', 'Pesan Berhasil Terkirim!');
         } catch (\Exception $e) {
-            Log::error('Email sending failed: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Gagal mengirim pesan. Silakan coba lagi nanti.');
+            return redirect()->back()->with('error', 'Gagal mengirim pesan: ' . $e->getMessage());
         }
     }
 
