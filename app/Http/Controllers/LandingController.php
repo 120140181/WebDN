@@ -25,7 +25,7 @@ class LandingController extends Controller
             'subject' => 'required|min:3',
             'message' => 'required|min:5',
         ]);        
-        Mail::to('infonotdeninugraha@gmail.com')->send(new ContactUS($data));
+        Mail::to('infonotdeninugraha@gmail.com')->send(mailable: new ContactUS($data));
         
         return redirect()->back()->with('success', 'Pesan Berhasil Terkirim!');
      }

@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUS;
 
 // profile
 Route::resource('/', LandingController::class);
