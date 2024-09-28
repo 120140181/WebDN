@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUS;
 
 // Profile routes
-Route::resource('/', LandingController::class);
+Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/index', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/service', [LandingController::class, 'service'])->name('landing.service');
 Route::get('/about', [LandingController::class, 'about'])->name('landing.about');
@@ -21,7 +21,7 @@ Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('log
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout-proses');
 
 // Admin routes with auth middleware
-Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'no-cache'], 'as' => 'admin.'], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/reminder', [AdminController::class, 'reminder'])->name('reminder');
     Route::get('/history', [AdminController::class, 'history'])->name('history');
