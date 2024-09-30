@@ -29,8 +29,9 @@ class SendTelegramReminder implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(ReminderSaved $event)
     {
+        $reminder = $event->reminder;
         $telegram = new Api(env('TELEGRAM_BOT_TOKEN', ''));
 
         $message = "Reminder Pembayaran: \n".

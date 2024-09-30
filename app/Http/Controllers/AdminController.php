@@ -155,6 +155,13 @@ class AdminController extends Controller
         }
 
         return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
+
+        $reminder = Reminder::create($request->all());
+
+        // Trigger event untuk mengirim notifikasi
+        event(new ReminderSaved($reminder));
+
+        return redirect()->back()->with('success', 'Reminder created successfully and notification sent!');
     }
 
 
