@@ -1,0 +1,4 @@
+version: 1
+tasks:
+  - schedule: "* * * * *"
+    command: "/bin/sh -c 'cd /app && php artisan schedule:run >> /dev/null 2>&1'"
