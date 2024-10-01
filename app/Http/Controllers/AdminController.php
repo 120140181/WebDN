@@ -204,26 +204,24 @@ class AdminController extends Controller
     {
         $reminder = Reminder::findOrFail($id);
 
-        // Tandai reminder sebagai di-approve
+        // Tandai reminder sebagai di-cancel
         $reminder->is_canceled = true;
         $reminder->status_pembayaran = 'Canceled';
         $reminder->save();
 
         // Pindahkan data ke tabel history
-        DB::table('history')->updateOrInsert(
-            [
-                'nama_nasabah' => $reminder->nama_nasabah,
-                'nomor_kwitansi' => $reminder->nomor_kwitansi,
-                'nominal_tagihan' => $reminder->nominal_tagihan,
-                'status_pembayaran' => $reminder->status_pembayaran,
-                'keterangan' => $reminder->keterangan,
-                'tanggal_tagihan' => $reminder->tanggal_tagihan,
-                'created_at' => $reminder->created_at,
-                'updated_at' => $reminder->updated_at,
-            ]
-        );
+        DB::table('history')->insert([
+            'nama_nasabah' => $reminder->nama_nasabah,
+            'nomor_kwitansi' => $reminder->nomor_kwitansi,
+            'nominal_tagihan' => $reminder->nominal_tagihan,
+            'status_pembayaran' => $reminder->status_pembayaran,
+            'keterangan' => $reminder->keterangan,
+            'tanggal_tagihan' => $reminder->tanggal_tagihan,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-        // Hapus data dari tabel reminders jika diperlukan
+        // Hapus data dari tabel reminders
         $reminder->delete();
 
         // Ambil parameter halaman dari request
@@ -254,7 +252,7 @@ class AdminController extends Controller
             'status_pembayaran' => $reminder->status_pembayaran,
             'keterangan' => $reminder->keterangan,
             'tanggal_tagihan' => $reminder->tanggal_tagihan,
-            'created_at' => now(),  // Menggunakan waktu sekarang untuk created_at dan updated_at
+            'created_at' => now(),
             'updated_at' => now(),
         ]);
 
@@ -268,8 +266,5 @@ class AdminController extends Controller
         return redirect()->route('admin.reminder', ['page' => $page])
             ->with('success', 'Reminder berhasil disetujui.');
     }
-
-
-
 }
 
