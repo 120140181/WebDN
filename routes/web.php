@@ -50,3 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
 Route::fallback(function () {
     abort(404);
 });
+
+Route::get('/run-schedule', function () {
+    Artisan::call('schedule:run');
+    return 'Schedule run executed';
+});
