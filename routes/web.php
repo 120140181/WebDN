@@ -1,10 +1,11 @@
 <?php
 // File: routes/web.php
 
-use App\Http\Controllers\LandingController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LandingController;
 
 // profile
 Route::resource('/', LandingController::class);
