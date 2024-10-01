@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reminder;
-use App\Models\History;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use App\Models\History;
+use App\Models\Reminder;
+use Illuminate\Http\Request;
+use App\Events\ReminderSaved;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -154,14 +156,10 @@ class AdminController extends Controller
             dispatch(new \App\Jobs\SendTelegramReminder($reminder))->delay(now()->setTime(7, 0));
         }
 
-        return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
-
-        $reminder = Reminder::create($request->all());
-
         // Trigger event untuk mengirim notifikasi
         event(new ReminderSaved($reminder));
 
-        return redirect()->back()->with('success', 'Reminder created successfully and notification sent!');
+        return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
     }
 
 
