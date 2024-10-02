@@ -165,6 +165,7 @@
             <!-- Tambah Reminder Modal -->
             @include('components.modalReminder')
         </div>
+        @include('sweetalert::alert')
         <!-- //reminder expandle table -->
         @include('components.admFooter')
     </div>
