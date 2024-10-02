@@ -1,4 +1,5 @@
 version: 1
-tasks:
-  - schedule: "0 7 * * *"
+jobs:
+  run_scheduler:
+    schedule: "*/5 * * * *"  # Jalankan setiap 5 menit
     command: "/bin/sh -c 'cd /app && php artisan schedule:run >> /dev/null 2>&1'"
