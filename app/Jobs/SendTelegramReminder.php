@@ -36,15 +36,16 @@ class SendTelegramReminder implements ShouldQueue
         $telegram = new Api(env('TELEGRAM_BOT_TOKEN', ''));
 
         $message = "Reminder Pembayaran: \n".
-                   "Nama Nasabah: {$this->reminder->nama_nasabah}\n".
-                   "Nomor Kwitansi: {$this->reminder->nomor_kwitansi}\n".
-                   "Nominal Tagihan: {$this->reminder->nominal_tagihan}\n".
-                   "Status Pembayaran: {$this->reminder->status_pembayaran}\n".
-                   "Tanggal Tagihan: {$this->reminder->tanggal_tagihan}";
+                "Nama Nasabah: {$reminder->nama_nasabah}\n".   // Menggunakan $reminder, bukan $this->reminder
+                "Nomor Kwitansi: {$reminder->nomor_kwitansi}\n".
+                "Nominal Tagihan: {$reminder->nominal_tagihan}\n".
+                "Status Pembayaran: {$reminder->status_pembayaran}\n".
+                "Tanggal Tagihan: {$reminder->tanggal_tagihan}";
 
         $telegram->sendMessage([
             'chat_id' => env('TELEGRAM_CHAT_ID', ''),
             'text' => $message
         ]);
     }
+
 }
