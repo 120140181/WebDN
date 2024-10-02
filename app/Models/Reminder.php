@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class Reminder extends Model
 {
@@ -37,6 +38,9 @@ class Reminder extends Model
         static::creating(function ($reminder) {
             if (Auth::check()) {
                 $reminder->user_id = Auth::id();
+                Log::info('User ID set to: ' . $reminder->user_id);
+            } else {
+                Log::warning('User not logged in.');
             }
         });
     }
