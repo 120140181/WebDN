@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Telegram\Bot\Api;
+use App\Events\ReminderSaved;
 
 class SendTelegramReminder implements ShouldQueue
 {
