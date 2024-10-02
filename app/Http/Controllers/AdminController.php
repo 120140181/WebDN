@@ -111,19 +111,44 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         // Validasi data
-        $validated = $request->validate([
-            'nama_nasabah' => 'required|string|max:255',
-            'nomor_kwitansi' => 'required|string|max:255',
-            'nominal_tagihan' => 'required|numeric',
+        $validator = Validator::make($request->all(), [
+            'nama_nasabah' => 'required|string',
+            'nomor_kwitansi' => 'required|string',
+            'nominal_tagihan' => 'required|string',
             'status_pembayaran' => 'required|string',
             'keterangan' => 'nullable|string',
             'tanggal_tagihan' => 'required|date',
         ]);
 
-        // Menghapus titik dari nominal_tagihan
-        $validated['nominal_tagihan'] = str_replace('.', '', $validated['nominal_tagihan']);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors($validator);
+        }
 
-        // Menyimpan data ke database menggunakan model
+        // Menghapus titik dari nominal_tagihan
+        $nominalTagihan = str_replace('.', '', $request->nominal_tagihan);
+
+        // Menyimpan data ke database
+        DB::table('reminders')->insert([
+            'nama_nasabah' => $request->nama_nasabah,
+            'nomor_kwitansi' => $request->nomor_kwitansi,
+            'nominal_tagihan' => $nominalTagihan,
+            'status_pembayaran' => $request->status_pembayaran,
+            'keterangan' => $request->keterangan,
+            'tanggal_tagihan' => $request->tanggal_tagihan,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $validated = $request->validate([
+            'nama_nasabah' => 'required|string|max:255',
+            'nomor_kwitansi' => 'required|string|max:255',
+            'nominal_tagihan' => 'required|numeric',
+            'status_pembayaran' => 'required|string',
+            'tanggal_tagihan' => 'required|date',
+        ]);
+
         $reminder = Reminder::create($validated);
 
         // Jika pengiriman langsung diperlukan
