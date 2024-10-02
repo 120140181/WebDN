@@ -1,5 +1,12 @@
-version: 1
-jobs:
-  run_scheduler:
-    schedule: "0 7 * * *"
-    command: "/bin/sh -c 'cd /app && php artisan schedule:run >> /dev/null 2>&1'"
+cron:
+  - name: "Check and Run Command"
+    schedule: "*/5 * * * *"  # Menjalankan setiap 5 menit
+    command: |
+      #!/bin/sh
+      
+      # Periksa apakah ada pekerjaan yang perlu dijalankan
+      if php artisan schedule:run; then
+          echo "Command executed successfully."
+      else
+          echo "No commands to execute at this time." >> /app/storage/logs/cron.log
+      fi
