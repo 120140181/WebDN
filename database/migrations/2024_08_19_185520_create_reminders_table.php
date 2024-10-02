@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('reminders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable(); // Tambahkan kolom user_id
             $table->string('nama_nasabah')->nullable();
             $table->string('nomor_kwitansi')->nullable();
             $table->integer('nominal_tagihan')->nullable();
@@ -23,6 +24,9 @@ return new class extends Migration
             $table->boolean('is_canceled')->default(false); // Tambahkan kolom is_canceled
             $table->boolean('is_approved')->default(false); // Tambahkan kolom is_approved
             $table->timestamps();
+
+            // Tambahkan foreign key constraint jika diperlukan
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

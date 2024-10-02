@@ -30,7 +30,8 @@ class User extends Authenticatable
 
     public function routeNotificationForTelegram()
     {
-        Log::info('routeNotificationForTelegram called, returning chat ID: -4512789673');
-        return '-4512789673'; // Ganti dengan ID chat atau ID grup Telegram yang sesuai
+        $chatId = env('TELEGRAM_CHAT_ID', '-4512789673'); // Ganti dengan ID chat yang sesuai
+        Log::info('routeNotificationForTelegram returning chat ID: ' . $chatId);
+        return $chatId;
     }
 }

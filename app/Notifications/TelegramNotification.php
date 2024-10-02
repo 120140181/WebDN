@@ -14,20 +14,28 @@ class TelegramNotification extends Notification
     public function __construct($message)
     {
         $this->message = $message;
+        Log::info('TelegramNotification instantiated with message: ' . $message);
     }
 
     public function via($notifiable)
     {
+        Log::info('Determining notification channels for notifiable: ' . get_class($notifiable));
         return [TelegramChannel::class];
     }
 
     public function toTelegram($notifiable)
     {
-        Log::info('Sending Telegram notification to: ' . $notifiable->routeNotificationForTelegram());
+        $chatId = $notifiable->routeNotificationForTelegram();
+        Log::info('Sending Telegram notification to: ' . $chatId);
         Log::info('Message: ' . $this->message);
 
+        if (empty($chatId)) {
+            Log::error('Chat ID is empty.');
+            return;
+        }
+
         return TelegramMessage::create()
-            ->to($notifiable->routeNotificationForTelegram()) // routeNotificationForTelegram should return the chat ID
+            ->to($chatId) // routeNotificationForTelegram should return the chat ID
             ->content($this->message);
     }
 }

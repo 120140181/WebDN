@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Reminder extends Model
 {
@@ -27,5 +28,16 @@ class Reminder extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($reminder) {
+            if (Auth::check()) {
+                $reminder->user_id = Auth::id();
+            }
+        });
     }
 }
