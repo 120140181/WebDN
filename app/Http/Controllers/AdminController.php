@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Events\ReminderSaved;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -137,6 +138,7 @@ class AdminController extends Controller
             'status_pembayaran' => $request->status_pembayaran,
             'keterangan' => $request->keterangan,
             'tanggal_tagihan' => $request->tanggal_tagihan,
+            'user_id' => Auth::id(), // Menambahkan user_id secara manual
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -149,7 +151,7 @@ class AdminController extends Controller
             'tanggal_tagihan' => 'required|date',
         ]);
 
-        $reminder = Reminder::create($validated);
+        $reminder = Reminder::create(array_merge($validated, ['user_id' => Auth::id()]));
 
         // Jika pengiriman langsung diperlukan
         if ($reminder->tanggal_tagihan == now()->toDateString()) {
