@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Telegram\Bot\Api;
+use App\Events\ReminderSaved;
 
 class SendTelegramReminder implements ShouldQueue
 {
@@ -29,8 +30,9 @@ class SendTelegramReminder implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(ReminderSaved $event)
     {
+        $reminder = $event->reminder;
         $telegram = new Api(env('TELEGRAM_BOT_TOKEN', ''));
 
         $message = "Reminder Pembayaran: \n".

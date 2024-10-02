@@ -4,24 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class Reminder extends Model
 {
     use HasFactory;
 
-    // Tentukan nama tabel jika tidak mengikuti konvensi Laravel
     protected $table = 'reminders';
-
-    // Tentukan primary key tabel
     protected $primaryKey = 'id';
-
-    // Tentukan apakah primary key adalah auto increment
     public $incrementing = true;
-
-    // Tentukan apakah tabel menggunakan timestamp
     public $timestamps = true;
 
-    // Tentukan atribut yang bisa diisi massal
     protected $fillable = [
         'nama_nasabah',
         'nomor_kwitansi',
@@ -29,8 +23,25 @@ class Reminder extends Model
         'status_pembayaran',
         'keterangan',
         'tanggal_tagihan',
+        'user_id', // Pastikan kolom user_id ada di tabel reminders
     ];
 
-    // Jika Anda memiliki atribut yang tidak bisa diisi massal, gunakan $guarded
-    // protected $guarded = [];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($reminder) {
+            if (Auth::check()) {
+                $reminder->user_id = Auth::id();
+                Log::info('User ID set to: ' . $reminder->user_id);
+            } else {
+                Log::warning('User not logged in.');
+            }
+        });
+    }
 }

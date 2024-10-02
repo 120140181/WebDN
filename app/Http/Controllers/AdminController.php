@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reminder;
-use App\Models\History;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use App\Models\History;
+use App\Models\Reminder;
+use Illuminate\Http\Request;
+use App\Events\ReminderSaved;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -135,6 +138,7 @@ class AdminController extends Controller
             'status_pembayaran' => $request->status_pembayaran,
             'keterangan' => $request->keterangan,
             'tanggal_tagihan' => $request->tanggal_tagihan,
+            'user_id' => Auth::id(), // Menambahkan user_id secara manual
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -147,12 +151,15 @@ class AdminController extends Controller
             'tanggal_tagihan' => 'required|date',
         ]);
 
-        $reminder = Reminder::create($validated);
+        $reminder = Reminder::create(array_merge($validated, ['user_id' => Auth::id()]));
 
         // Jika pengiriman langsung diperlukan
         if ($reminder->tanggal_tagihan == now()->toDateString()) {
             dispatch(new \App\Jobs\SendTelegramReminder($reminder))->delay(now()->setTime(7, 0));
         }
+
+        // Trigger event untuk mengirim notifikasi
+        event(new ReminderSaved($reminder));
 
         return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
     }
@@ -199,26 +206,24 @@ class AdminController extends Controller
     {
         $reminder = Reminder::findOrFail($id);
 
-        // Tandai reminder sebagai di-approve
+        // Tandai reminder sebagai di-cancel
         $reminder->is_canceled = true;
         $reminder->status_pembayaran = 'Canceled';
         $reminder->save();
 
         // Pindahkan data ke tabel history
-        DB::table('history')->updateOrInsert(
-            [
-                'nama_nasabah' => $reminder->nama_nasabah,
-                'nomor_kwitansi' => $reminder->nomor_kwitansi,
-                'nominal_tagihan' => $reminder->nominal_tagihan,
-                'status_pembayaran' => $reminder->status_pembayaran,
-                'keterangan' => $reminder->keterangan,
-                'tanggal_tagihan' => $reminder->tanggal_tagihan,
-                'created_at' => $reminder->created_at,
-                'updated_at' => $reminder->updated_at,
-            ]
-        );
+        DB::table('history')->insert([
+            'nama_nasabah' => $reminder->nama_nasabah,
+            'nomor_kwitansi' => $reminder->nomor_kwitansi,
+            'nominal_tagihan' => $reminder->nominal_tagihan,
+            'status_pembayaran' => $reminder->status_pembayaran,
+            'keterangan' => $reminder->keterangan,
+            'tanggal_tagihan' => $reminder->tanggal_tagihan,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-        // Hapus data dari tabel reminders jika diperlukan
+        // Hapus data dari tabel reminders
         $reminder->delete();
 
         // Ambil parameter halaman dari request
@@ -249,7 +254,7 @@ class AdminController extends Controller
             'status_pembayaran' => $reminder->status_pembayaran,
             'keterangan' => $reminder->keterangan,
             'tanggal_tagihan' => $reminder->tanggal_tagihan,
-            'created_at' => now(),  // Menggunakan waktu sekarang untuk created_at dan updated_at
+            'created_at' => now(),
             'updated_at' => now(),
         ]);
 
@@ -263,8 +268,5 @@ class AdminController extends Controller
         return redirect()->route('admin.reminder', ['page' => $page])
             ->with('success', 'Reminder berhasil disetujui.');
     }
-
-
-
 }
 
