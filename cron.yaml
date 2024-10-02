@@ -1,12 +1,4 @@
 cron:
-  - name: "Check and Run Command"
-    schedule: "*/5 * * * *"  # Menjalankan setiap 5 menit
-    command: |
-      #!/bin/sh
-      
-      # Periksa apakah ada pekerjaan yang perlu dijalankan
-      if php artisan schedule:run; then
-          echo "Command executed successfully."
-      else
-          echo "No commands to execute at this time." >> /app/storage/logs/cron.log
-      fi
+  - name: "Laravel Queue Worker"
+    schedule: "* * * * *"
+    command: "php artisan queue:work --sleep=3 --tries=3"
