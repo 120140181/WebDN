@@ -37,7 +37,7 @@ class SendTelegramNotification extends Command
         foreach ($reminders as $reminder) {
             $user = User::find($reminder->user_id); // Pastikan user_id ada di tabel reminders
             if ($user) {
-                $message = "Reminder: Your bill is due today.";
+                $message = "Reminder: Ada tagihan yang sudah jatuh tempo hari ini!";
                 $user->notify(new TelegramNotification($message));
                 Log::info('Notification sent to user ID: ' . $user->id . ' for reminder ID: ' . $reminder->id);
             } else {
