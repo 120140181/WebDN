@@ -1,7 +1,4 @@
 cron:
-  - name: "Laravel Queue Worker"
-    schedule: "* * * * *"
-    command: "php artisan queue:work --sleep=3 --tries=3"
-  - name: "Send Telegram Notifications"
-    schedule: "0 7 * * *"
-    command: "php artisan telegram:send"
+  - name: "Laravel Scheduler"
+    schedule: "*/5 * * * *"
+    command: "php artisan schedule:run"
