@@ -130,19 +130,7 @@ class AdminController extends Controller
         // Menghapus titik dari nominal_tagihan
         $nominalTagihan = str_replace('.', '', $request->nominal_tagihan);
 
-        // Menyimpan data ke database
-        DB::table('reminders')->insert([
-            'nama_nasabah' => $request->nama_nasabah,
-            'nomor_kwitansi' => $request->nomor_kwitansi,
-            'nominal_tagihan' => $nominalTagihan,
-            'status_pembayaran' => $request->status_pembayaran,
-            'keterangan' => $request->keterangan,
-            'tanggal_tagihan' => $request->tanggal_tagihan,
-            'user_id' => Auth::id(), // Menambahkan user_id secara manual
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
+        // Validasi data yang sudah diubah
         $validated = $request->validate([
             'nama_nasabah' => 'required|string|max:255',
             'nomor_kwitansi' => 'required|string|max:255',
@@ -151,7 +139,11 @@ class AdminController extends Controller
             'tanggal_tagihan' => 'required|date',
         ]);
 
-        $reminder = Reminder::create(array_merge($validated, ['user_id' => Auth::id()]));
+        // Menyimpan data ke database menggunakan Eloquent
+        $reminder = Reminder::create(array_merge($validated, [
+            'nominal_tagihan' => $nominalTagihan,
+            'user_id' => Auth::id()
+        ]));
 
         // Jika pengiriman langsung diperlukan
         if ($reminder->tanggal_tagihan == now()->toDateString()) {

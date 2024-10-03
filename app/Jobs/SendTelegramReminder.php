@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
@@ -18,6 +19,7 @@ class SendTelegramReminder implements ShouldQueue
     /**
      * Create a new job instance.
      *
+     * @param  \App\Models\Reminder  $reminder
      * @return void
      */
     public function __construct($reminder)

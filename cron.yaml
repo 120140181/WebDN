@@ -1,5 +1,4 @@
-version: 1
-jobs:
-  run_scheduler:
-    schedule: "*/5 * * * *"  # Jalankan setiap 5 menit
-    command: "/bin/sh -c 'cd /app && php artisan schedule:run >> /dev/null 2>&1'"
+cron:
+  - name: "Laravel Queue Worker"
+    schedule: "* * * * *"
+    command: "php artisan queue:work --sleep=3 --tries=3"

@@ -24,11 +24,13 @@ class SendTelegramNotification extends Command
         $now = Carbon::now()->startOfDay();
         Log::info('Checking reminders for date: ' . $now);
 
-        $reminders = Reminder::where('tanggal_tagihan', $now)
+        $reminders = Reminder::whereDate('tanggal_tagihan', $now)
             ->where('status_pembayaran', '!=', 'Lunas')
             ->get();
 
-        if ($reminders->isEmpty()) {
+        $reminderCount = $reminders->count();
+
+        if ($reminderCount === 0) {
             Log::info('No reminders found for today.');
             $this->info('No reminders found for today.');
             return;
