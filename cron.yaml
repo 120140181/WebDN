@@ -1,4 +1,4 @@
 cron:
   - name: "Laravel Scheduler"
     schedule: "*/5 * * * *"
-    command: "php artisan schedule:run"
+    command: "cd /app && php artisan schedule:run >> /dev/null 2>&1"
