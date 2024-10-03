@@ -28,20 +28,25 @@ class SendTelegramNotification extends Command
             ->where('status_pembayaran', '!=', 'Lunas')
             ->get();
 
-        if ($reminders->isEmpty()) {
+        $reminderCount = $reminders->count();
+
+        if ($reminderCount === 0) {
             Log::info('No reminders found for today.');
             $this->info('No reminders found for today.');
             return;
         }
 
-        foreach ($reminders as $reminder) {
-            $user = User::find($reminder->user_id); // Pastikan user_id ada di tabel reminders
+        $message = "Reminder: Ada $reminderCount tagihan yang sudah jatuh tempo hari ini!";
+
+        // Mengirim pesan ke semua pengguna yang memiliki tagihan jatuh tempo
+        $userIds = $reminders->pluck('user_id')->unique();
+        foreach ($userIds as $userId) {
+            $user = User::find($userId);
             if ($user) {
-                $message = "Reminder: Ada tagihan yang sudah jatuh tempo hari ini!";
                 $user->notify(new TelegramNotification($message));
-                Log::info('Notification sent to user ID: ' . $user->id . ' for reminder ID: ' . $reminder->id);
+                Log::info('Notification sent to user ID: ' . $user->id);
             } else {
-                Log::error('User not found for reminder ID: ' . $reminder->id);
+                Log::error('User not found for user ID: ' . $userId);
             }
         }
 
