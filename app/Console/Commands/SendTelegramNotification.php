@@ -4,10 +4,10 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Reminder;
-use App\Models\User;
 use App\Notifications\TelegramNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class SendTelegramNotification extends Command
 {
@@ -34,14 +34,22 @@ class SendTelegramNotification extends Command
             return;
         }
 
+        $chatId = env('TELEGRAM_CHAT_ID');
+        $botToken = env('TELEGRAM_BOT_TOKEN');
+
         foreach ($reminders as $reminder) {
-            $user = User::find($reminder->user_id); // Pastikan user_id ada di tabel reminders
-            if ($user) {
-                $message = "Reminder: Ada tagihan yang sudah jatuh tempo hari ini!";
-                $user->notify(new TelegramNotification($message));
-                Log::info('Notification sent to user ID: ' . $user->id . ' for reminder ID: ' . $reminder->id);
+            $message = "Reminder: Ada tagihan yang sudah jatuh tempo hari ini!";
+
+            // Kirim pesan ke Telegram menggunakan bot
+            $response = Http::post("https://api.telegram.org/bot{$botToken}/sendMessage", [
+                'chat_id' => $chatId,
+                'text'    => $message,
+            ]);
+
+            if ($response->successful()) {
+                Log::info('Notification sent for reminder ID: ' . $reminder->id);
             } else {
-                Log::error('User not found for reminder ID: ' . $reminder->id);
+                Log::error('Failed to send notification for reminder ID: ' . $reminder->id);
             }
         }
 
