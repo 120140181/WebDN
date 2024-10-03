@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
@@ -7,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Telegram\Bot\Api;
-use App\Events\ReminderSaved;
+use App\Models\Reminder;
 
 class SendTelegramReminder implements ShouldQueue
 {
@@ -20,7 +21,7 @@ class SendTelegramReminder implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($reminder)
+    public function __construct(Reminder $reminder)
     {
         $this->reminder = $reminder;
     }
@@ -30,22 +31,20 @@ class SendTelegramReminder implements ShouldQueue
      *
      * @return void
      */
-    public function handle(ReminderSaved $event)
+    public function handle()
     {
-        $reminder = $event->reminder;
         $telegram = new Api(env('TELEGRAM_BOT_TOKEN', ''));
 
         $message = "Reminder Pembayaran: \n".
-                "Nama Nasabah: {$reminder->nama_nasabah}\n".
-                "Nomor Kwitansi: {$reminder->nomor_kwitansi}\n".
-                "Nominal Tagihan: {$reminder->nominal_tagihan}\n".
-                "Status Pembayaran: {$reminder->status_pembayaran}\n".
-                "Tanggal Tagihan: {$reminder->tanggal_tagihan}";
+                   "Nama Nasabah: {$this->reminder->nama_nasabah}\n".
+                   "Nomor Kwitansi: {$this->reminder->nomor_kwitansi}\n".
+                   "Nominal Tagihan: {$this->reminder->nominal_tagihan}\n".
+                   "Status Pembayaran: {$this->reminder->status_pembayaran}\n".
+                   "Tanggal Tagihan: {$this->reminder->tanggal_tagihan}";
 
         $telegram->sendMessage([
             'chat_id' => env('TELEGRAM_CHAT_ID', ''),
             'text' => $message
         ]);
     }
-
 }
