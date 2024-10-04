@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\History;
 use App\Models\Reminder;
+use App\Jobs\SendTelegramReminder;
 use Illuminate\Http\Request;
 use App\Events\ReminderSaved;
 use Illuminate\Support\Facades\DB;
@@ -259,6 +260,13 @@ class AdminController extends Controller
         // Redirect ke halaman yang sama
         return redirect()->route('admin.reminder', ['page' => $page])
             ->with('success', 'Reminder berhasil disetujui.');
+    }
+
+    public function sendReminder($reminderId)
+    {
+        $reminder = Reminder::find($reminderId);
+        SendTelegramReminder::dispatch($reminder);
+        return response()->json(['message' => 'Reminder has been queued.']);
     }
 }
 
