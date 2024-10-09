@@ -1,8 +1,10 @@
 name: Laravel Task Scheduler
 
 on:
-  schedule:
-    - cron: '0 7 * * *'  # Menjalankan setiap hari pada jam 07:00 UTC
+    schedule:
+      - cron: '0 7 * * *'  # Menjalankan setiap hari pada jam 07:00 UTC
+    workflow_dispatch:  # Tambahkan ini untuk memicu secara manual
+  
 
 jobs:
   schedule:
