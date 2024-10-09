@@ -20,10 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer install --no-progress --no-suggest --prefer-dist
-          npm install #Jika kamu menggunakan npm untuk frontend
+          npm install # Jika kamu menggunakan npm untuk frontend
 
       - name: Run Laravel scheduler
         run: php artisan schedule:run
-
-      - name: Run Laravel Queue Worker
-        run: php artisan queue:work --once
