@@ -1,39 +1,39 @@
 name: Laravel Task Scheduler
 
 on:
-  schedule:
-    - cron: '0 7 * * *'  # Menjalankan setiap hari pada jam 07:00 UTC
-  workflow_dispatch:
+    schedule:
+        - cron: '0 7 * * *'  # Menjalankan setiap hari pada jam 07:00 UTC
+    workflow_dispatch:
 
 jobs:
-  schedule:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    schedule:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2' # Sesuaikan dengan versi PHP yang digunakan
-          extensions: mbstring, xml, mysqli
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: '8.2' # Sesuaikan dengan versi PHP yang digunakan
+                extensions: mbstring, xml, mysqli
 
-      - name: Install dependencies
-        run: |
-          composer install --no-progress --no-suggest --prefer-dist
-          npm install # Jika kamu menggunakan npm untuk frontend
+            - name: Install dependencies
+              run: |
+                composer install --no-progress --no-suggest --prefer-dist
+                npm install # Jika kamu menggunakan npm untuk frontend
 
-      - name: Setup MySQL
-        run: |
-          sudo apt-get install -y mysql-server
-          sudo service mysql start
-          mysql -e "CREATE DATABASE railway;"
-          mysql -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'aYuoldYYWKRWleNZqVEULFcmDNWcnPKb';"
-          mysql -e "GRANT ALL PRIVILEGES ON railway.* TO 'root'@'localhost';"
-          mysql -e "FLUSH PRIVILEGES;"
+            - name: Setup MySQL
+              run: |
+                sudo apt-get install -y mysql-server
+                sudo service mysql start
+                mysql -uroot -p${{ secrets.DB_PASSWORD }} -e "CREATE DATABASE railway;"
+                mysql -uroot -p${{ secrets.DB_PASSWORD }} -e "CREATE USER 'root'@'localhost' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';"
+                mysql -uroot -p${{ secrets.DB_PASSWORD }} -e "GRANT ALL PRIVILEGES ON railway.* TO 'root'@'localhost';"
+                mysql -uroot -p${{ secrets.DB_PASSWORD }} -e "FLUSH PRIVILEGES;"
 
-      - name: Run migrations
-        run: php artisan migrate
+            - name: Run migrations
+              run: php artisan migrate
 
-      - name: Run Laravel scheduler
-        run: php artisan schedule:run
+            - name: Run Laravel scheduler
+              run: php artisan schedule:run
