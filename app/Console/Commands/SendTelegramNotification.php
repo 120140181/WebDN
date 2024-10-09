@@ -1,10 +1,10 @@
 <?php
+// File: app/Console/Commands/SendTelegramNotification.php
 
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Reminder;
-use App\Notifications\TelegramNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
@@ -39,11 +39,17 @@ class SendTelegramNotification extends Command
         $chatId = env('TELEGRAM_CHAT_ID');
         $botToken = env('TELEGRAM_BOT_TOKEN');
 
+        Log::info('Using chat ID: ' . $chatId);
+        Log::info('Using bot token: ' . $botToken);
+
         foreach ($reminders as $reminder) {
-            $message = "Reminder: Ada tagihan yang sudah jatuh tempo hari ini!";
+            $message = "Reminder: Ada $reminderCount tagihan yang sudah jatuh tempo hari ini!";
 
             // Kirim pesan ke Telegram menggunakan bot
-            $response = Http::post("https://api.telegram.org/bot{$botToken}/sendMessage", [
+            $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
+            Log::info('Sending request to URL: ' . $url);
+
+            $response = Http::post($url, [
                 'chat_id' => $chatId,
                 'text'    => $message,
             ]);
@@ -52,6 +58,8 @@ class SendTelegramNotification extends Command
                 Log::info('Notification sent for reminder ID: ' . $reminder->id);
             } else {
                 Log::error('Failed to send notification for reminder ID: ' . $reminder->id);
+                Log::error('Response Status: ' . $response->status());
+                Log::error('Response Body: ' . $response->body());
             }
         }
 

@@ -1,14 +1,16 @@
 <?php
-
+// File: app/Jobs/SendTelegramReminder.php
 
 namespace App\Jobs;
 
+use App\Models\Reminder;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Telegram\Bot\Api;
+use Illuminate\Support\Facades\Log;
 
 class SendTelegramReminder implements ShouldQueue
 {
@@ -18,11 +20,8 @@ class SendTelegramReminder implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
-     * @param  \App\Models\Reminder  $reminder
-     * @return void
      */
-    public function __construct($reminder)
+    public function __construct(Reminder $reminder)
     {
         $this->reminder = $reminder;
     }
@@ -34,7 +33,9 @@ class SendTelegramReminder implements ShouldQueue
      */
     public function handle()
     {
-        $telegram = new Api(env('TELEGRAM_BOT_TOKEN', '7320724560:AAHUdooBzsluqQsDscNURehRC2nPsiW4D8g'));
+        Log::info('SendTelegramReminder job started for reminder ID: ' . $this->reminder->id);
+
+        $telegram = new Api(env('TELEGRAM_BOT_TOKEN', 'default_token'));
 
         // Menyiapkan pesan dengan data reminder
         $message = "Reminder Pembayaran: \n".
@@ -46,8 +47,10 @@ class SendTelegramReminder implements ShouldQueue
 
         // Mengirim pesan ke Telegram
         $telegram->sendMessage([
-            'chat_id' => env('TELEGRAM_CHAT_ID', '-4512789673'),
+            'chat_id' => env('TELEGRAM_CHAT_ID', 'default_chat_id'),
             'text' => $message
         ]);
+
+        Log::info('SendTelegramReminder job completed for reminder ID: ' . $this->reminder->id);
     }
 }

@@ -265,8 +265,12 @@ class AdminController extends Controller
     public function sendReminder($reminderId)
     {
         $reminder = Reminder::find($reminderId);
-        SendTelegramReminder::dispatch($reminder);
-        return response()->json(['message' => 'Reminder has been queued.']);
+        if ($reminder) {
+            SendTelegramReminder::dispatch($reminder);
+            return response()->json(['message' => 'Reminder has been queued.']);
+        } else {
+            return response()->json(['message' => 'Reminder not found.'], 404);
+        }
     }
 }
 
