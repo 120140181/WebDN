@@ -15,13 +15,24 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2' # Sesuaikan dengan versi PHP yang digunakan
+          php-version: '8.2'
           extensions: mbstring, xml, mysqli
 
       - name: Install dependencies
         run: |
           composer install --no-progress --no-suggest --prefer-dist
           npm install # Jika kamu menggunakan npm untuk frontend
+        
+      - name: Verify DB_PASSWORD
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          if [ -z "${DB_PASSWORD}" ]; then
+            echo "DB_PASSWORD is empty"
+            exit 1
+          else
+            echo "DB_PASSWORD is set and has length: ${#DB_PASSWORD}"
+          fi
 
       - name: Setup MySQL
         env:
@@ -31,12 +42,11 @@ jobs:
           sudo service mysql start
           sudo mysql --version
           sudo service mysql status
-          echo "DB_PASSWORD is set to: ${DB_PASSWORD}"
           sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${DB_PASSWORD}';"
-          sudo mysql -u root -p${DB_PASSWORD} -e "CREATE DATABASE railway;"
-          sudo mysql -u root -p${DB_PASSWORD} -e "CREATE USER 'root'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
-          sudo mysql -u root -p${DB_PASSWORD} -e "GRANT ALL PRIVILEGES ON railway.* TO 'root'@'localhost';"
-          sudo mysql -u root -p${DB_PASSWORD} -e "FLUSH PRIVILEGES;"
+          sudo mysql -u root -p"${DB_PASSWORD}" -e "CREATE DATABASE railway;"
+          sudo mysql -u root -p"${DB_PASSWORD}" -e "CREATE USER 'root'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
+          sudo mysql -u root -p"${DB_PASSWORD}" -e "GRANT ALL PRIVILEGES ON railway.* TO 'root'@'localhost';"
+          sudo mysql -u root -p"${DB_PASSWORD}" -e "FLUSH PRIVILEGES;"
 
       - name: Run migrations
         env:
