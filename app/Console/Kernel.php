@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
         // Menjadwalkan command SendTelegramNotification untuk dijalankan setiap hari pada jam 7 pagi
         $schedule->command('telegram:send')->dailyAt('07:00');
         $schedule->command('queue:work --tries=3')->everyMinute();
-        $schedule->command('queue:restart')->daily();
+        $schedule->command('queue:restart')->dailyAt('03:00');
     }
 
     protected function commands()

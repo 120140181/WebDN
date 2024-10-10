@@ -43,13 +43,13 @@ class SendTelegramNotification extends Command
 
         foreach ($reminders as $reminder) {
             $message = "Reminder : Ada Tagihan yang sudah jatuh tempo hari ini\n" .
-                       "======================================================\n" .
-                       "Reminder Pembayaran:\n" .
-                       "Nama Nasabah: {$reminder->nama_nasabah}\n" .
-                       "Nomor Kwitansi: {$reminder->nomor_kwitansi}\n" .
-                       "Nominal Tagihan: Rp. {$reminder->nominal_tagihan}\n" .
-                       "Status Pembayaran: {$reminder->status_pembayaran}\n" .
-                       "Tanggal Tagihan: {$reminder->tanggal_tagihan}";
+                "\n" .
+                "Reminder Pembayaran:\n" .
+                "Nama Nasabah: {$reminder->nama_nasabah}\n" .
+                "Nomor Kwitansi: {$reminder->nomor_kwitansi}\n" .
+                "Nominal Tagihan: Rp. {$reminder->nominal_tagihan}\n" .
+                "Status Pembayaran: {$reminder->status_pembayaran}\n" .
+                "Tanggal Tagihan: {$reminder->tanggal_tagihan}";
 
             // Kirim pesan ke Telegram menggunakan bot
             $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
@@ -57,7 +57,7 @@ class SendTelegramNotification extends Command
 
             $response = Http::post($url, [
                 'chat_id' => $chatId,
-                'text'    => $message,
+                'text' => $message,
             ]);
 
             if ($response->successful()) {
