@@ -199,10 +199,8 @@
             });
         }
 
-        // Event listener untuk tombol pencarian
         searchButton.addEventListener('click', searchTable);
 
-        // Optional: Pencarian langsung saat mengetik
         searchInput.addEventListener('keyup', searchTable);
     });
 </script>
@@ -213,21 +211,18 @@
             const tbody = table.querySelector('tbody');
             const sortDropdownItems = document.querySelectorAll('.dropdown-item');
 
-            // Function to sort table rows
             function sortTable(columnIndex, ascending) {
                 const rows = Array.from(tbody.querySelectorAll('tr'));
                 rows.sort((rowA, rowB) => {
                     const cellA = rowA.children[columnIndex].innerText.trim();
                     const cellB = rowB.children[columnIndex].innerText.trim();
 
-                    // Convert to numbers for sorting numeric values
                     const valueA = isNaN(cellA) ? cellA : parseFloat(cellA.replace(/[^0-9.-]/g, ''));
                     const valueB = isNaN(cellB) ? cellB : parseFloat(cellB.replace(/[^0-9.-]/g, ''));
 
                     return ascending ? valueA > valueB ? 1 : -1 : valueA < valueB ? 1 : -1;
                 });
 
-                // Append sorted rows back to the tbody
                 rows.forEach(row => tbody.appendChild(row));
             }
 
