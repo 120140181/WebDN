@@ -113,40 +113,30 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         // Validasi data
-        $validator = Validator::make($request->all(), [
-            'nama_nasabah' => 'required|string',
-            'nomor_kwitansi' => 'required|string',
+        $validated = $request->validate([
+            'nama_nasabah' => 'required|string|max:255',
+            'nomor_kwitansi' => 'required|string|max:255',
             'nominal_tagihan' => 'required|string',
             'status_pembayaran' => 'required|string',
             'keterangan' => 'nullable|string',
             'tanggal_tagihan' => 'required|date',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withInput()
-                ->withErrors($validator);
-        }
+        // Menghapus titik dari nominal_tagihan untuk mengubahnya menjadi angka
+        $nominalTagihan = str_replace('.', '', $validated['nominal_tagihan']);
 
-        // Menghapus titik dari nominal_tagihan
-        $nominalTagihan = str_replace('.', '', $request->nominal_tagihan);
-
-        // Validasi data yang sudah diubah
-        $validated = $request->validate([
-            'nama_nasabah' => 'required|string|max:255',
-            'nomor_kwitansi' => 'required|string|max:255',
-            'nominal_tagihan' => 'required|numeric',
-            'status_pembayaran' => 'required|string',
-            'tanggal_tagihan' => 'required|date',
+        // Menyimpan data ke database menggunakan Eloquent dengan nominal_tagihan yang telah dimodifikasi
+        $reminder = Reminder::create([
+            'nama_nasabah' => $validated['nama_nasabah'],
+            'nomor_kwitansi' => $validated['nomor_kwitansi'],
+            'nominal_tagihan' => $nominalTagihan,
+            'status_pembayaran' => $validated['status_pembayaran'],
+            'keterangan' => $validated['keterangan'] ?? null,
+            'tanggal_tagihan' => $validated['tanggal_tagihan'],
+            'user_id' => Auth::id(),
         ]);
 
-        // Menyimpan data ke database menggunakan Eloquent
-        $reminder = Reminder::create(array_merge($validated, [
-            'nominal_tagihan' => $nominalTagihan,
-            'user_id' => Auth::id()
-        ]));
-
-        // Jika pengiriman langsung diperlukan
+        // Jika pengiriman langsung diperlukan, jalankan job pengingat
         if ($reminder->tanggal_tagihan == now()->toDateString()) {
             dispatch(new \App\Jobs\SendTelegramReminder($reminder))->delay(now()->setTime(7, 0));
         }
@@ -154,8 +144,10 @@ class AdminController extends Controller
         // Trigger event untuk mengirim notifikasi
         event(new ReminderSaved($reminder));
 
+        // Redirect ke halaman reminder dengan pesan sukses
         return redirect()->route('admin.reminder')->with('success', 'Reminder berhasil ditambahkan.');
     }
+
 
 
     /**
