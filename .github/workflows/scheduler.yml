@@ -23,34 +23,19 @@ jobs:
           composer install --no-progress --no-suggest --prefer-dist
           npm install # Jika kamu menggunakan npm untuk frontend
         
-      - name: Verify DB_PASSWORD
-        env:
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        run: |
-          if [ -z "${DB_PASSWORD}" ]; then
-            echo "DB_PASSWORD is empty"
-            exit 1
-          else
-            echo "DB_PASSWORD is set and has length: ${#DB_PASSWORD}"
-          fi
-
       - name: Setup MySQL
-        env:
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           sudo apt-get install -y mysql-server
           sudo service mysql start
           sudo mysql --version
           sudo service mysql status
-          sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${DB_PASSWORD}';"
-          sudo mysql -u root -p"${DB_PASSWORD}" -e "CREATE DATABASE railway;"
-          sudo mysql -u root -p"${DB_PASSWORD}" -e "CREATE USER 'root'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
-          sudo mysql -u root -p"${DB_PASSWORD}" -e "GRANT ALL PRIVILEGES ON railway.* TO 'root'@'localhost';"
-          sudo mysql -u root -p"${DB_PASSWORD}" -e "FLUSH PRIVILEGES;"
+          sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'aYuoldYYWKRWleNZqVEULFcmDNWcnPKb';"
+          sudo mysql -u root -p"aYuoldYYWKRWleNZqVEULFcmDNWcnPKb" -e "CREATE DATABASE railway;"
+          sudo mysql -u root -p"aYuoldYYWKRWleNZqVEULFcmDNWcnPKb" -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'aYuoldYYWKRWleNZqVEULFcmDNWcnPKb';"
+          sudo mysql -u root -p"aYuoldYYWKRWleNZqVEULFcmDNWcnPKb" -e "GRANT ALL PRIVILEGES ON railway.* TO 'root'@'localhost';"
+          sudo mysql -u root -p"aYuoldYYWKRWleNZqVEULFcmDNWcnPKb" -e "FLUSH PRIVILEGES;"
 
       - name: Run migrations
-        env:
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: php artisan migrate
 
       - name: Run Laravel scheduler
