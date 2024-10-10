@@ -21,11 +21,11 @@ class SendTelegramNotification extends Command
 
     public function handle()
     {
-        $now = Carbon::now()->startOfDay();
+        $now = Carbon::today();
         Log::info('Checking reminders for date: ' . $now);
 
         $reminders = Reminder::whereDate('tanggal_tagihan', $now)
-            ->where('status_pembayaran', '!=', 'Lunas')
+            ->where('status_pembayaran', '=', 'Pending')
             ->get();
 
         $reminderCount = $reminders->count();
@@ -40,10 +40,16 @@ class SendTelegramNotification extends Command
         $botToken = env('TELEGRAM_BOT_TOKEN');
 
         Log::info('Using chat ID: ' . $chatId);
-        Log::info('Using bot token: ' . $botToken);
 
         foreach ($reminders as $reminder) {
-            $message = "Reminder: Ada $reminderCount tagihan yang sudah jatuh tempo hari ini!";
+            $message = "Reminder : Ada Tagihan yang sudah jatuh tempo hari ini\n" .
+                       "======================================================\n" .
+                       "Reminder Pembayaran:\n" .
+                       "Nama Nasabah: {$reminder->nama_nasabah}\n" .
+                       "Nomor Kwitansi: {$reminder->nomor_kwitansi}\n" .
+                       "Nominal Tagihan: Rp. {$reminder->nominal_tagihan}\n" .
+                       "Status Pembayaran: {$reminder->status_pembayaran}\n" .
+                       "Tanggal Tagihan: {$reminder->tanggal_tagihan}";
 
             // Kirim pesan ke Telegram menggunakan bot
             $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
