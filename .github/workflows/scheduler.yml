@@ -29,6 +29,7 @@ jobs:
           sudo service mysql start
           sudo mysql --version
           sudo service mysql status
+          sleep 10  # Add delay to ensure MySQL service is running
           sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'aYuoldYYWKRWleNZqVEULFcmDNWcnPKb';"
           sudo mysql -u root -p"aYuoldYYWKRWleNZqVEULFcmDNWcnPKb" -e "CREATE DATABASE railway;"
           sudo mysql -u root -p"aYuoldYYWKRWleNZqVEULFcmDNWcnPKb" -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'aYuoldYYWKRWleNZqVEULFcmDNWcnPKb';"
