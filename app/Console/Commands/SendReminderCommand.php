@@ -8,7 +8,7 @@ use App\Models\Reminder;
 
 class SendReminderCommand extends Command
 {
-    protected $signature = 'reminder:send {id}';
+    protected $signature = 'php artisan reminder:send {id}';
     protected $description = 'Send reminder via Telegram';
 
     public function handle()

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 
 class SendTelegramNotification extends Command
 {
-    protected $signature = 'telegram:send';
+    protected $signature = 'php artisan telegram:send';
     protected $description = 'Send Telegram notifications for due reminders';
 
     public function __construct()
